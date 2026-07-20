@@ -1,0 +1,328 @@
+table WorkTicketPivot
+	lineageTag: ccbc867e-3c3e-4141-9d73-0d07b7fc961b
+
+	measure 'Within 24 Hours2' = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        WorkTicketPivot,
+			        NOT ISBLANK(WorkTicketPivot[BOL])
+			            && NOT ISBLANK(WorkTicketPivot[Pre Trip])
+			            && WorkTicketPivot[Hours_PreTrip_To_BOL] <= 24
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: e3c01ba4-e3b9-4f0c-be92-a4f39a67df24
+
+	column OrderFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3152b79f-2b09-4784-93f7-c7a1a2564c83
+		summarizeBy: none
+		sourceColumn: OrderFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Work_Ticket
+		dataType: int64
+		formatString: 0
+		lineageTag: b74fda8e-3105-4942-91b5-f2667e793fbe
+		summarizeBy: sum
+		sourceColumn: Work_Ticket
+
+		annotation SummarizationSetBy = Automatic
+
+	column BOL
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bb50e84e-0ea4-4215-9a7d-7e7e63e94c07
+		summarizeBy: none
+		sourceColumn: BOL
+
+		variation Variation
+			isDefault
+			relationship: 7742cbeb-0468-47b7-b217-a5c5e3813233
+			defaultHierarchy: LocalDateTable_dc4ffbc4-4ec4-4060-bb74-5c9e9b24e068.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pre Trip'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a6ebdef-96e6-41c4-8ae4-57a7d61e2b88
+		summarizeBy: none
+		sourceColumn: Pre Trip
+
+		variation Variation
+			isDefault
+			relationship: 96060f61-787f-4983-aee8-51c3905f1fbb
+			defaultHierarchy: LocalDateTable_548551fc-269c-4564-a076-091657e2bd18.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hours_PreTrip_To_BOL
+		dataType: double
+		lineageTag: 3e634b96-e8ae-48cd-b53b-f0101308eff0
+		summarizeBy: sum
+		sourceColumn: Hours_PreTrip_To_BOL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Hours_BOL_To_Post
+		dataType: double
+		lineageTag: f3e9545e-4e79-4470-89ea-5d03d1c5bd02
+		summarizeBy: sum
+		sourceColumn: Hours_BOL_To_Post
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Missing_PreTrip
+		dataType: int64
+		formatString: 0
+		lineageTag: ac504c8c-720e-4c26-9c7d-fa59a6eef5c2
+		summarizeBy: sum
+		sourceColumn: Missing_PreTrip
+
+		annotation SummarizationSetBy = Automatic
+
+	column Missing_PostTrip
+		dataType: int64
+		formatString: 0
+		lineageTag: 00f2365e-c487-42d8-899f-15b681b22bbb
+		summarizeBy: sum
+		sourceColumn: Missing_PostTrip
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentStatus
+		dataType: string
+		lineageTag: 5002ccca-0d4c-4c50-96cc-4ddb1328ba0a
+		summarizeBy: none
+		sourceColumn: DocumentStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hours_PreTrip_To_PostTrip
+		dataType: double
+		lineageTag: 968ca634-63f3-4563-b639-f0f87bb038a9
+		summarizeBy: sum
+		sourceColumn: Hours_PreTrip_To_PostTrip
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Missing_BOL
+		dataType: int64
+		formatString: 0
+		lineageTag: 502a5672-cf4a-4f9f-8dd5-0918bb4bf4cd
+		summarizeBy: sum
+		sourceColumn: Missing_BOL
+
+		annotation SummarizationSetBy = Automatic
+
+	column Base_Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 164b1bf5-886b-4307-8e7b-eb921056b900
+		summarizeBy: none
+		sourceColumn: Base_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Orderno
+		dataType: string
+		lineageTag: 4b50c078-3b39-48bb-af99-c02dbf1093c9
+		summarizeBy: none
+		sourceColumn: Orderno
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: 5db0fc71-f358-404f-8598-b429c867beed
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vertical
+		dataType: string
+		lineageTag: 2ab83b6c-d2f9-4209-805e-e3cdc3837963
+		summarizeBy: none
+		sourceColumn: Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BranchKey.Base_Branch'
+		dataType: string
+		lineageTag: a53dbe1b-1fc3-41f9-abd3-f218cc28997c
+		summarizeBy: none
+		sourceColumn: BranchKey.Base_Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveType
+		dataType: string
+		lineageTag: f34cf6be-d8c4-4b1e-94e8-4c5e4fb6126c
+		summarizeBy: none
+		sourceColumn: MoveType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Move_Type
+		dataType: string
+		lineageTag: 5a830cb6-f276-47ba-a5fb-049322154afb
+		summarizeBy: none
+		sourceColumn: Move_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Crew.Crew'
+		dataType: string
+		lineageTag: 84e8e141-1ff9-4f3c-9f72-62920e9ff136
+		summarizeBy: none
+		sourceColumn: Crew.Crew
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Post Trip'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1ff8456b-0bff-419c-a908-a9ca74c116f4
+		summarizeBy: none
+		sourceColumn: Post Trip
+
+		variation Variation
+			isDefault
+			relationship: 643bcc50-f94c-4af2-90e5-4fe6df3592dc
+			defaultHierarchy: LocalDateTable_d78775ea-8491-4c8d-8084-10a66197db6b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WorkTicketPivot = m
+		mode: import
+		source =
+				let
+				    Source = Append1,
+				
+				    #"Removed Columns" =
+				        Table.RemoveColumns(Source,{"MSSDocumentID", "DocumentName", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchFID", "Authority", "MoveTypeFID", "ProfileName", "NameMatch", "Stitched", "Merged", "PlanesDates.PlanesDateID", "OrderK_WorkT_Dim", "DocuSort", "DupCheck", "Upload_Date", "Upload_Time", "WorkTicket_ColLength", "LEN_Filter"}),
+				
+				    #"Pivoted Column" =
+				        Table.Pivot(
+				            #"Removed Columns",
+				            List.Distinct(#"Removed Columns"[DocType]),
+				            "DocType",
+				            "UploadDateTime",
+				            List.Min
+				        ),
+				
+				    #"Added Hours_PreTrip_To_BOL" =
+				        Table.AddColumn(
+				            #"Pivoted Column",
+				            "Hours_PreTrip_To_BOL",
+				            each
+				                if [Pre Trip] = null or [BOL] = null
+				                then null
+				                else Duration.TotalHours([BOL] - [Pre Trip]),
+				            type number
+				        ),
+				    #"Added Hours_PreTrip_To_PostTrip" =
+				        Table.AddColumn(
+				            #"Added Hours_PreTrip_To_BOL",
+				            "Hours_PreTrip_To_PostTrip",
+				            each
+				                if [Pre Trip] = null or [Post Trip] = null
+				                then null
+				                else Duration.TotalHours([Post Trip] - [Pre Trip]),
+				            type number
+				        ),
+				
+				    #"Added Hours_BOL_To_Post" =
+				        Table.AddColumn(
+				            #"Added Hours_PreTrip_To_PostTrip",
+				            "Hours_BOL_To_Post",
+				            each
+				                if [BOL] = null or [Post Trip] = null
+				                then null
+				                else Duration.TotalHours([Post Trip] - [BOL]),
+				            type number
+				        ),
+				
+				    #"Added Missing_BOL" =
+				        Table.AddColumn(
+				            #"Added Hours_BOL_To_Post",
+				            "Missing_BOL",
+				            each if [BOL] = null then 1 else 0,
+				            Int64.Type
+				        ),
+				
+				    #"Added Missing_PreTrip" =
+				        Table.AddColumn(
+				            #"Added Missing_BOL",
+				            "Missing_PreTrip",
+				            each if [Pre Trip] = null then 1 else 0,
+				            Int64.Type
+				        ),
+				
+				    #"Added Missing_PostTrip" =
+				        Table.AddColumn(
+				            #"Added Missing_PreTrip",
+				            "Missing_PostTrip",
+				            each if [Post Trip] = null then 1 else 0,
+				            Int64.Type
+				        ),
+				
+				    #"Added DocumentStatus" =
+				        Table.AddColumn(
+				    #"Added Missing_PostTrip",
+				    "DocumentStatus",
+				    each
+				        if [Pre Trip] = null and [BOL] = null and [Post Trip] = null then
+				            "Missing All Documents"
+				
+				        else if [Pre Trip] = null and [BOL] = null then
+				            "Missing Pre Trip & BOL"
+				
+				        else if [Pre Trip] = null and [Post Trip] = null then
+				            "Missing Pre Trip & Post Trip"
+				
+				        else if [BOL] = null and [Post Trip] = null then
+				            "Missing BOL & Post Trip"
+				
+				        else if [Pre Trip] = null then
+				            "Missing Pre Trip"
+				
+				        else if [BOL] = null then
+				            "Missing BOL"
+				
+				        else if [Post Trip] = null then
+				            "Missing Post Trip"
+				
+				        else
+				            "Complete",
+				    type text
+				),
+				    #"Filtered Rows" = Table.SelectRows(#"Added DocumentStatus", each ([Work_Ticket] <> "PLEASE")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"Work_Ticket", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Base_Date", each List.Min(List.RemoveNulls({[BOL], [Pre Trip], [Post Trip]}))),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Base_Date", type date}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Changed Type1",{{"Vertical", Text.Upper, type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Uppercased Text", {"BranchID"}, BranchKey, {"BranchID"}, "BranchKey", JoinKind.LeftOuter),
+				    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries", "BranchKey", {"Base_Branch"}, {"BranchKey.Base_Branch"})
+				in
+				    #"Expanded BranchKey"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

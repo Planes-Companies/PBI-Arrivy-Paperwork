@@ -1,0 +1,332 @@
+table PrePost
+	lineageTag: d627fdff-5b38-4378-a31a-6275acf759b5
+
+	column MSSDocumentID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a9db0f3-2d9b-4fda-a9e8-7044f124ccd2
+		summarizeBy: count
+		sourceColumn: MSSDocumentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 26156cc0-36d6-439b-b156-6eeacca293ea
+		summarizeBy: count
+		sourceColumn: OrderFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentName
+		dataType: string
+		lineageTag: 7647f5fc-cb2a-4d6b-94ed-b2b4c8cb9d49
+		summarizeBy: none
+		sourceColumn: DocumentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column UploadDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f690a73d-635e-46a0-a6df-a570a0cd6e82
+		summarizeBy: none
+		sourceColumn: UploadDateTime
+
+		variation Variation
+			isDefault
+			relationship: 580a2ef9-b1d6-4c02-a1cf-e5ada7c30637
+			defaultHierarchy: LocalDateTable_3ecceb0a-de21-49eb-b582-dca983a9448d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SysUserFID
+		dataType: int64
+		formatString: 0
+		lineageTag: b6eb5a3f-7935-414b-80db-059eca709df0
+		summarizeBy: count
+		sourceColumn: SysUserFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 44bd7164-01c8-4164-be79-3130af942c8b
+		summarizeBy: count
+		sourceColumn: DocumentTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentDescription
+		dataType: string
+		lineageTag: 896c04a8-d15c-4d19-8665-40fec08cc657
+		summarizeBy: none
+		sourceColumn: DocumentDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orderno
+		dataType: string
+		lineageTag: 93173fcd-ced7-490c-bcd5-8f6703fcc3ac
+		summarizeBy: none
+		sourceColumn: Orderno
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d2011ad-a3a3-4c17-8b5e-f93a0c5f1f4b
+		summarizeBy: count
+		sourceColumn: BranchFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: b77db0ca-2619-440d-9924-3c39a62485a2
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Authority
+		dataType: string
+		lineageTag: 215a9c0c-9cdf-412f-a228-33a2422a7333
+		summarizeBy: none
+		sourceColumn: Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vertical
+		dataType: string
+		lineageTag: 1cc24f55-566c-4d1c-b1dc-201b82f765c8
+		summarizeBy: none
+		sourceColumn: Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 51dd3c39-6832-4bcd-b3ea-14a0ec517e86
+		summarizeBy: count
+		sourceColumn: MoveTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveType
+		dataType: string
+		lineageTag: 68ece5c9-b749-4981-8f28-f69128ed27da
+		summarizeBy: none
+		sourceColumn: MoveType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileName
+		dataType: string
+		lineageTag: 97ed40fe-1d9e-4ef0-8806-3ef34c439379
+		summarizeBy: none
+		sourceColumn: ProfileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column NameMatch
+		dataType: string
+		lineageTag: 82003656-2337-491a-b9d7-f27fcb642559
+		summarizeBy: none
+		sourceColumn: NameMatch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stitched
+		dataType: string
+		lineageTag: 1d28f76d-aa0f-4880-ade6-4be7d764c614
+		summarizeBy: none
+		sourceColumn: Stitched
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocType
+		dataType: string
+		lineageTag: 275af266-68df-4a3b-8e43-9a5d54fb4261
+		summarizeBy: none
+		sourceColumn: DocType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Upload_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8d33e6f2-0a4a-4423-91b9-2acfe73ce3fe
+		summarizeBy: none
+		sourceColumn: Upload_Date
+
+		variation Variation
+			isDefault
+			relationship: 176b5cbd-7766-4647-80c9-c63d75acf957
+			defaultHierarchy: LocalDateTable_3eaa8330-a0db-4bf0-83ee-75e6dba18a0e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Upload_Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 005915e9-6754-48cd-bc0c-1bd5e1fe46a1
+		summarizeBy: none
+		sourceColumn: Upload_Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Work_Ticket
+		dataType: int64
+		formatString: 0
+		lineageTag: dcd2c6af-5520-4084-909d-17b635d7baa1
+		summarizeBy: sum
+		sourceColumn: Work_Ticket
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderK_WorkT_Dim
+		dataType: string
+		lineageTag: 0d20d064-b5c6-42d8-a355-d4b51febaf8c
+		summarizeBy: none
+		sourceColumn: OrderK_WorkT_Dim
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkTicket_ColLength
+		dataType: int64
+		formatString: 0
+		lineageTag: e89f5914-89f5-4734-b836-7fbb993b94f9
+		summarizeBy: sum
+		sourceColumn: WorkTicket_ColLength
+
+		annotation SummarizationSetBy = Automatic
+
+	column LEN_Filter
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f4e6ee1-c83b-433d-90cf-1281718e8c89
+		summarizeBy: sum
+		sourceColumn: LEN_Filter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Move_Type
+		dataType: string
+		lineageTag: fa04d872-63da-48b4-9021-0805d8bbacbe
+		summarizeBy: none
+		sourceColumn: Move_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PlanesDates.PlanesDateID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 755e9cae-7440-44b0-b289-e9d9c255c08d
+		summarizeBy: none
+		sourceColumn: PlanesDates.PlanesDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merged
+		dataType: string
+		lineageTag: 104119a8-bf8f-4fc9-b5e3-3d13f470a866
+		summarizeBy: none
+		sourceColumn: Merged
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Crew.Crew'
+		dataType: string
+		lineageTag: 37506802-3d2c-4b12-8b3f-6ca92b66ad2c
+		summarizeBy: none
+		sourceColumn: Crew.Crew
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PrePost = m
+		mode: import
+		source =
+				let
+				    Source = #"BaseDocs (Do Not Alter)",
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Text Between Delimiters] <> "BOL")),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Filtered Rows","821-35 - |Pre Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Install-35P-2171-6-_399595 - 35P-2171-6 - 10651584245704.pdf","821-35 - |Pre Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Install-35P-2171-6-_399595_ - 35P-2171-6 - 10651584245704.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Replaced Value18","397759 -","397759_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Replaced Value","CSG-35 - |Post Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 - 40P-3733-6 - 35125876732657.pdf","CSG-35 - |Post Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 -_399029_- 35125876732657.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Replaced Value19","CSG-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 - 40P-3733-6 - 35125876732657.pdf","CSG-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 -_399029_- 35125876732657.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value13" = Table.ReplaceValue(#"Replaced Value20","'526-035 - |Pre Trip| 3-AWSCrane Solution- NR, 392884, 392885  Commercial Move-35P-3792-6-_399 - 35P-3792-6 - 56877356722955.pdf","'526-035 - |Pre Trip| 3-AWSCrane Solution- NR, 392884, 392885  Commercial Move-35P-3792-6-_399604_- 35P-3792-6 - 56877356722955.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value13","800-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6- - 40P-3733-6 - 10429188263031.pdf","800-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6-_399033_- 10429188263031.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Replaced Value15","_399102 ","_399102_",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Replaced Value14","800-35 - |Post Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 - 40P-3733-6 - 51030451159478.pdf","800-35 - |Post Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6-_399033_- 51030451159478.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value16","397577-","397577_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value26" = Table.ReplaceValue(#"Replaced Value1","CSW-140 - |Post Trip| 1-CumminsCampusKD, GWSCUMMJUNE26  Commercial Install-140P-1854-6-_3992 - 140P-1854-6 - 13102099178234.pdf","CSW-140 - |Post Trip| 1-CumminsCampusKD, GWSCUMMJUNE26  Commercial Install-140P-1854-6-_399232_ - 140P-1854-6 - 13102099178234.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value30" = Table.ReplaceValue(#"Replaced Value26","804-35 - |Post Trip| 1-O'Reilly P6606 Olentangy, Walnut Creek  Commercial Install-35P-3270-6-_3 - 35P-3270-6 - 1829982732081.pdf","804-35 - |Post Trip| 1-O'Reilly P6606 Olentangy, Walnut Creek  Commercial Install-35P-3270-6-_399422_- 1829982732081.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value29" = Table.ReplaceValue(#"Replaced Value30","CSV-40 - |Post Trip| 1-P&GASSET MGMT - DRIVER, 2026  Commercial Move-40P-577-6-A- _-_39938 - 40P-577-6-A- - - 6105770856282.pdf","CSV-40 - |Post Trip| 1-P&GASSET MGMT - DRIVER, 2026  Commercial Move-40P-577-6-A-_399387_- 6105770856282.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value28" = Table.ReplaceValue(#"Replaced Value29","804-35 - |Post Trip| 1-AEP-Minerva furniture, removal  CartonMaterial Delivery-35P-3831-6-_39 - 35P-3831-6 - 18061857691123.pdf","804-35 - |Post Trip| 1-AEP-Minerva furniture, removal  CartonMaterial Delivery-35P-3831-6-_399472_ - 35P-3831-6 - 18061857691123.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value27" = Table.ReplaceValue(#"Replaced Value28","CSG-35 - |Post Trip| 1-UnigroupDHP, W00004653  Commercial Delivery out Whse-35P-2330-6-_39932 - 35P-2330-6 - 10294212395696.pdf","CSG-35 - |Post Trip| 1-UnigroupDHP, W00004653  Commercial Delivery out Whse-35P-2330-6-_399323_ - 35P-2330-6 - 10294212395696.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value25" = Table.ReplaceValue(#"Replaced Value27","CSV-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, SPECIAL LOCAL  Commercial Move-140P-2079-6-_399233 - 140P-2079-6 - 25896076901525.pdf","CSV-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, SPECIAL LOCAL  Commercial Move-140P-2079-6-_399233_- 140P-2079-6 - 25896076901525.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value24" = Table.ReplaceValue(#"Replaced Value25","822-35 - |Post Trip| 1-COLDWELL BANKER DECOM, THE LIBERTYGROUP  CartonMaterial Delivery-35P-37 - 35P-3757-6 - 25110069330746.pdf","822-35 - |Post Trip| 1-COLDWELL BANKER DECOM, THE LIBERTYGROUP  CartonMaterial Delivery-35P-3757-6_399309_- 25110069330746.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value24","CSH-35 - |Pre Trip| 1-OSUMC-Project storage, delivery out  Commercial Delivery out Whse-35P-371 - 35P-3714-6 - 22686584231735.pdf","CSH-35 - |Pre Trip| 1-OSUMC-Project storage, delivery out  Commercial Delivery out Whse-35P-3714-6-_399300_ - 22686584231735.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value17","800-35 - |Post Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 - 40P-3733-6 - 51030451159478.pdf","800-35 - |Post Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6 -_399033_- 51030451159478.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value34" = Table.ReplaceValue(#"Replaced Value21","'526-035 - |Pre Trip| 3-AWSCrane Solution- NR, 392884, 392885  Commercial Move-35P-3792-6-_399604_- 35P-3792-6 - 56877356722955.pdf","'526-035 - |Pre Trip| 3-AWSCrane Solution- NR, 392884, 392885  Commercial Move-35P-3792-6-_399169_- 35P-3792-6 - 56877356722955.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value34","398188 -","398188_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value2","CSG-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6- - 40P-3733-6 - 35954804065933.pdf","CSG-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6-_399029_- 35954804065933.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value23" = Table.ReplaceValue(#"Replaced Value22","800-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6- - 40P-3733-6 - 10429188263031.pdf","800-35 - |Pre Trip| 1-SuddathBrice Park, Foot Locker  Commercial Delivery out Whse-40P-3733-6-_399033_- 10429188263031.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value23","397760 -","397760_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","397241-","397241_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","397244-","397244_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","397245-","397245_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","397726 -","397726_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7","397270-","397270_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value8","397733 -","397733_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","397879 -","397879_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10","397746 -","397746_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Replaced Value11","398065 -","398065_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value31" = Table.ReplaceValue(#"Replaced Value12","CSH-35 - |Pre Trip| 1-CorriganWelding Robot OSU, ROC-488-6  Commercial Move-35P-3844-6-_399409 - 35P-3844-6 - 21730940372589.pdf","CSH-35 - |Pre Trip| 1-CorriganWelding Robot OSU, ROC-488-6  Commercial Move-35P-3844-6-_399409_-35P-3844-6 - 21730940372589.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value32" = Table.ReplaceValue(#"Replaced Value31","821-35 - |Post Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Install-35P-2171-6-_3994 - 35P-2171-6 - 12626714729367.pdf","821-35 - |Post Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Install-35P-2171-6-_399415_- 35P-2171-6-12626714729367.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value33" = Table.ReplaceValue(#"Replaced Value32","CSG-35 - |Pre Trip| 1-P2 Ohioana Library, 410295  Commercial Delivery in Whse-35P-3689-6-_39953 - 35P-3689-6 - 19723637065538.pdf","CSG-35 - |Pre Trip| 1-P2 Ohioana Library, 410295  Commercial Delivery in Whse-35P-3689-6-_399531_- 35P-3689-6 -19723637065538.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Replaced Value33", "Text Between Delimiters.1", each Text.BetweenDelimiters([DocumentName], "|", "|"), type text),
+				    #"Inserted Text Between Delimiters1" = Table.AddColumn(#"Inserted Text Between Delimiters", "Text Between Delimiters.2", each Text.BetweenDelimiters([DocumentName], "_", "_", {1, RelativePosition.FromEnd}, 0), type text),
+				    #"Filtered Rows1" = Table.SelectRows(#"Inserted Text Between Delimiters1", each ([Text Between Delimiters.2] <> "" and [Text Between Delimiters.2] <> "3 - 140P-2078-6 - 56821578428950.pdf" and [Text Between Delimiters.2] <> "3 - 140P-947-6 - 28034206178562.pdf" and [Text Between Delimiters.2] <> "3 - 35P-2392-6 - 33841485544383.pdf" and [Text Between Delimiters.2] <> "3 - 35P-3569-6 - 63506214830489.pdf" and [Text Between Delimiters.2] <> "3 - 35P-3627-6 - 24604169549894.pdf" and [Text Between Delimiters.2] <> "39 - 40P-3374-6 - 7324866383645.pdf" and [Text Between Delimiters.2] <> "397 - 35P-2392-6 - 33457365861000.pdf" and [Text Between Delimiters.2] <> "397 - 35P-3116-6 - 17865580274528.pdf" and [Text Between Delimiters.2] <> "397 - 35P-3569-6 - 12249699559279.pdf" and [Text Between Delimiters.2] <> "397 - 35P-3569-6 - 14223121156188.pdf" and [Text Between Delimiters.2] <> "397 - 40P-3374-6 - 26268001585982.pdf" and [Text Between Delimiters.2] <> "39757 - 140P-1971-6 - 9280828825564.pdf" and [Text Between Delimiters.2] <> "3977 - 140P-1854-6 - 31746001314271.pdf" and [Text Between Delimiters.2] <> "3977 - 35P-3569-6 - 41516938830017.pdf" and [Text Between Delimiters.2] <> "39773 - 140P-1973-6 - 85851237932837.pdf" and [Text Between Delimiters.2] <> "39778 - 340P-265-6 - 35190631128869.pdf" and [Text Between Delimiters.2] <> "39783 - 40P-3147-6 - 2086768404509.pdf" and [Text Between Delimiters.2] <> "3979 - 40P-3374-6 - 6926499144117.pdf" and [Text Between Delimiters.2] <> "398 - 35P-3627-6 - 25138893643746.pdf" and [Text Between Delimiters.2] <> "3980 - 140P-1917-6 - 11831840542536.pdf" and [Text Between Delimiters.2] <> "3980 - 140P-947-6 - 9696249698989.pdf" and [Text Between Delimiters.2] <> "3981 - 35P-2171-6 - 35454107580655.pdf" and [Text Between Delimiters.2] <> "3981 - 35P-3627-6 - 1142445405929.pdf" and [Text Between Delimiters.2] <> "EXTRA SPACE STORA  Commercial Move-340P-437-6" and [Text Between Delimiters.2] <> "HEMATOGENIX  Commercial Move-340P-462-6-" and [Text Between Delimiters.2] <> "null")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows1",{{"Text Between Delimiters.2", "Work_Ticket"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "OrderK_WorkT_Dim", each Text.From([OrderFID]) & "|" & Text.From([Work_Ticket])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Custom",{{"Text Between Delimiters.1", "DocType"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns1",{"DocType"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns",{{"Text Between Delimiters", "DocType"}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Renamed Columns2", each ([Work_Ticket] <> " BD  Commercial Delivery out Whse-M1257-2334-6- - -B-" and [Work_Ticket] <> "'526-035 - |Post Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-" and [Work_Ticket] <> "'526-035 - |Post Trip| 2-AWSCrane Solution- NR, 393881, 393882  Commercial Move-35P-3882-6-" and [Work_Ticket] <> "'526-035 - |Pre Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-" and [Work_Ticket] <> "'526-035 - |Pre Trip| 2-AWSCrane Solution- NR, 393881, 393882  Commercial Move-35P-3882-6-" and [Work_Ticket] <> "(NTN) - |Post Trip| 1-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "(NTN) - |Pre Trip| 1-Ally LogisticsServer Move, Lancaster  Commercial Move-35P-3898-6-" and [Work_Ticket] <> "(NTN) - |Pre Trip| 1-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "200-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1048-6 - 1479057119.pdf" and [Work_Ticket] <> "200-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1048-6 - 47426263755309.pdf" and [Work_Ticket] <> "200-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1049-6 - 19458042764156.pdf" and [Work_Ticket] <> "200-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1049-6 - 676344870401.pdf" and [Work_Ticket] <> "200-140 - |Pre Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1048-6 - 40341890227560.pdf" and [Work_Ticket] <> "200-140 - |Pre Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1049-6 - 11515744221919.pdf" and [Work_Ticket] <> "200-140 - |Pre Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1049-6 - 1828570359576.pdf" and [Work_Ticket] <> "300-35 - |Post Trip| 1-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "300-35 - |Pre Trip| 1-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "309-35 - |Post Trip| 1-AWSCrane Solution - NR, 395246, 395247  Commercial Move-35P-3938-6-" and [Work_Ticket] <> "309-35 - |Post Trip| 1-AWSCrane Solution- NR, 393881, 393882  Commercial Move-35P-3882-6-" and [Work_Ticket] <> "309-35 - |Post Trip| 1-AWSCrane Solution- NR, 394555, 394563  Commercial Move-35P-3917-6-" and [Work_Ticket] <> "309-35 - |Pre Trip| 1-AWSCrane Solution - NR, 395246, 395247  Commercial Move-35P-3938-6-" and [Work_Ticket] <> "309-35 - |Pre Trip| 1-AWSCrane Solution- NR, 393881, 393882  Commercial Move-35P-3882-6-" and [Work_Ticket] <> "386-40 - |Post Trip| 1-Clancy MovingVineyard Vin, Monroe Boat del - 40P-3964-6 - 4375715496118.pdf" and [Work_Ticket] <> "386-40 - |Pre Trip| 1-Clancy MovingVineyard Vin, Monroe Boat del - 40P-3964-6 - 8613613434940.pdf" and [Work_Ticket] <> "524-35 - |Post Trip| 2-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "524-35 - |Pre Trip| 2-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "525-35 - |Post Trip| 1-AWSCrane Solution - NR, 395246, 395247  Commercial Move-35P-3938-6-" and [Work_Ticket] <> "525-35 - |Post Trip| 2-AWSCrane Solution- NR, 394555, 394563  Commercial Move-35P-3917-6-" and [Work_Ticket] <> "525-35 - |Pre Trip| 1-AWSCrane Solution - NR, 395246, 395247  Commercial Move-35P-3938-6-" and [Work_Ticket] <> "525-35 - |Pre Trip| 2-AWSCrane Solution- NR, 394555, 394563  Commercial Move-35P-3917-6-" and [Work_Ticket] <> "528-35 - |Post Trip| 2-AWSCrane Solution- NR, 392278, 392279  Commercial Move-35P-3780-6-" and [Work_Ticket] <> "528-35 - |Pre Trip| 2-AWSCrane Solution- NR, 392278, 392279  Commercial Move-35P-3780-6-" and [Work_Ticket] <> "544-35 - |Post Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-" and [Work_Ticket] <> "800-35 - |Post Trip| 1-Doan 395 Pharm - 35P-1354-6 - 45355496095355.pdf" and [Work_Ticket] <> "800-35 - |Post Trip| 1-O'Reilly P6644 EP, Ferris HGT ADJ  Commercial Install-35P-3383-6-" and [Work_Ticket] <> "800-35 - |Pre Trip| 1-Doan 395 Pharm - 35P-1354-6 - 45213732660166.pdf" and [Work_Ticket] <> "804-35 - |Pre Trip| 1-AEP-Minerva furniture, removal  CartonMaterial Delivery-35P-3831-6-" and [Work_Ticket] <> "804-35 - |Pre Trip| 1-O'Reilly P6606 Olentangy, Walnut Creek  Commercial Install-35P-3270-6-" and [Work_Ticket] <> "804-35 - |Pre Trip| 1-Southern District Court OH, Fitness Room  Commercial Move-35P-3806-6-" and [Work_Ticket] <> "808-140 - |Pre Trip| 1-Henry Schein- Compressor, Smiles For Life  Commercial Move-140P-2260-6- - 140P-2260-6 - 33313989607071.pdf" and [Work_Ticket] <> "808-140 - |Pre Trip| 2-MSD Pike Township Schools, WEIGHT ROOM RELO  Commercial Move-140P-2092- - 140P-2092-6 - 10337370070150.pdf" and [Work_Ticket] <> "808-140 - |Pre Trip| 2-MSD Pike Township Schools, WEIGHT ROOM RELO  Commercial Move-140P-2092-6 - 140P-2092-6 - 2060602961355.pdf" and [Work_Ticket] <> "813-35 - |Pre Trip| 1-McNaughton McKay Electric, MCNAUGHTON-MCKAY  Commercial Move-35P-3026-6-" and [Work_Ticket] <> "819-140 - |Post Trip| 1-STATE OF INDIANA, ELECTION BOARD  Commercial Move-140P-1973-6-" and [Work_Ticket] <> "819-140 - |Pre Trip| 1-STATE OF INDIANA, DFRMadison-Ande  Commercial Move-140P-2316-6-" and [Work_Ticket] <> "821-35 - |Post Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Install-35P-2171-6-" and [Work_Ticket] <> "821-35 - |Post Trip| 1-Whiting Turner Co - 35P-3824-6 - 1651116781.pdf" and [Work_Ticket] <> "821-35 - |Pre Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Install-35P-2171-6-" and [Work_Ticket] <> "821-35 - |Pre Trip| 1-Whiting Turner Co - 35P-3824-6 - 2413810719702.pdf" and [Work_Ticket] <> "822-35 - |Pre Trip| 1-COLDWELL BANKER DECOM, THE LIBERTYGROUP  CartonMaterial Delivery-35P-3757 - 35P-3757-6 - 4121930502035.pdf" and [Work_Ticket] <> "824-340 - |Post Trip| 1-BUEHLER M690 - C - 340P-515-6 - 22848825021321.pdf" and [Work_Ticket] <> "824-340 - |Pre Trip| 1-BUEHLER M690 - C - 340P-515-6 - 44196064513159.pdf" and [Work_Ticket] <> "827-140 - |Post Trip| 1-Alpha Chi Omega Fraternity, DALLAS SHERATON  Commercial Move-140P-1995- - 140P-1995-6 - 9215313070312.pdf" and [Work_Ticket] <> "827-140 - |Post Trip| 1-STATE OF INDIANA, DFRCROWN POINT  Commercial Move-140P-1681-6-" and [Work_Ticket] <> "827-140 - |Post Trip| 1-SuddathApplebee's 9118, Fishers  Commercial Delivery out Whse-140P-15 - 140P-1583-6 - 53946105683543.pdf" and [Work_Ticket] <> "827-140 - |Pre Trip| 1-Alpha Chi Omega Fraternity, DALLAS SHERATON  Commercial Move-140P-1995-6 - 140P-1995-6 - 3340602729871.pdf" and [Work_Ticket] <> "827-140 - |Pre Trip| 1-STATE OF INDIANA, DFRBROOKVILLE  Commercial Install-140P-1639-6-" and [Work_Ticket] <> "827-140 - |Pre Trip| 1-SuddathApplebee's 9118, Fishers  Commercial Delivery out Whse-140P-158 - 140P-1583-6 - 93506193898548.pdf" and [Work_Ticket] <> "828-140 - |Post Trip| 1-STATE OF INDIANA, ELECTION BOARD  Commercial Move-140P-1973-6-" and [Work_Ticket] <> "828-140 - |Post Trip| 2-Alpha Chi Omega Fraternity, DALLAS SHERATON  Commercial Move-140P-1995- - 140P-1995-6 - 1729493829740.pdf" and [Work_Ticket] <> "828-140 - |Post Trip| 3-Republic Airways, Dismantle Projec  Commercial Move-140P-2205-6-" and [Work_Ticket] <> "828-140 - |Pre Trip| 2-Alpha Chi Omega Fraternity, DALLAS SHERATON  Commercial Move-140P-1995- - 140P-1995-6 - 13097157098301.pdf" and [Work_Ticket] <> "829-140 - |Pre Trip| 1-Republic Airways, Dismantle Projec  Commercial Move-140P-2205-6-" and [Work_Ticket] <> "830-40 - |Post Trip| 1-ArmstrongHickory Valley M, CN-18455-6  Commercial Delivery out Whse-40P - 40P-3776-6 - 15152727302823.pdf" and [Work_Ticket] <> "830-40 - |Post Trip| 1-CorriganSteris Tipp City, U120-1643-6  Commercial Delivery in Whse-40P-4 - 40P-4016-6 - 9983924684872.pdf" and [Work_Ticket] <> "830-40 - |Pre Trip| 1-ArmstrongHickory Valley M, CN-18455-6  Commercial Delivery out Whse-40P-3 - 40P-3776-6 - 2117941922135.pdf" and [Work_Ticket] <> "830-40 - |Pre Trip| 1-CorriganSteris Tipp City, U120-1643-6  Commercial Delivery in Whse-40P-4 - 40P-4016-6 - 85438236602382.pdf" and [Work_Ticket] <> "830-40 - |Pre Trip| 2-Cin Traffic Aids Division, CITY OF CINCY  Commercial Move-40P-3613-6-" and [Work_Ticket] <> "832-40 - |Post Trip| 1-Suzu Restaurant, Atlas Logistics  Commercial Delivery out Whse-40P-9588- - 40P-9588-5 - 11437873464383.pdf" and [Work_Ticket] <> "832-40 - |Pre Trip| 1-Safeway LogisticsIntuitiv, INT-44025  Commercial Delivery out Whse-40P-39 - 40P-3979-6 - 4868423378488.pdf" and [Work_Ticket] <> "832-40 - |Pre Trip| 1-Suzu Restaurant, Atlas Logistics  Commercial Delivery out Whse-40P-9588-5- - 40P-9588-5 - 9701652840506.pdf" and [Work_Ticket] <> "832-40 - |Pre Trip| 2-All American Relocation, UC CoE  Commercial Delivery in Whse-40P-4079-6-" and [Work_Ticket] <> "836-35 - |Pre Trip| 1-COLDWELL BANKER DECOM, THE LIBERTYGROUP  CartonMaterial Delivery-35P-375 - 35P-3757-6 - 35738643267943.pdf" and [Work_Ticket] <> "836-35 - |Pre Trip| 1-COLDWELL BANKER DECOM, THE LIBERTYGROUP  Commercial Move-35P-3757-6-" and [Work_Ticket] <> "836-35 - |Pre Trip| 1-CorriganSteris Grant Medi, U120-1702-6  Commercial Delivery in Whse-35P- - 35P-3904-6 - 33996002661715.pdf" and [Work_Ticket] <> "836-35 - |Pre Trip| 1-Devore LightChair Deliver, ARBOR LIVING  Commercial Move-40P-3029-6-" and [Work_Ticket] <> "836-35 - |Pre Trip| 1-Vertiv Downtown Wrk Stns, 40P-2423-6  CartonMaterial Delivery-35P-2911-6- - 35P-2911-6 - 7647300487000.pdf" and [Work_Ticket] <> "856-35 - |Post Trip| 1-OSU MC Minor Moves Jun26, QTNP62LVIJ  Commercial Move-35P-5039-5-" and [Work_Ticket] <> "880-40 - |Pre Trip| 1-NBF Family Weath Group, ZK292809  Commercial Delivery out Whse-40P-4033-6- - 40P-4033-6 - 1694174538268.pdf" and [Work_Ticket] <> "894-40 - |Pre Trip| 1-SuddathFootlocker Fast Br  Commercial Delivery out Whse-40P-4092-6-" and [Work_Ticket] <> "895-40 - |Pre Trip| 2-SuddathFootlocker Fast Br  Commercial Delivery out Whse-40P-4092-6-" and [Work_Ticket] <> "CC2-35 - |Post Trip| 1-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "CC2-35 - |Pre Trip| 1-AWSCrane Solution - ADC, 394666, 395001  Commercial Move-35P-3933-6-" and [Work_Ticket] <> "CC6-35 - |Pre Trip| 1-Ally LogisticsServer Move, Lancaster  Commercial Move-35P-3898-6-" and [Work_Ticket] <> "CS18-140 - |Post Trip| 1-Republic Airways, Dismantle Projec  Commercial Move-140P-2205-6-" and [Work_Ticket] <> "CS18-140 - |Pre Trip| 1-Republic Airways, Dismantle Projec  Commercial Move-140P-2205-6-" and [Work_Ticket] <> "CS5-35 - |Post Trip| 1-OSUMCJames UH Bed Back Fl  Commercial Delivery out Whse-35P-1293-6-" and [Work_Ticket] <> "CS5-35 - |Pre Trip| 1-OSUMCJames UH Bed Back Fl  Commercial Delivery out Whse-35P-1293-6-" and [Work_Ticket] <> "CSA-140' - |Pre Trip| 1-ROCHE DIAGNOSTICS, MARIAN, INC - 140P-1048-6 - 6479823844127.pdf" and [Work_Ticket] <> "CSA-40 - |Post Trip| 1-Dirck'sOsaic Battery Del - 40P-4107-6 - 86373883963525.pdf" and [Work_Ticket] <> "CSA-40 - |Pre Trip| 1-Dirck'sOsaic Battery Del - 40P-4107-6 - 4049730087979.pdf" and [Work_Ticket] <> "CSB-35 - |Post Trip| 1-Vertiv Downtown Wrk Stns, 40P-2423-6  Commercial Install-35P-2911-6-" and [Work_Ticket] <> "CSB-35 - |Pre Trip| 1-Vertiv Downtown Wrk Stns, 40P-2423-6  Commercial Install-35P-2911-6-" and [Work_Ticket] <> "CSB-35 - |Pre Trip| 1-Whiting Turner Co - 35P-3824-6 - 10448296913902.pdf" and [Work_Ticket] <> "CSG-35 - |Post Trip| 1-P2 Ohioana Library, 410295  Commercial Delivery in Whse-35P-3689-6-" and [Work_Ticket] <> "CSG-35 - |Pre Trip| 1-OSUMC-HEALTHY COMM - 35P-3968-6 - 36307059238510.pdf" and [Work_Ticket] <> "CSH-35 - |Pre Trip| 1-O'Reilly Worthington Steel, Shades  Commercial Delivery out Whse-35P-2171 - 35P-2171-6 - 86227510678616.pdf" and [Work_Ticket] <> "CSP-40 - |Post Trip| 2-Dalton Warehouse Relo, HAMILTON CO  Commercial Move-40P-3668-6-" and [Work_Ticket] <> "CSR-140 - |Pre Trip| 1-MSD Pike Township Schools, WEIGHT ROOM RELO  Commercial Move-140P-2092- - 140P-2092-6 - 41247267833343.pdf" and [Work_Ticket] <> "CSR-140 - |Pre Trip| 1-MSD Pike Township Schools, WEIGHT ROOM RELO  Commercial Move-140P-2092-6- - 140P-2092-6 - 806402059743.pdf" and [Work_Ticket] <> "CSV-140 - |Post Trip| 1-Henry Schein, Sisters of St - 140P-2274-6 - 38661679857704.pdf" and [Work_Ticket] <> "CSV-140 - |Post Trip| 2-Republic Airways, Dismantle Projec  Commercial Move-140P-2205-6-" and [Work_Ticket] <> "CSV-140 - |Pre Trip| 1-Henry Schein, Sisters of St - 140P-2274-6 - 7562508405475.pdf" and [Work_Ticket] <> "CSV-140 - |Pre Trip| 1-ROCHE DIAGNOSTICS, PARKVIEW SOUTHWE  Commercial Delivery out Whse-140P- - 140P-2084-6 - 12418027732348.pdf" and [Work_Ticket] <> "CSV-40 - |Post Trip| 2-CentervilleBed Packing, Kettering Health  Commercial Move-40P-3811-6-" and [Work_Ticket] <> "CSW-140 - |Post Trip| 1-CumminsCampusKD, GWSCUMMJUNE26  Commercial Move-140P-1854-6-" and [Work_Ticket] <> "CSW-140 - |Post Trip| 1-ROCHE DIAGNOSTICS, LABCORP BIOPHARM  Commercial Delivery out Whse-140P- - 140P-1958-6 - 2756418554888.pdf" and [Work_Ticket] <> "CSW-140 - |Pre Trip| 1-CumminsCampusKD, GWSCUMMJUNE26  Commercial Install-140P-1854-6-" and [Work_Ticket] <> "CSW-140 - |Pre Trip| 1-ROCHE DIAGNOSTICS, LABCORP BIOPHARM  Commercial Delivery out Whse-140P- - 140P-1958-6 - 12538550620353.pdf" and [Work_Ticket] <> "CSW-40 - |Pre Trip| 1-NBF UGI Energy Services, ZK292183  Commercial Delivery out Whse-40P-3973- - 40P-3973-6 - 41925402129286.pdf" and [Work_Ticket] <> "Ideal 342508 - |Post Trip| 1-ROCHE DIAGNOSTICS, LABCORP DUBLIN  Commercial Delivery out Whse-1 - 140P-2013-6 - 61719385056422.pdf" and [Work_Ticket] <> "Ideal 342508 - |Pre Trip| 1-ROCHE DIAGNOSTICS, LABCORP DUBLIN  Commercial Delivery out Whse-14 - 140P-2013-6 - 21625128882601.pdf" and [Work_Ticket] <> "Ideal 362340 - |Pre Trip| 1-ROCHE DIAGNOSTICS, LABCORP DUBLIN  Commercial Delivery out Whse-14 - 140P-2013-6 - 75779395053780.pdf" and [Work_Ticket] <> "Penske(Clev) - |Pre Trip| 1-NXT Point Chipotle, July Deliveries  Commercial Delivery out Whse-3 - 35P-3229-6 - 46175121684254.pdf" and [Work_Ticket] <> "QC5-35 - |Post Trip| 1-AWSCrane Solution- NR, 393881, 393882  Commercial Move-35P-3882-6-" and [Work_Ticket] <> "QC5-35 - |Pre Trip| 1-AWSCrane Solution- NR, 393881, 393882  Commercial Move-35P-3882-6-")),
+				    #"Sorted Rows" = Table.Sort(#"Filtered Rows2",{{"Work_Ticket", Order.Ascending}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Sorted Rows", "Work_Ticket", "Work_Ticket - Copy"),
+				    #"Calculated Text Length" = Table.TransformColumns(#"Duplicated Column",{{"Work_Ticket - Copy", Text.Length, Int64.Type}}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Calculated Text Length",{{"Work_Ticket - Copy", "WorkTicket_ColLength"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns3", "LEN_Filter", each if [WorkTicket_ColLength] > 6 then "No WT #" else if [WorkTicket_ColLength] < 6 then "No WT #" else [Work_Ticket]),
+				    #"Filtered Rows3" = Table.SelectRows(#"Added Custom1", each ([LEN_Filter] <> "No WT #")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows3",{{"LEN_Filter", Int64.Type}}),
+				    #"Filtered Rows4" = Table.SelectRows(#"Changed Type", each true),
+				    #"Inserted First Characters" = Table.AddColumn(#"Filtered Rows4", "First Characters", each Text.Start([MoveType], 4), type text),
+				    #"Trimmed Text" = Table.TransformColumns(#"Inserted First Characters",{{"First Characters", Text.Trim, type text}}),
+				    #"Replaced Value35" = Table.ReplaceValue(#"Trimmed Text","COD","Local",Replacer.ReplaceValue,{"First Characters"}),
+				    #"Replaced Value36" = Table.ReplaceValue(#"Replaced Value35","OAg","International",Replacer.ReplaceValue,{"First Characters"}),
+				    #"Replaced Value37" = Table.ReplaceValue(#"Replaced Value36","Comm","Commercial",Replacer.ReplaceValue,{"First Characters"}),
+				    #"Replaced Value38" = Table.ReplaceValue(#"Replaced Value37","N/A","Local",Replacer.ReplaceText,{"First Characters"}),
+				    #"Replaced Value39" = Table.ReplaceValue(#"Replaced Value38","MIL","Military",Replacer.ReplaceValue,{"First Characters"}),
+				    #"Replaced Value40" = Table.ReplaceValue(#"Replaced Value39","Oth","Other",Replacer.ReplaceValue,{"First Characters"}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Replaced Value40",{{"First Characters", "Move_Type"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns4",{{"Work_Ticket", Int64.Type}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"OrderK_WorkT_Dim"}, Crew, {"Order_WT"}, "Crew", JoinKind.LeftOuter),
+				    #"Expanded Crew" = Table.ExpandTableColumn(#"Merged Queries", "Crew", {"Crew"}, {"Crew.Crew"}),
+				    #"Replaced Value41" = Table.ReplaceValue(#"Expanded Crew","(NTN)","(NTN)-",Replacer.ReplaceText,{"DocumentDescription"})
+				in
+				    #"Replaced Value41"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

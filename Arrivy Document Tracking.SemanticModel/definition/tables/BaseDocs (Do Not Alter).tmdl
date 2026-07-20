@@ -1,0 +1,243 @@
+table 'BaseDocs (Do Not Alter)'
+	lineageTag: 161aed35-efb4-4c1b-a4b7-9a298a2fa08e
+
+	column MSSDocumentID
+		dataType: int64
+		formatString: 0
+		lineageTag: 218e301f-0397-40f9-94de-90b0f8223e19
+		summarizeBy: count
+		sourceColumn: MSSDocumentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderFID
+		dataType: int64
+		formatString: 0
+		lineageTag: a3c11de1-86dc-41d9-b3a0-7bd26755e4b1
+		summarizeBy: count
+		sourceColumn: OrderFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UploadDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ffb473ae-92ef-432b-bcad-e9d894c47662
+		summarizeBy: none
+		sourceColumn: UploadDateTime
+
+		variation Variation
+			isDefault
+			relationship: 332a5747-0d8c-4892-9b2c-6628334e99c9
+			defaultHierarchy: LocalDateTable_dcee54f0-cff0-4e08-b757-e6bd9e8da5cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 40b286c0-d5b1-4c1a-b467-d6235d318bfc
+		summarizeBy: count
+		sourceColumn: DocumentTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orderno
+		dataType: string
+		lineageTag: a20503e6-d215-4eab-adfe-a668b82fb527
+		summarizeBy: none
+		sourceColumn: Orderno
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchFID
+		dataType: int64
+		formatString: 0
+		lineageTag: d170e1ce-762f-4248-9786-2796aad2d15e
+		summarizeBy: count
+		sourceColumn: BranchFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: 257568e0-ec50-4e8c-920c-e6195f3db5dc
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Authority
+		dataType: string
+		lineageTag: ad5c5c95-5492-41a2-b0d7-760c9871dd9c
+		summarizeBy: none
+		sourceColumn: Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vertical
+		dataType: string
+		lineageTag: c815ccb9-ed79-472b-a106-54a01decc316
+		summarizeBy: none
+		sourceColumn: Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: adf07aad-19d7-41d5-a270-c2d22e60d287
+		summarizeBy: count
+		sourceColumn: MoveTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveType
+		dataType: string
+		lineageTag: e0d8aaed-3c48-4343-a7a0-b5576c3d32cc
+		summarizeBy: none
+		sourceColumn: MoveType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileName
+		dataType: string
+		lineageTag: be318694-9e71-4838-92c2-7fe1d69666ca
+		summarizeBy: none
+		sourceColumn: ProfileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentName
+		dataType: string
+		lineageTag: cc276e7a-5bfd-480b-8434-87d424a9aee2
+		summarizeBy: none
+		sourceColumn: DocumentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SysUserFID
+		dataType: int64
+		formatString: 0
+		lineageTag: ac00fb0a-8e18-488e-a930-771034cbcd4a
+		summarizeBy: count
+		sourceColumn: SysUserFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentDescription
+		dataType: string
+		lineageTag: f0926596-3e9e-4f83-ad99-388e76e7f54c
+		summarizeBy: none
+		sourceColumn: DocumentDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column NameMatch
+		dataType: string
+		lineageTag: 798fd871-8bb3-43da-9d12-cd9a044c0e78
+		summarizeBy: none
+		sourceColumn: NameMatch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stitched
+		dataType: string
+		lineageTag: 71fe98f5-2bc7-4c72-9f1c-48a14b1fabc7
+		summarizeBy: none
+		sourceColumn: Stitched
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Text Between Delimiters'
+		dataType: string
+		lineageTag: de4722ae-b021-4557-a0c6-2a2f6ab2c860
+		summarizeBy: none
+		sourceColumn: Text Between Delimiters
+
+		annotation SummarizationSetBy = Automatic
+
+	column Upload_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6b783e03-2135-41ba-bb0b-5e8cf1aebdfc
+		summarizeBy: none
+		sourceColumn: Upload_Date
+
+		variation Variation
+			isDefault
+			relationship: 3004035c-bdfa-4580-b483-a73c97a4faf5
+			defaultHierarchy: LocalDateTable_d8b7e0e8-b9a7-4c59-902e-e3a9d3226be3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Upload_Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 5f2cf19f-81dc-43d1-b8ca-cddb12f0da83
+		summarizeBy: none
+		sourceColumn: Upload_Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'PlanesDates.PlanesDateID'
+		dataType: int64
+		formatString: 0
+		lineageTag: ce8910d7-fc21-4959-821e-2f0ce34b78a5
+		summarizeBy: none
+		sourceColumn: PlanesDates.PlanesDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merged
+		dataType: string
+		lineageTag: 29712c31-8481-4f28-a803-b071c9088c55
+		summarizeBy: none
+		sourceColumn: Merged
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'BaseDocs (Do Not Alter)' = m
+		mode: import
+		source = ```
+				let
+				    Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2", [Query="#(lf)DECLARE @DocumentCount TABLE (#(lf)    [MSSDocumentID] INT,#(lf)    [OrderFID] INT,#(lf)    [DocumentName] VARCHAR(500),#(lf)    [SysUserFID] INT,#(lf)    [UploadDateTime] DATETIME,#(lf)    [MSSDocumentImageFID] INT,#(lf)    [DocumentTypeFID] INT,#(lf)    [DocumentDescription] VARCHAR(100),#(lf)    [DeletedOn] DATETIME,#(lf)    [DocByteSize] INT,#(lf)#(tab)Orderno VarChar (23),#(lf)#(tab)BranchFID int,#(lf)#(tab)BranchID VarChar (5),#(lf)#(tab)Authority VarChar (30),#(lf)#(tab)Vertical VarChar (30),#(lf)#(tab)MoveTypeFID Int,#(lf)#(tab)MoveType VarChar(25),#(lf)#(tab)ProfileName VarChar (25)#(lf));#(lf)#(lf)-- Insert data from source table#(lf)INSERT INTO @DocumentCount (#(lf)    [MSSDocumentID], [OrderFID], [DocumentName], [SysUserFID],#(lf)    [UploadDateTime], [MSSDocumentImageFID],#(lf)    [DocumentTypeFID], [DocumentDescription], [DeletedOn],#(lf)    [DocByteSize], Orderno, BranchFID, BranchID, Authority, Vertical, MoveTypeFID, MoveType, ProfileName#(lf))#(lf)SELECT#(lf)    [MSSDocumentID], [OrderFID], [DocumentName], [SysUserFID],#(lf)    [UploadDateTime], [MSSDocumentImageFID],#(lf)    [DocumentTypeFID], [DocumentDescription], [DeletedOn],#(lf)    [DocByteSize], Orderno, BranchFID, BranchID, Authority, Vertical, MoveTypeFID, MoveType, ProfileName#(lf)#(lf)FROM [MoversSuite2].[dbo].[MSSDocument] MSD#(lf)LEFT JOIN MoversSuite2Supp..vwOrdersDataset VW#(lf)ON MSD.OrderFID = VW.OrdPriKey#(lf)WHERE DocumentTypeFID IN ('1','12','20','49','95')#(lf)  AND UploadDateTime > '2026-06-28' #(lf)  --AND MoveType IN ('N/A Own Local', 'N/A OWN Local', 'COD OWN Local', 'Oth Ag OWN Loca',#(lf)  --'MIL OWN Local', 'Comm Sub', 'Comm Main', 'N/A Converted', 'OAg OWN OA/DA', 'COD Box Delv')#(lf)#(lf)SELECT * FROM @DocumentCount;", HierarchicalNavigation=true]),
+				    #"Added Custom" = Table.AddColumn(Source, "NameMatch", each if 
+				    Text.Upper(Text.Trim([DocumentName])) 
+				    = 
+				    Text.Upper(Text.Trim([DocumentDescription])) 
+				then 1 else 0),
+				    #"Replaced Value" = Table.ReplaceValue(#"Added Custom","Pre Trip","|Pre Trip|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Post Trip","|Post Trip|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","BOL","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value2",{"DeletedOn", "DocByteSize", "MSSDocumentImageFID"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Columns", "Stitched", each if Text.Contains([DocumentDescription], "Stitched") then "STITCHED" else "Null"),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Conditional Column", each ([Stitched] = "Null")),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Filtered Rows", "Text Between Delimiters", each Text.BetweenDelimiters([DocumentName], "|", "|"), type text),
+				    #"Filtered Rows1" = Table.SelectRows(#"Inserted Text Between Delimiters", each ([Text Between Delimiters] <> "")),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Filtered Rows1","--","_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Replaced Value3", "UploadDateTime", "UploadDateTime - Copy"),
+				    #"Inserted Date" = Table.AddColumn(#"Duplicated Column", "Date", each DateTime.Date([#"UploadDateTime - Copy"]), type date),
+				    #"Inserted Time" = Table.AddColumn(#"Inserted Date", "Time", each DateTime.Time([#"UploadDateTime - Copy"]), type time),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Inserted Time",{"UploadDateTime - Copy"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"Date", "Upload_Date"}, {"Time", "Upload_Time"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"MSSDocumentID", "OrderFID", "DocumentName", "UploadDateTime", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "Orderno", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "MoveType", "ProfileName", "NameMatch", "Stitched", "Text Between Delimiters", "Upload_Date", "Upload_Time"}),
+				    #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"UploadDateTime", Order.Descending}}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Sorted Rows","822-35 - Pre Trip 1-FUJI | Express Delivery-_null_- - U594-14668","822-35 - Pre Trip 1-FUJI | Express Delivery-_401151_- U594-14668",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","822-35 - |Pre Trip| 1-FUJI  Express Delivery-_null_- - U594-14668-6- - -C - 3644808164833.pdf","822-35 - |Pre Trip| 1-FUJI  Express Delivery-_401151_- - U594-14668-6- - -C - 3644808164833.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Replaced Value5", each ([Authority] <> "Van Line")),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows2", {"Upload_Date"}, PlanesDates, {"Date"}, "PlanesDates", JoinKind.LeftOuter),
+				    #"Expanded PlanesDates" = Table.ExpandTableColumn(#"Merged Queries", "PlanesDates", {"PlanesDateID"}, {"PlanesDates.PlanesDateID"}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Expanded PlanesDates", "Merged", each Text.Combine({Text.From([PlanesDates.PlanesDateID], "en-US"), "|", Text.From([OrderFID], "en-US")}), type text)
+				in
+				    #"Inserted Merged Column"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,77 @@
+table DocTypeKey
+	lineageTag: 2a4f23cc-e380-432c-8aaa-12b7446d0f99
+
+	column DocumentTypeID
+		dataType: int64
+		formatString: 0
+		lineageTag: b26a8bcb-39ba-4ed3-9d6a-0b52c0f1fc10
+		summarizeBy: count
+		sourceColumn: DocumentTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentGroupFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 327495cb-2676-4535-ade9-0e1373aeac07
+		summarizeBy: count
+		sourceColumn: DocumentGroupFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: df4c1f04-f8ee-4da3-bd45-96dcea6eb406
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: d861200b-4d13-4e7e-a0f4-3ec18eda2134
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWorkTicket
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 47ca9c84-0f5d-4aee-bd22-496b089c5747
+		summarizeBy: none
+		sourceColumn: IsWorkTicket
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5c7a1bf0-eac4-4fd7-95ba-ca48ab833ba3
+		summarizeBy: none
+		sourceColumn: Inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShowInMsCrew
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d06b0edc-3635-424f-b33c-345bb59b2ba5
+		summarizeBy: none
+		sourceColumn: ShowInMsCrew
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DocTypeKey = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSAWMnfx8QmZmTo5CfpuCTmJKZlx4HFHFz9Al2xaBjdYA6jaBaQ/OKM9PzFCAmQDipKQqoRuE1ycgAapJ7flkJ1BwIkwTnmFgCuWZA7F8OcwuI5VhakkGKWyxNoW5xLCrKLKtUCEgsQOGkFpXnF2XjNiIWAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [DocumentTypeID = _t, DocumentGroupFID = _t, Type = _t, Description = _t, IsWorkTicket = _t, Inactive = _t, ShowInMsCrew = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"DocumentTypeID", Int64.Type}, {"DocumentGroupFID", Int64.Type}, {"Type", type text}, {"Description", type text}, {"IsWorkTicket", type logical}, {"Inactive", type logical}, {"ShowInMsCrew", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

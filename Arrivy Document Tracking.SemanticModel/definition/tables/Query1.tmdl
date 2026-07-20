@@ -1,0 +1,127 @@
+table Query1
+	lineageTag: 9df5f6c8-db05-400f-bcdd-97969c90cb6a
+
+	column ServiceDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f9dda994-77f4-4811-8071-1cdf982bba8f
+		summarizeBy: none
+		sourceColumn: ServiceDate
+
+		variation Variation
+			isDefault
+			relationship: 821797eb-e749-4787-a7cf-e2fef06b75bb
+			defaultHierarchy: LocalDateTable_1e2b87e7-179e-40e6-82b1-86d9e8990b65.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dffd645-a32e-4f34-a6a7-e6003291aa94
+		summarizeBy: count
+		sourceColumn: OrdPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: e3843ff6-4499-410c-bc7c-5a3df2476fd3
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service
+		dataType: string
+		lineageTag: ea0dbc67-b183-4986-a906-62cc6e1b1ba9
+		summarizeBy: none
+		sourceColumn: Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocServPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f3cacd8f-202e-40bb-86f0-051820d5c85f
+		summarizeBy: count
+		sourceColumn: LocServPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Crew
+		dataType: string
+		lineageTag: b2b8aab5-cf25-4f81-a0df-438f23074ad5
+		summarizeBy: none
+		sourceColumn: Crew
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: 06b1e398-80e1-42cd-b499-64c8eb4a26ae
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchName
+		dataType: string
+		lineageTag: 33cf3897-2307-4d5d-9172-6064570ffafc
+		summarizeBy: none
+		sourceColumn: BranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchPrefix
+		dataType: string
+		lineageTag: 1b68ba98-e90a-4d6a-8edc-e16f7f611d7a
+		summarizeBy: none
+		sourceColumn: BranchPrefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceStatus
+		dataType: string
+		lineageTag: 543af6f5-51f3-4997-82db-7c821959d7c9
+		summarizeBy: none
+		sourceColumn: ServiceStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocServBranchName
+		dataType: string
+		lineageTag: 0c30ff74-49c0-4b0f-a7f6-4860792e50e5
+		summarizeBy: none
+		sourceColumn: LocServBranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo2
+		dataType: string
+		lineageTag: 526ad59e-aadb-4381-ae28-6a2e39099290
+		summarizeBy: none
+		sourceColumn: OrderNo2
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipmentNumber
+		dataType: string
+		lineageTag: 371bd9a2-ecc5-42b2-aa0c-e1f2e9e01139
+		summarizeBy: none
+		sourceColumn: EquipmentNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Query1 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2Supp", [Query="USE MoversSuite2Supp#(lf)#(lf)SELECT VLS.ServiceDate#(lf)#(tab),VOD.OrdPriKey#(lf)#(tab),vls.OrderNo#(lf)#(tab),LSO.Service#(lf)#(tab),LocServPriKey#(lf)#(tab),VLS.Crew#(lf)#(tab),VOD.BranchID#(lf)#(tab),VOD.BranchName#(lf)#(tab),VOD.BranchPrefix#(lf)#(tab),LSO.ServiceStatus#(lf)#(tab),LSO.LocServBranchName#(lf)#(tab),VOD.OrderNo#(lf)#(tab),LSE.EquipmentNumber#(lf)FROM MoversSuite2Supp..vwLocalServices VLS#(lf)JOIN vwOrdersDataset VOD#(lf)ON VLS.OrdPriKey = VOD.OrdPriKey#(lf)JOIN Moverssuite2..LocalServicesEquipment LSE#(lf)ON VLS.LocServPriKey = LSE.LocalServicesEquipmentLocServFID#(lf)JOIN MoversSuite2..LocalServices LSO#(lf)ON VLS.OrdPriKey = LSO.LocalServicesOrdersFID#(lf)WHERE vls.ServiceDate > '2026-06-13'", HierarchicalNavigation=true])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

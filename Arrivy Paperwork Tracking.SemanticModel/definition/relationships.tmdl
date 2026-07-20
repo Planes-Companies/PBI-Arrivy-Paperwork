@@ -1,0 +1,162 @@
+relationship e5a43ac5-e959-4fc4-aabc-c5ae850287b9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vwOrdersDataset.CreatedDt
+	toColumn: LocalDateTable_3e8ece5f-e06f-449d-a75b-5a7d1f51d58e.Date
+
+relationship f5875c74-4409-4c42-a3c6-856231185cdc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vwOrdersDataset.ActDelDt
+	toColumn: LocalDateTable_f759420a-a875-4a82-8253-5e9b07830652.Date
+
+relationship d748170c-4ab0-4aa4-b62c-873c0c838a6e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vwOrdersDataset.EndDelivDt
+	toColumn: LocalDateTable_3cac850b-4758-4974-bde2-a3f8e1fa1e98.Date
+
+relationship ecdf12fa-3315-42ea-92cf-52d3f80f9533
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dispatch.ScheduledStart
+	toColumn: LocalDateTable_32a4acac-5034-495b-bdec-1af2510374de.Date
+
+relationship 332a5747-0d8c-4892-9b2c-6628334e99c9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BaseDocs (Do Not Alter)'.UploadDateTime
+	toColumn: LocalDateTable_dcee54f0-cff0-4e08-b757-e6bd9e8da5cf.Date
+
+relationship 4024de5c-6273-451e-9a10-c379d5e796e3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: BOL.UploadDateTime
+	toColumn: LocalDateTable_c472065d-a77a-41d3-8b8b-05e22f14e42a.Date
+
+relationship AutoDetected_e547ac0f-e42c-446c-8eaa-781dc99ae950
+	fromColumn: BOL.Orderno
+	toColumn: vwOrdersDataset.OrderNo
+
+relationship AutoDetected_22487146-501d-49ac-82e2-b7499c078887
+	fromColumn: vwOrdersDataset.BranchID
+	toColumn: BranchKey.BranchID
+
+relationship AutoDetected_c3c66205-ee58-43e9-8fd0-7d6d093d621e
+	isActive: false
+	fromColumn: BOL.BranchID
+	toColumn: BranchKey.BranchID
+
+relationship b3250646-e792-4d40-9a54-77035e0e21e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vwOrdersDataset.StartDelivDt
+	toColumn: LocalDateTable_f020a985-4f69-4373-8845-d04121772d67.Date
+
+relationship 821797eb-e749-4787-a7cf-e2fef06b75bb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Query1.ServiceDate
+	toColumn: LocalDateTable_1e2b87e7-179e-40e6-82b1-86d9e8990b65.Date
+
+relationship AutoDetected_64624402-60fa-4c76-9bc3-6d03513fce77
+	fromColumn: Query1.BranchID
+	toColumn: BranchKey.BranchID
+
+relationship 3004035c-bdfa-4580-b483-a73c97a4faf5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BaseDocs (Do Not Alter)'.Upload_Date
+	toColumn: LocalDateTable_d8b7e0e8-b9a7-4c59-902e-e3a9d3226be3.Date
+
+relationship 46c7a571-cf9a-4c7f-9fa2-ba0b3355035e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: BOL.Upload_Date
+	toColumn: LocalDateTable_d47faa43-da7a-41de-95de-889b0122b426.Date
+
+relationship 580a2ef9-b1d6-4c02-a1cf-e5ada7c30637
+	joinOnDateBehavior: datePartOnly
+	fromColumn: PrePost.UploadDateTime
+	toColumn: LocalDateTable_3ecceb0a-de21-49eb-b582-dca983a9448d.Date
+
+relationship 176b5cbd-7766-4647-80c9-c63d75acf957
+	joinOnDateBehavior: datePartOnly
+	fromColumn: PrePost.Upload_Date
+	toColumn: LocalDateTable_3eaa8330-a0db-4bf0-83ee-75e6dba18a0e.Date
+
+relationship AutoDetected_78eec641-3493-499a-89b7-382adea1aef8
+	fromColumn: PrePost.Orderno
+	toColumn: vwOrdersDataset.OrderNo
+
+relationship AutoDetected_565f65cb-980b-4fae-aa48-13b88de89180
+	isActive: false
+	fromColumn: PrePost.BranchID
+	toColumn: BranchKey.BranchID
+
+relationship 0b6b54a4-fda5-4da3-8a30-5cc80aa8fc88
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Append1.UploadDateTime
+	toColumn: LocalDateTable_5c17356a-b0ef-48a0-9e61-6122596358bd.Date
+
+relationship d1046bca-681e-40e1-bb1d-090bcff142f8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Append1.Upload_Date
+	toColumn: LocalDateTable_65204473-988c-4fe3-9821-a273a8feeb6c.Date
+
+relationship 7742cbeb-0468-47b7-b217-a5c5e3813233
+	joinOnDateBehavior: datePartOnly
+	fromColumn: WorkTicketPivot.BOL
+	toColumn: LocalDateTable_dc4ffbc4-4ec4-4060-bb74-5c9e9b24e068.Date
+
+relationship 96060f61-787f-4983-aee8-51c3905f1fbb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: WorkTicketPivot.'Pre Trip'
+	toColumn: LocalDateTable_548551fc-269c-4564-a076-091657e2bd18.Date
+
+relationship 7b594fd8-3c1e-99e4-5903-e0aa057c4100
+	fromColumn: WorkTicketPivot.OrderFID
+	toColumn: vwOrdersDataset.OrdPriKey
+
+relationship 59199be5-cdac-45ac-5a69-d7c62fe7b7d4
+	fromColumn: WorkTicketPivot.Base_Date
+	toColumn: PlanesDates.Date
+
+relationship AutoDetected_96d816c8-1880-4419-b2bc-19508fd02933
+	isActive: false
+	fromColumn: WorkTicketPivot.BranchID
+	toColumn: BranchKey.BranchID
+
+relationship AutoDetected_218f594a-8f8e-4cad-afa9-473313eb393d
+	fromColumn: 'BaseDocs (Do Not Alter)'.'PlanesDates.PlanesDateID'
+	toColumn: PlanesDates.PlanesDateID
+
+relationship AutoDetected_e95497eb-91c8-40b7-88ca-d0df4cda05cc
+	fromColumn: BOL.'PlanesDates.PlanesDateID'
+	toColumn: PlanesDates.PlanesDateID
+
+relationship AutoDetected_0a2c4e4c-16a3-4d08-82bf-3b556128df68
+	fromColumn: PrePost.'PlanesDates.PlanesDateID'
+	toColumn: PlanesDates.PlanesDateID
+
+relationship AutoDetected_38bf8a06-5eae-402c-84df-9f2262af4695
+	fromColumn: Append1.'PlanesDates.PlanesDateID'
+	toColumn: PlanesDates.PlanesDateID
+
+relationship c669e626-6ace-49fe-9613-3efb8a4e7302
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Crew.ServiceDate
+	toColumn: LocalDateTable_5c775b58-2f0f-42f6-be4b-e319b586e092.Date
+
+relationship AutoDetected_bbbc5ab8-03db-464b-a42f-d3140c0a663b
+	fromColumn: Crew.'PlanesDates.PlanesDateID'
+	toColumn: PlanesDates.PlanesDateID
+
+relationship 215df401-d8be-09a0-2ea5-3c84a7c0b7ae
+	fromColumn: Append1.OrderFID
+	toColumn: vwOrdersDataset.OrdPriKey
+
+relationship ec8c0396-3622-23af-5287-a952838e68a8
+	fromColumn: Crew.OrdPriKey
+	toColumn: vwOrdersDataset.OrdPriKey
+
+relationship e6330fd7-245f-fdb4-3c89-7bafcd389850
+	toCardinality: many
+	fromColumn: Dispatch.OrdPriKey
+	toColumn: WorkTicketPivot.OrderFID
+
+relationship 643bcc50-f94c-4af2-90e5-4fe6df3592dc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: WorkTicketPivot.'Post Trip'
+	toColumn: LocalDateTable_d78775ea-8491-4c8d-8084-10a66197db6b.Date
+

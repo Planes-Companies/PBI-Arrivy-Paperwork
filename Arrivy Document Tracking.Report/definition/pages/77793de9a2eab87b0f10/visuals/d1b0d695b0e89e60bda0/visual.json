@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "d1b0d695b0e89e60bda0",
+  "position": {
+    "x": 1058.8139059304704,
+    "y": 0,
+    "z": 4000,
+    "height": 177.34151329243355,
+    "width": 221.18609406952964,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "BranchKey.Base_Branch"
+                }
+              },
+              "queryRef": "WorkTicketPivot.BranchKey.Base_Branch",
+              "nativeQueryRef": "BranchKey.Base_Branch",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

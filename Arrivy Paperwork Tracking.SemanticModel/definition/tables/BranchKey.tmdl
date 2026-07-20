@@ -1,0 +1,50 @@
+table BranchKey
+	lineageTag: 4563ff80-c1d6-4d62-ad35-3546b71a197f
+
+	column BranchKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 045b9b23-8c87-4d03-86d4-6c01d8bd779a
+		summarizeBy: count
+		sourceColumn: BranchKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: 687ee321-fee2-4f48-822f-46562b0dc1c8
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchName
+		dataType: string
+		lineageTag: ac81a4e1-62d5-4691-a6f5-a3b8b4f10a57
+		summarizeBy: none
+		sourceColumn: BranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Base_Branch
+		dataType: string
+		lineageTag: ae072612-28e2-41b8-88cd-7624587eb139
+		summarizeBy: none
+		sourceColumn: Base_Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BranchKey = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("jVTbjpswEP0VlOdFAmwT8liRZkECEomqq2a1D96UNlYdHBFWVf6+vgzLzUn6BJg5PjNnZs7r6wIF3uJpEW/zOFFPcTpVzYFR7rhOfGQH+luoY3h7e5IAogCbzVcN2O/3zvNL6chvN07SSSxeEXmyy80fH+HQ2XFaVxdXRjk5vf7i4m/VTBlWikHe2jG4z1y8y5ReRPPnzOmhckrB64uNMFTQnfmBsAd0N4vBkU4w2cWFxqWFDE3E5cxayll7VeGsPrC6pi3TCII1Q55m8jEkyJkE0MYCwSGByyeQQdycR/elNCA/krCylZVf3XsgHOnkNvn2u3wGeBV0ZDJwrPcYiMKuqYWRXjVUgSwcXtcdHWrpzEfLhOqODY1QN27FbNzuFIY8JWFcfANY3VJWV81DET3TrHib6fkLyef8CT7WQ6Z9ev+4AJsHbNmMrYubQPDSDJ4mQmTQ41sALURiAHKJlkviJFXD2fF6B4UIgT5l0+XbZrPggIDW2UzrG/cTDSlBrwgHMHX3UtI7rubhM6Ub22rJMIRy1j8m5ay/qJM1vbaiBoH1Eplz7AW9whA0jkYqOsnBQRzsEbXYvb5Hxjk7iPZYTYBagMQYiAT6hPwPDGEYa13ISGpbekQ3vzTFSJn9XmZbOPJhHuH2wTxai/egI72q9o7MRCae8WtIDEWdzK4Mcof7MqTTdr1Li7XCDP0trX8yWtOz4EyNzehT1xWB62iTG7bfXDYDEN3WEqgijHrdHnER35QGWGl4XWkydGQFMygOwPH6NO163sgaYdjDdOZ5DxXywffSme89gpqUkxj8XE0/5e0xpk1lMfa3fw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [BranchKey = _t, BranchID = _t, BranchName = _t, Base_Branch = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"BranchKey", Int64.Type}, {"BranchID", type text}, {"BranchName", type text}, {"Base_Branch", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"BranchName", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

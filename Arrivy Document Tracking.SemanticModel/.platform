@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Arrivy Document Tracking"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f82584b7-13b6-447c-8f47-d91afcb767f9"
+  }
+}

@@ -1,0 +1,151 @@
+table _Measures
+	lineageTag: 71f3804e-8cb7-42e8-be0b-28a265371272
+
+	measure 'Total Orders' = DISTINCTCOUNT(vwOrdersDataset[OrdPriKey])
+		formatString: 0
+		lineageTag: 2ab67d98-370c-4040-829b-1336f0f57efc
+
+	measure 'Total Work Tickets' = ```
+			
+			COUNT(WorkTicketPivot[Work_Ticket])
+			
+			```
+		formatString: 0
+		lineageTag: d8f5792b-32c5-4c56-800e-1301265b4d77
+
+	measure 'Complete Work Tickets' = ```
+			
+			CALCULATE(
+			    COUNTROWS(WorkTicketPivot),
+			    WorkTicketPivot[DocumentStatus] = "Complete"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 1f1181de-8c25-4cc0-808c-cf27ae915a3a
+
+	measure 'Missing BOL Count' = ```
+			
+			SUM(WorkTicketPivot[Missing_BOL])
+			
+			```
+		formatString: 0
+		lineageTag: 4c95fcc0-4503-4432-a3ba-ce383c76bc27
+
+	measure 'Missing Pre Trip Count' = ```
+			
+			SUM(WorkTicketPivot[Missing_PreTrip])
+			
+			```
+		formatString: 0
+		lineageTag: 23722d81-cd27-4301-927d-3c8b9364c129
+
+	measure 'Missing Post Trip Count' = ```
+			
+			SUM(WorkTicketPivot[Missing_PostTrip])
+			
+			```
+		formatString: 0
+		lineageTag: 959f50d3-3ec8-41b2-8bb6-79e32b6951e7
+
+	measure 'Within 24 Hours' = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        WorkTicketPivot,
+			        NOT ISBLANK(WorkTicketPivot[BOL])
+			            && NOT ISBLANK(WorkTicketPivot[Pre Trip])
+			            && WorkTicketPivot[Hours_PreTrip_To_BOL] <= 24
+			    )
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 4dd02c29-41cc-48f8-9937-a458e48f2f5b
+
+	measure 'Tickets With BOL' = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        WorkTicketPivot,
+			        NOT ISBLANK(WorkTicketPivot[BOL])
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 3d47ba47-c878-456b-a654-746693d14849
+
+	measure PreTrip_BOL_Status = ```
+			
+			VAR PreTripTime =
+			    CALCULATE (
+			        MIN ( Append1[UploadDateTime] ),
+			        Append1[DocType] = "Pre Trip"
+			    )
+			VAR BOLTime =
+			    CALCULATE (
+			        MIN ( Append1[UploadDateTime] ),
+			        Append1[DocType] = "BOL"
+			    )
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(PreTripTime), "Missing Pre Trip",
+			        ISBLANK(BOLTime), "Missing BOL",
+			        "Complete"
+			    )
+			
+			```
+		lineageTag: 6601d6f4-ac89-4f24-b155-2528d37f6204
+
+	measure '% Missing BOL' =
+			
+			DIVIDE(
+			    SUM('WorkTicketPivot'[Missing_BOL]),
+			    [Total Work Tickets]
+			)
+		lineageTag: af522643-a795-4155-a3cf-0874c6c83449
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Missing Pre Trip' =
+			
+			DIVIDE(
+			    SUM('WorkTicketPivot'[Missing_PreTrip]),
+			    [Total Work Tickets]
+			)
+		lineageTag: 4084b5a6-d614-4157-a72f-19cd2fed91d2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Missing Post Trip' =
+			
+			DIVIDE(
+			    SUM('WorkTicketPivot'[Missing_PostTrip]),
+			    [Total Work Tickets]
+			)
+		lineageTag: 5ab99485-c2ab-4dd6-b142-aa248af09f23
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		lineageTag: 9025221c-3862-428d-b46b-fbf0e9238dab
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

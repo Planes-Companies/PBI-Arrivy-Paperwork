@@ -1,0 +1,178 @@
+table PlanesDates
+	lineageTag: 58282c6d-9bcd-447a-8152-c9ee8a25bc46
+	dataCategory: Time
+
+	column PlanesDateID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d0a4498-48df-4adf-98af-1fbbbc0cae05
+		summarizeBy: none
+		sourceColumn: PlanesDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: e276a7f1-1181-4753-aa19-6d98ec9843d9
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 994ae2c1-4b1a-4dfe-8601-1acb1695f88e
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fdc5a90-edc3-4464-8a66-f1ef762d490d
+		summarizeBy: sum
+		sourceColumn: MonthNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 3da2e37c-edf5-45c5-91ac-04c0ec16af01
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthNum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d338490-259b-48d5-b92e-4fbfd1e4a4ed
+		summarizeBy: sum
+		sourceColumn: DayNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: 220665bb-8fc7-43ba-841a-e738831e287d
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 856ac2e8-22ed-4c49-8d9c-ee4a47b3551d
+		summarizeBy: sum
+		sourceColumn: WeekNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 3552c3d4-b43a-464c-b49b-694d7acd567e
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYear
+		dataType: string
+		lineageTag: f2bc5c4e-b62f-46e7-9a20-faf0bf7d1be2
+		summarizeBy: none
+		sourceColumn: MonthYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumYearMonth
+		dataType: string
+		lineageTag: c70cd1f8-8e7f-404d-83fd-03ea4c55898b
+		summarizeBy: none
+		sourceColumn: NumYearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsHoliday
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6844f442-f07f-4623-ae38-482c963da865
+		summarizeBy: none
+		sourceColumn: IsHoliday
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4ed0e866-9c4b-456a-a8f3-1601654520a6
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merged
+		dataType: string
+		lineageTag: d0a5ad9e-06bd-492f-9cd9-7502897a70df
+		summarizeBy: none
+		sourceColumn: Merged
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEK_OF
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6397def2-5a04-4a4c-a707-f4067c6877af
+		summarizeBy: none
+		sourceColumn: WEEK_OF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column QtrNum
+		dataType: string
+		lineageTag: ec80dea9-53f9-44ef-9609-be6a37ab94ab
+		summarizeBy: none
+		sourceColumn: QtrNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Future Date' =
+			
+			IF (
+			    PlanesDates[Date] > TODAY(),
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 51c13af6-c5f1-4c1a-a4f6-51e7aec946c5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PlanesDates = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("PLNDS01\Sql2k16", "MoversSuite2Supp", [Query="Select * FROM PlanesDates #(lf)Where Date > '12-30-2025'"]),
+				    #"Extracted Date" = Table.TransformColumns(Source,{{"Date", DateTime.Date, type date}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Extracted Date",{"PlanesCheckDt", "GWSCheckDt"}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Removed Columns", "Merged", each Text.Combine({"Q", [Quarter]}), type text),
+				    #"Added Custom" = Table.AddColumn(#"Inserted Merged Column", "WEEK_OF", each Date.StartOfWeek([Date], Day.Sunday), type date)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

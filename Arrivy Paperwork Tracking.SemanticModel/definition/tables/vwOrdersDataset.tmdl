@@ -1,0 +1,188 @@
+table vwOrdersDataset
+	lineageTag: 5ef1be59-986b-4c81-864a-e7ea6afb4d74
+
+	column OrdPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 85dc2309-a157-4edc-a109-b9639ddae03a
+		summarizeBy: none
+		sourceColumn: OrdPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: c8842f80-3eaa-415d-bae3-acef46703976
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: b6f25139-31eb-4297-8a07-eda4b477a4c8
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchFID
+		dataType: int64
+		formatString: 0
+		lineageTag: bd1ed1fc-9413-4e1d-afe2-63d05e7f881e
+		summarizeBy: count
+		sourceColumn: BranchFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: b9aae19c-fde2-4446-acc4-304be030adb5
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchName
+		dataType: string
+		lineageTag: 97a3358b-b325-445b-ba60-40a733022f07
+		summarizeBy: none
+		sourceColumn: BranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Authority
+		dataType: string
+		lineageTag: b3b4df94-8c0c-43dc-9280-0d5d781293b6
+		summarizeBy: none
+		sourceColumn: Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vertical
+		dataType: string
+		lineageTag: 7eae854a-c73c-432b-a1cc-5b2d3394806f
+		summarizeBy: none
+		sourceColumn: Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: d83196d7-a5e6-4ccd-a386-200845d36060
+		summarizeBy: count
+		sourceColumn: MoveTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveType
+		dataType: string
+		lineageTag: 7b60fec3-acfc-48fb-8bac-2a79016d31d6
+		summarizeBy: none
+		sourceColumn: MoveType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedDt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c7b55dfe-f893-4533-873f-9ce5591a77bb
+		summarizeBy: none
+		sourceColumn: CreatedDt
+
+		variation Variation
+			isDefault
+			relationship: e5a43ac5-e959-4fc4-aabc-c5ae850287b9
+			defaultHierarchy: LocalDateTable_3e8ece5f-e06f-449d-a75b-5a7d1f51d58e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActDelDt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4a9e4dcf-f55a-42a9-924a-1a71a618421c
+		summarizeBy: none
+		sourceColumn: ActDelDt
+
+		variation Variation
+			isDefault
+			relationship: f5875c74-4409-4c42-a3c6-856231185cdc
+			defaultHierarchy: LocalDateTable_f759420a-a875-4a82-8253-5e9b07830652.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDelivDt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 38849f86-c8dd-4598-bbb7-ee36a7191ce5
+		summarizeBy: none
+		sourceColumn: EndDelivDt
+
+		variation Variation
+			isDefault
+			relationship: d748170c-4ab0-4aa4-b62c-873c0c838a6e
+			defaultHierarchy: LocalDateTable_3cac850b-4758-4974-bde2-a3f8e1fa1e98.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransportCoordinator
+		dataType: string
+		lineageTag: ff5222f2-9359-4638-a19f-01bdd9cd559e
+		summarizeBy: none
+		sourceColumn: TransportCoordinator
+
+		annotation SummarizationSetBy = Automatic
+
+	column LogisticsCoordinator
+		dataType: string
+		lineageTag: 59d24c89-dbcc-450e-8602-b373c967e370
+		summarizeBy: none
+		sourceColumn: LogisticsCoordinator
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipmentType
+		dataType: string
+		lineageTag: 1117a9ac-cbf4-40bb-8d8e-a27d8fe09702
+		summarizeBy: none
+		sourceColumn: ShipmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchPrefix
+		dataType: string
+		lineageTag: 696c7220-bd28-475a-a22a-6c148b680017
+		summarizeBy: none
+		sourceColumn: BranchPrefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDelivDt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: be13c025-2d8f-45e9-b138-caf5133b412c
+		summarizeBy: none
+		sourceColumn: StartDelivDt
+
+		variation Variation
+			isDefault
+			relationship: b3250646-e792-4d40-9a54-77035e0e21e8
+			defaultHierarchy: LocalDateTable_f020a985-4f69-4373-8845-d04121772d67.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vwOrdersDataset = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2Supp", [Query="DECLARE @Today datetime = DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0);#(lf)SELECT [OrdPriKey]#(lf)      ,[OrderNo]#(lf)      ,[OrderStatus]#(lf)      ,[BranchFID]#(lf)      ,[BranchID]#(lf)      ,[BranchName]#(lf)      ,[Authority]#(lf)      ,[Vertical]#(lf)      ,[MoveTypeFID]#(lf)      ,[MoveType]#(lf)      ,[CreatedDt]#(lf)      ,[ActDelDt]#(lf)      ,[EndDelivDt]#(lf),[StartDelivDt]#(lf)      ,[TransportCoordinator]#(lf)      ,[LogisticsCoordinator]#(lf)      ,[ShipmentType]#(lf)      ,[BranchPrefix]#(lf)FROM MoversSuite2Supp..vwOrdersDataset#(lf)WHERE CreatedDt > '01/01/2026'#(lf)AND CreatedDt < @Today", HierarchicalNavigation=true]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Authority] = "Own Authority") and ([OrderNo] = "140P-1000-6" or [OrderNo] = "140P-1001-6" or [OrderNo] = "140P-1002-6" or [OrderNo] = "140P-1003-6" or [OrderNo] = "140P-1004-6" or [OrderNo] = "140P-1005-6" or [OrderNo] = "140P-1007-6" or [OrderNo] = "140P-1008-6" or [OrderNo] = "140P-1010-6" or [OrderNo] = "140P-1011-6" or [OrderNo] = "140P-1012-6" or [OrderNo] = "140P-1013-6" or [OrderNo] = "140P-1014-6" or [OrderNo] = "140P-1016-6" or [OrderNo] = "140P-1017-6" or [OrderNo] = "140P-1018-6" or [OrderNo] = "140P-1019-6" or [OrderNo] = "140P-1020-6" or [OrderNo] = "140P-1021-6" or [OrderNo] = "140P-1022-6" or [OrderNo] = "140P-1023-6" or [OrderNo] = "140P-1024-6" or [OrderNo] = "140P-1025-6" or [OrderNo] = "140P-1026-6" or [OrderNo] = "140P-1027-6" or [OrderNo] = "140P-1028-6" or [OrderNo] = "140P-1029-6" or [OrderNo] = "140P-1030-6" or [OrderNo] = "140P-1031-6" or [OrderNo] = "140P-1032-6" or [OrderNo] = "140P-1033-6" or [OrderNo] = "140P-1034-6" or [OrderNo] = "140P-1035-6" or [OrderNo] = "140P-1036-6" or [OrderNo] = "140P-1037-6" or [OrderNo] = "140P-1100-6" or [OrderNo] = "140P-1115-6" or [OrderNo] = "140P-1218-6" or [OrderNo] = "140P-1338-6" or [OrderNo] = "140P-1339-6" or [OrderNo] = "140P-1340-6" or [OrderNo] = "140P-1341-6" or [OrderNo] = "140P-1342-6" or [OrderNo] = "140P-1344-6" or [OrderNo] = "140P-1345-6" or [OrderNo] = "140P-1346-6" or [OrderNo] = "140P-1347-6" or [OrderNo] = "140P-1349-6" or [OrderNo] = "140P-1351-6" or [OrderNo] = "140P-1355-6" or [OrderNo] = "140P-1356-6" or [OrderNo] = "140P-1358-6" or [OrderNo] = "140P-1359-6" or [OrderNo] = "140P-1360-6" or [OrderNo] = "140P-1362-6" or [OrderNo] = "140P-1363-6" or [OrderNo] = "140P-1364-6" or [OrderNo] = "140P-1365-6" or [OrderNo] = "140P-1366-6" or [OrderNo] = "140P-1368-6" or [OrderNo] = "140P-1369-6" or [OrderNo] = "140P-1370-6" or [OrderNo] = "140P-1371-6" or [OrderNo] = "140P-1372-6" or [OrderNo] = "140P-1373-6" or [OrderNo] = "140P-1374-6" or [OrderNo] = "140P-1375-6" or [OrderNo] = "140P-1376-6" or [OrderNo] = "140P-1377-6" or [OrderNo] = "140P-1378-6" or [OrderNo] = "140P-1379-6" or [OrderNo] = "140P-1380-6" or [OrderNo] = "140P-1381-6" or [OrderNo] = "140P-1382-6" or [OrderNo] = "140P-1383-6" or [OrderNo] = "140P-1385-6" or [OrderNo] = "140P-1386-6" or [OrderNo] = "140P-1387-6" or [OrderNo] = "140P-1388-6" or [OrderNo] = "140P-1389-6" or [OrderNo] = "140P-1390-6" or [OrderNo] = "140P-1391-6" or [OrderNo] = "140P-1394-6" or [OrderNo] = "140P-1397-6" or [OrderNo] = "140P-1398-6" or [OrderNo] = "140P-1399-6" or [OrderNo] = "140P-1401-6" or [OrderNo] = "140P-1402-6" or [OrderNo] = "140P-1403-6" or [OrderNo] = "140P-1404-6" or [OrderNo] = "140P-1405-6" or [OrderNo] = "140P-1406-6" or [OrderNo] = "140P-1407-6" or [OrderNo] = "140P-1408-6" or [OrderNo] = "140P-1411-6" or [OrderNo] = "140P-1412-6" or [OrderNo] = "140P-1417-6" or [OrderNo] = "140P-1418-6" or [OrderNo] = "140P-1419-6" or [OrderNo] = "140P-1420-6" or [OrderNo] = "140P-1421-6" or [OrderNo] = "140P-1423-6" or [OrderNo] = "140P-1424-6" or [OrderNo] = "140P-1425-6" or [OrderNo] = "140P-1426-6" or [OrderNo] = "140P-1428-6" or [OrderNo] = "140P-1429-6" or [OrderNo] = "140P-1430-6" or [OrderNo] = "140P-1431-6" or [OrderNo] = "140P-1433-6" or [OrderNo] = "140P-1434-6" or [OrderNo] = "140P-1435-6" or [OrderNo] = "140P-1436-6" or [OrderNo] = "140P-1437-6" or [OrderNo] = "140P-1439-6" or [OrderNo] = "140P-1441-6" or [OrderNo] = "140P-1442-6" or [OrderNo] = "140P-1446-6" or [OrderNo] = "140P-1478-6" or [OrderNo] = "140P-961-6" or [OrderNo] = "140P-962-6" or [OrderNo] = "140P-964-6" or [OrderNo] = "140P-965-6" or [OrderNo] = "140P-966-6" or [OrderNo] = "140P-967-6" or [OrderNo] = "140P-968-6" or [OrderNo] = "140P-969-6" or [OrderNo] = "140P-970-6" or [OrderNo] = "140P-971-6" or [OrderNo] = "140P-972-6" or [OrderNo] = "140P-973-6" or [OrderNo] = "140P-974-6" or [OrderNo] = "140P-975-6" or [OrderNo] = "140P-976-6" or [OrderNo] = "140P-977-6" or [OrderNo] = "140P-978-6" or [OrderNo] = "140P-980-6" or [OrderNo] = "140P-981-6" or [OrderNo] = "140P-982-6" or [OrderNo] = "140P-984-6" or [OrderNo] = "140P-985-6" or [OrderNo] = "140P-987-6" or [OrderNo] = "140P-988-6" or [OrderNo] = "140P-989-6" or [OrderNo] = "140P-990-6" or [OrderNo] = "140P-991-6" or [OrderNo] = "140P-992-6" or [OrderNo] = "140P-994-6" or [OrderNo] = "140P-995-6" or [OrderNo] = "140P-996-6" or [OrderNo] = "140P-997-6" or [OrderNo] = "140P-998-6" or [OrderNo] = "340P-192-6" or [OrderNo] = "340P-193-6" or [OrderNo] = "340P-194-6" or [OrderNo] = "340P-195-6" or [OrderNo] = "340P-196-6" or [OrderNo] = "340P-198-6" or [OrderNo] = "340P-199-6" or [OrderNo] = "340P-200-6" or [OrderNo] = "340P-201-6" or [OrderNo] = "340P-202-6" or [OrderNo] = "340P-205-6" or [OrderNo] = "340P-263-6" or [OrderNo] = "340P-265-6" or [OrderNo] = "340P-266-6" or [OrderNo] = "340P-267-6" or [OrderNo] = "340P-268-6" or [OrderNo] = "340P-275-6" or [OrderNo] = "340P-276-6" or [OrderNo] = "340P-278-6" or [OrderNo] = "340P-279-6" or [OrderNo] = "340P-283-6" or [OrderNo] = "340P-284-6" or [OrderNo] = "340P-285-6" or [OrderNo] = "340P-286-6" or [OrderNo] = "340P-287-6" or [OrderNo] = "340P-288-6" or [OrderNo] = "340P-289-6" or [OrderNo] = "40P-1936-6" or [OrderNo] = "40P-1937-6" or [OrderNo] = "40P-1938-6" or [OrderNo] = "40P-1939-6" or [OrderNo] = "40P-1940-6" or [OrderNo] = "40P-1943-6" or [OrderNo] = "40P-1944-6" or [OrderNo] = "40P-1945-6" or [OrderNo] = "40P-1946-6" or [OrderNo] = "40P-1947-6" or [OrderNo] = "40P-1948-6" or [OrderNo] = "40P-1949-6" or [OrderNo] = "40P-1950-6" or [OrderNo] = "40P-1951-6" or [OrderNo] = "40P-1953-6" or [OrderNo] = "40P-1954-6" or [OrderNo] = "40P-1955-6" or [OrderNo] = "40P-1956-6" or [OrderNo] = "40P-1958-6" or [OrderNo] = "40P-1959-6" or [OrderNo] = "40P-1960-6" or [OrderNo] = "40P-1961-6" or [OrderNo] = "40P-1965-6" or [OrderNo] = "40P-1966-6" or [OrderNo] = "40P-1967-6" or [OrderNo] = "40P-1969-6" or [OrderNo] = "40P-1970-6" or [OrderNo] = "40P-1971-6" or [OrderNo] = "40P-1972-6" or [OrderNo] = "40P-1973-6" or [OrderNo] = "40P-1974-6" or [OrderNo] = "40P-1978-6" or [OrderNo] = "40P-1979-6" or [OrderNo] = "40P-1980-6" or [OrderNo] = "40P-1981-6" or [OrderNo] = "40P-1982-6" or [OrderNo] = "40P-1983-6" or [OrderNo] = "40P-1984-6" or [OrderNo] = "40P-1985-6" or [OrderNo] = "40P-1990-6" or [OrderNo] = "40P-1992-6" or [OrderNo] = "40P-1993-6" or [OrderNo] = "40P-1994-6" or [OrderNo] = "40P-1995-6" or [OrderNo] = "40P-1997-6" or [OrderNo] = "40P-2000-6" or [OrderNo] = "40P-2001-6" or [OrderNo] = "40P-2002-6" or [OrderNo] = "40P-2004-6" or [OrderNo] = "40P-2007-6" or [OrderNo] = "40P-2008-6" or [OrderNo] = "40P-2010-6" or [OrderNo] = "40P-2011-6" or [OrderNo] = "40P-2013-6" or [OrderNo] = "40P-2014-6" or [OrderNo] = "40P-2015-6" or [OrderNo] = "40P-2016-6" or [OrderNo] = "40P-2017-6" or [OrderNo] = "40P-2018-6" or [OrderNo] = "40P-2019-6" or [OrderNo] = "40P-2020-6" or [OrderNo] = "40P-2021-6" or [OrderNo] = "40P-2022-6" or [OrderNo] = "40P-2023-6" or [OrderNo] = "40P-2024-6" or [OrderNo] = "40P-2025-6" or [OrderNo] = "40P-2026-6" or [OrderNo] = "40P-2027-6" or [OrderNo] = "40P-2028-6" or [OrderNo] = "40P-2029-6" or [OrderNo] = "40P-2030-6" or [OrderNo] = "40P-2031-6" or [OrderNo] = "40P-2032-6" or [OrderNo] = "40P-2033-6" or [OrderNo] = "40P-2034-6" or [OrderNo] = "40P-2035-6" or [OrderNo] = "40P-2036-6" or [OrderNo] = "40P-2037-6" or [OrderNo] = "40P-2038-6" or [OrderNo] = "40P-2040-6" or [OrderNo] = "40P-2041-6" or [OrderNo] = "40P-2042-6" or [OrderNo] = "40P-2043-6" or [OrderNo] = "40P-2044-6" or [OrderNo] = "40P-2045-6" or [OrderNo] = "40P-2046-6" or [OrderNo] = "40P-2047-6" or [OrderNo] = "40P-2048-6" or [OrderNo] = "40P-2049-6" or [OrderNo] = "40P-2050-6" or [OrderNo] = "40P-2051-6" or [OrderNo] = "40P-2054-6" or [OrderNo] = "40P-2056-6" or [OrderNo] = "40P-2091-6" or [OrderNo] = "40P-2569-6" or [OrderNo] = "40P-2570-6" or [OrderNo] = "40P-2572-6" or [OrderNo] = "40P-2574-6" or [OrderNo] = "40P-2575-6" or [OrderNo] = "40P-2576-6" or [OrderNo] = "40P-2577-6" or [OrderNo] = "40P-2578-6" or [OrderNo] = "40P-2579-6" or [OrderNo] = "40P-2580-6" or [OrderNo] = "40P-2581-6" or [OrderNo] = "40P-2582-6" or [OrderNo] = "40P-2583-6" or [OrderNo] = "40P-2584-6" or [OrderNo] = "40P-2586-6" or [OrderNo] = "40P-2587-6" or [OrderNo] = "40P-2589-6" or [OrderNo] = "40P-2590-6" or [OrderNo] = "40P-2592-6" or [OrderNo] = "40P-2594-6" or [OrderNo] = "40P-2595-6" or [OrderNo] = "40P-2596-6" or [OrderNo] = "40P-2598-6" or [OrderNo] = "40P-2599-6" or [OrderNo] = "40P-2600-6" or [OrderNo] = "40P-2601-6" or [OrderNo] = "40P-2602-6" or [OrderNo] = "40P-2603-6" or [OrderNo] = "40P-2604-6" or [OrderNo] = "40P-2605-6" or [OrderNo] = "40P-2606-6" or [OrderNo] = "40P-2607-6" or [OrderNo] = "40P-2608-6" or [OrderNo] = "40P-2609-6" or [OrderNo] = "40P-2610-6" or [OrderNo] = "40P-2611-6" or [OrderNo] = "40P-2612-6" or [OrderNo] = "40P-2613-6" or [OrderNo] = "40P-2614-6" or [OrderNo] = "40P-2615-6" or [OrderNo] = "40P-2616-6" or [OrderNo] = "40P-2617-6" or [OrderNo] = "40P-2619-6" or [OrderNo] = "40P-2620-6" or [OrderNo] = "40P-2621-6" or [OrderNo] = "40P-2622-6" or [OrderNo] = "40P-2623-6" or [OrderNo] = "40P-2624-6" or [OrderNo] = "40P-2626-6" or [OrderNo] = "40P-2627-6" or [OrderNo] = "40P-2628-6" or [OrderNo] = "40P-2629-6" or [OrderNo] = "40P-2630-6" or [OrderNo] = "40P-2631-6" or [OrderNo] = "40P-2632-6" or [OrderNo] = "40P-2633-6" or [OrderNo] = "40P-2634-6" or [OrderNo] = "40P-2635-6" or [OrderNo] = "40P-2636-6" or [OrderNo] = "40P-2637-6" or [OrderNo] = "40P-2638-6" or [OrderNo] = "40P-2639-6" or [OrderNo] = "40P-2640-6" or [OrderNo] = "40P-2641-6" or [OrderNo] = "40P-2642-6" or [OrderNo] = "40P-2643-6" or [OrderNo] = "40P-2644-6" or [OrderNo] = "40P-2645-6" or [OrderNo] = "40P-2646-6" or [OrderNo] = "40P-2647-6" or [OrderNo] = "40P-2649-6" or [OrderNo] = "40P-2650-6" or [OrderNo] = "40P-2651-6" or [OrderNo] = "40P-2665-6" or [OrderNo] = "40P-2666-6" or [OrderNo] = "40P-2667-6" or [OrderNo] = "40P-2668-6" or [OrderNo] = "40P-2669-6" or [OrderNo] = "40P-2670-6" or [OrderNo] = "40P-2671-6" or [OrderNo] = "40P-2672-6" or [OrderNo] = "40P-2673-6" or [OrderNo] = "40P-2674-6" or [OrderNo] = "40P-2675-6" or [OrderNo] = "40P-2676-6" or [OrderNo] = "40P-2677-6" or [OrderNo] = "40P-2678-6" or [OrderNo] = "40P-2679-6" or [OrderNo] = "40P-2681-6" or [OrderNo] = "40P-2682-6" or [OrderNo] = "40P-2683-6" or [OrderNo] = "40P-2684-6" or [OrderNo] = "40P-2685-6" or [OrderNo] = "40P-2687-6" or [OrderNo] = "40P-2688-6" or [OrderNo] = "40P-2690-6" or [OrderNo] = "40P-2691-6" or [OrderNo] = "40P-2692-6" or [OrderNo] = "40P-2693-6" or [OrderNo] = "40P-2694-6" or [OrderNo] = "40P-2695-6" or [OrderNo] = "40P-2696-6" or [OrderNo] = "40P-2697-6" or [OrderNo] = "40P-2698-6" or [OrderNo] = "40P-2699-6" or [OrderNo] = "40P-2700-6" or [OrderNo] = "40P-2701-6" or [OrderNo] = "40P-2702-6" or [OrderNo] = "40P-2704-6" or [OrderNo] = "40P-2705-6" or [OrderNo] = "40P-2706-6" or [OrderNo] = "40P-2707-6" or [OrderNo] = "40P-2708-6" or [OrderNo] = "40P-2710-6" or [OrderNo] = "40P-2711-6" or [OrderNo] = "40P-2713-6" or [OrderNo] = "40P-2714-6" or [OrderNo] = "40P-2715-6" or [OrderNo] = "40P-2716-6" or [OrderNo] = "40P-2717-6" or [OrderNo] = "40P-2718-6" or [OrderNo] = "40P-2720-6" or [OrderNo] = "40P-2721-6" or [OrderNo] = "40P-2722-6" or [OrderNo] = "40P-2723-6" or [OrderNo] = "40P-2724-6" or [OrderNo] = "40P-2725-6" or [OrderNo] = "40P-2726-6" or [OrderNo] = "40P-2727-6" or [OrderNo] = "40P-2728-6" or [OrderNo] = "40P-2729-6" or [OrderNo] = "40P-2730-6" or [OrderNo] = "40P-2731-6" or [OrderNo] = "40P-2732-6" or [OrderNo] = "40P-2733-6" or [OrderNo] = "40P-2734-6" or [OrderNo] = "40P-2735-6")),
+				    #"Sorted Rows" = Table.Sort(#"Filtered Rows",{{"OrdPriKey", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

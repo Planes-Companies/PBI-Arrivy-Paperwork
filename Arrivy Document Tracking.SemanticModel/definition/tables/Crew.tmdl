@@ -1,0 +1,170 @@
+table Crew
+	lineageTag: 16566b06-133a-4f78-b96f-0fcf27e18cf4
+
+	column ServiceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 52b1682f-ea2e-4f84-9d59-3e585e237517
+		summarizeBy: none
+		sourceColumn: ServiceDate
+
+		variation Variation
+			isDefault
+			relationship: c669e626-6ace-49fe-9613-3efb8a4e7302
+			defaultHierarchy: LocalDateTable_5c775b58-2f0f-42f6-be4b-e319b586e092.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerName
+		dataType: string
+		lineageTag: 6303e497-bff1-4bb1-a2f9-44077ef9cd04
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 134e476d-06f8-4fb3-880a-e54a5bb98ca9
+		summarizeBy: none
+		sourceColumn: OrdPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: 4f0446da-15d9-41a9-926e-897d3dbba531
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service
+		dataType: string
+		lineageTag: fdca6502-ccaa-4866-aee6-6d6b16ae352f
+		summarizeBy: none
+		sourceColumn: Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumOfCrew
+		dataType: int64
+		formatString: 0
+		lineageTag: 41a4a44d-6406-40c1-8f7b-8fae6affa72d
+		summarizeBy: sum
+		sourceColumn: NumOfCrew
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotCrewHrs
+		dataType: double
+		lineageTag: 9a97e222-8285-4830-8d9d-33e9747a868d
+		summarizeBy: sum
+		sourceColumn: TotCrewHrs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalCrew
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b7f7d63-9854-438c-8afb-1cc7fa632ab4
+		summarizeBy: sum
+		sourceColumn: TotalCrew
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocServPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fac645e3-075b-4042-92b4-90be73d27cf3
+		summarizeBy: count
+		sourceColumn: LocServPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActTotalHrs
+		dataType: double
+		lineageTag: af4adbeb-ee76-4e08-b7ad-54b338db8930
+		summarizeBy: sum
+		sourceColumn: ActTotalHrs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Crew
+		dataType: string
+		lineageTag: 0f5699fe-ecd9-46ff-8520-e2cdaebd0f1c
+		summarizeBy: none
+		sourceColumn: Crew
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PlanesDates.PlanesDateID'
+		dataType: int64
+		formatString: 0
+		lineageTag: abf120fe-3d78-4af2-b860-6c3b83204b48
+		summarizeBy: none
+		sourceColumn: PlanesDates.PlanesDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Order
+		dataType: string
+		lineageTag: 9065f4be-b1e5-4dda-8605-56a3076d4b23
+		summarizeBy: none
+		sourceColumn: Date_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dater_Order_LocServ
+		dataType: string
+		lineageTag: bc72fdbe-9b08-4a2d-90dd-533da088d7e9
+		summarizeBy: none
+		sourceColumn: Dater_Order_LocServ
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkTicket
+		dataType: int64
+		formatString: 0
+		lineageTag: b5a41061-51fd-4c55-84a2-30129c4950b2
+		summarizeBy: sum
+		sourceColumn: WorkTicket
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_WT
+		dataType: string
+		lineageTag: 98714bef-82f7-4a1b-a0ec-237475841189
+		summarizeBy: none
+		sourceColumn: Order_WT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Crew = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2Supp", [Query="SELECT VWO.[ServiceDate]#(lf)      ,[CustomerName]#(lf)      ,[OrdPriKey]#(lf)      ,[OrderNo]#(lf)      ,VWO.[Service]#(lf)      ,[NumOfCrew]#(lf)      ,[TotCrewHrs]#(lf)      ,VWO.[TotalCrew]#(lf)      ,[LocServPriKey]#(lf)      ,[ActTotalHrs]#(lf)      ,[Crew]#(lf)      ,[WorkTicket]#(lf)  FROM [MoversSuite2Supp].[dbo].[vwLocalServices] VWO#(lf)  LEFT JOIN MoversSuite2..LocalServices LS#(lf)  ON VWO.LocServPriKey = LS.LocalServicesLocServFID#(lf)  WHERE VWO.ServiceDate > '2026-06-28'#(lf)  AND VWO.Service NOT IN ('Training','Facilities Management','WHSE-Enter Time sheet in WTT')", HierarchicalNavigation=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ServiceDate", type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"ServiceDate"}, PlanesDates, {"Date"}, "PlanesDates", JoinKind.LeftOuter),
+				    #"Expanded PlanesDates" = Table.ExpandTableColumn(#"Merged Queries", "PlanesDates", {"PlanesDateID"}, {"PlanesDates.PlanesDateID"}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Expanded PlanesDates", "Merged", each Text.Combine({Text.From([PlanesDates.PlanesDateID], "en-US"), " | ", Text.From([OrdPriKey], "en-US")})),
+				    #"Inserted Merged Column1" = Table.AddColumn(#"Inserted Merged Column", "Merged.1", each Text.Combine({[Merged], " | ", Text.From([LocServPriKey], "en-US")})),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Merged Column1",{{"Merged", "Date_Order"}, {"Merged.1", "Dater_Order_LocServ"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"WorkTicket", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each ([WorkTicket] <> null)),
+				    #"Inserted Merged Column2" = Table.AddColumn(#"Filtered Rows", "Order_WT", each Text.Combine({Text.From([OrdPriKey], "en-US"), "|", Text.From([WorkTicket], "en-US")}))
+				in
+				    #"Inserted Merged Column2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

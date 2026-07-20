@@ -1,0 +1,59 @@
+table Query
+	lineageTag: f60b0d89-cf56-42f4-8d1f-a1d39487a8df
+
+	column WorkTicketID
+		dataType: int64
+		formatString: 0
+		lineageTag: 77b8bcf8-0d84-462c-9c40-cf1425349955
+		summarizeBy: count
+		sourceColumn: WorkTicketID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdersPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: cca73821-fbad-4596-b46f-1bf0d4e4c9eb
+		summarizeBy: count
+		sourceColumn: OrdersPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocServPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: df6443bb-1970-4a94-b80f-8a30d343b265
+		summarizeBy: count
+		sourceColumn: LocServPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkTicketNumber
+		dataType: string
+		lineageTag: e1ff2dc9-4770-491c-ba9d-2bd28028642d
+		summarizeBy: none
+		sourceColumn: WorkTicketNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ord_WorkTicket
+		dataType: string
+		lineageTag: 0f998c62-3279-4283-af2a-8294fefad704
+		summarizeBy: none
+		sourceColumn: Ord_WorkTicket
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Query = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2", [Query = "#(lf)SELECT [WorkTicketID]#(lf)      ,[OrdersPriKey]#(lf)      ,[LocServPriKey]#(lf)      ,[WorkTicketNumber]#(lf)  FROM [MoversSuite2].[dbo].[WorkTickets]#(lf)  WHERE OrdersPriKey > 910000", HierarchicalNavigation = true]),
+				    #"Added Custom" = Table.AddColumn(Source, "Ord_WorkTicket", each Text.From([OrdersPriKey]) & "|" & Text.From([WorkTicketNumber]))
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

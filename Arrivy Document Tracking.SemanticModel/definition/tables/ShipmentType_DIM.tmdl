@@ -1,0 +1,41 @@
+table ShipmentType_DIM
+	lineageTag: b1c04a6d-43b1-4e28-97e7-815c2f960d7d
+
+	column ShipmentTypeID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ca1f693-df74-44b1-9036-0910b1527676
+		summarizeBy: count
+		sourceColumn: ShipmentTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipmentTypeDescription
+		dataType: string
+		lineageTag: 6c08798e-64b1-499c-acaa-6091df7a4979
+		summarizeBy: none
+		sourceColumn: ShipmentTypeDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column VanLineCode
+		dataType: string
+		lineageTag: 9e028f26-8a6a-4a64-8c17-36e581647b43
+		summarizeBy: none
+		sourceColumn: VanLineCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ShipmentType_DIM = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Rcs9C8JADAbgv3Jk7uL3LApOrVK6HTeEGiFQ70o8K/57kywu4cn7JjHCCho4Xc82ITUR1qpLWUjyk3K1xeONquWJK8rX6OFW1WHlknEKx3Esb//ovNypbkIz8t3k2V41CObXg4Qo/OvB64MdtqGnhenj7iGlHw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ShipmentTypeID = _t, ShipmentTypeDescription = _t, VanLineCode = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ShipmentTypeID", Int64.Type}, {"ShipmentTypeDescription", type text}, {"VanLineCode", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

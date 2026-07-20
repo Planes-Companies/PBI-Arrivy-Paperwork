@@ -1,0 +1,174 @@
+table Dispatch
+	lineageTag: a592b0a2-e89e-4c74-be56-1c260b2a207c
+
+	column EquipNo
+		dataType: string
+		lineageTag: c7df8d92-f97e-4e6f-b1ba-761b267cbf13
+		summarizeBy: none
+		sourceColumn: EquipNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipType
+		dataType: string
+		lineageTag: ad58b8f6-076f-4eb2-928d-139ede6d1f30
+		summarizeBy: none
+		sourceColumn: EquipType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EqStatus
+		dataType: string
+		lineageTag: 990807ef-7f87-4e44-bf8e-02e3dc6c2068
+		summarizeBy: none
+		sourceColumn: EqStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: e1d7084b-59d7-4634-8b94-62def2c758ef
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Owner
+		dataType: string
+		lineageTag: ace6e57d-80e9-4e67-a28d-34858e225e26
+		summarizeBy: none
+		sourceColumn: Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: 43e4119f-6fc6-47f6-881a-59bf8dce4f51
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 72d01e5f-c14f-4f93-a996-ebcbdc542f58
+		summarizeBy: none
+		sourceColumn: OrdPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceType
+		dataType: string
+		lineageTag: 9d630372-d8bc-4209-b907-787538400aca
+		summarizeBy: none
+		sourceColumn: ServiceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceID
+		dataType: string
+		lineageTag: 5bd3c509-69b9-4c31-ab89-08a8497661b6
+		summarizeBy: none
+		sourceColumn: ServiceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipperName
+		dataType: string
+		lineageTag: a147a7cf-d4f8-486d-b96b-03e334c54c50
+		summarizeBy: none
+		sourceColumn: ShipperName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocServPriKey
+		dataType: string
+		lineageTag: e7991363-cae3-4547-94a7-ce9f1331ae43
+		summarizeBy: none
+		sourceColumn: LocServPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScheduledStart
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e20da7b1-7b22-436b-829d-d025f0f3379e
+		summarizeBy: none
+		sourceColumn: ScheduledStart
+
+		variation Variation
+			isDefault
+			relationship: ecdf12fa-3315-42ea-92cf-52d3f80f9533
+			defaultHierarchy: LocalDateTable_32a4acac-5034-495b-bdec-1af2510374de.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DateID
+		dataType: int64
+		formatString: 0
+		lineageTag: bd1a8010-6b08-4bb5-b17a-c3490263da15
+		summarizeBy: count
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date_LocServ_Key
+		dataType: string
+		lineageTag: 1f47bf10-aae7-4499-8782-4240c6ae33f0
+		summarizeBy: none
+		sourceColumn: Order_Date_LocServ_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date
+		dataType: string
+		lineageTag: 0968b9bd-014c-441a-9482-bd2937e42857
+		summarizeBy: none
+		sourceColumn: Order_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Crew.Crew'
+		dataType: string
+		lineageTag: aac02467-e828-49a2-93d9-678132f3ea78
+		summarizeBy: none
+		sourceColumn: Crew.Crew
+
+		annotation SummarizationSetBy = Automatic
+
+	column MatchVehDateJob
+		dataType: string
+		lineageTag: bd6385c5-3936-4bdc-b78c-2ddb87be4556
+		summarizeBy: none
+		sourceColumn: MatchVehDateJob
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dispatch = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("PLNDS01\SQL2k16", "MoversSuite2Supp", [Query="USE [MoversSuite2Supp];#(lf)#(lf)-- Calculate the two Saturdays relative to today#(lf)DECLARE @Today    DATE  = CAST(GETDATE() AS DATE);#(lf)DECLARE @Offset   INT   = DATEPART(WEEKDAY, @Today) % 7;#(lf)SET    @Offset   = CASE WHEN @Offset = 0 THEN 7 ELSE @Offset END;#(lf)DECLARE @EndDt    DATE#(lf)DECLARE @StartDt  DATE#(lf)#(lf) Set @StartDt ='2026-06-28';#(lf) Set @EndDt = @Today;#(lf)#(lf)SET NOCOUNT ON;#(lf)DECLARE @Interim table #(lf)#(tab)(EquipNo varchar(40),#(lf)#(tab)EquipType varchar(100),#(lf)#(tab)EqStatus varchar(100),#(lf)#(tab)Branch varchar(100),#(lf)#(tab)Owner varchar(100),#(lf)    OrderNo varchar(20),#(lf)#(tab)Ordprikey INT,#(lf)#(tab)ServiceType varchar(200),#(lf)#(tab)ServiceID varchar(100),#(lf)#(tab)ShipperName varchar(100), #(lf)    LocSerPriKey VARCHAR (50), #(lf)#(tab)ScheduledStart datetime#(lf)#(lf)#(tab))#(lf)#(lf)#(tab)insert into @Interim#(lf)          select #(lf)#(tab)#(tab)  Equip.EqNo,#(lf)#(tab)#(tab)  EqType.Type,#(lf)#(tab)#(tab)  Equip.EqStatus,#(lf)#(tab)#(tab) CASE#(lf)           WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo)) = '1840' THEN 'Cincinnati'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo)) = '40' THEN 'Cincinnati'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '140' THEN 'Indianapolis'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))='1843' THEN 'Indianapolis'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '340' THEN 'Chicago'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '35' THEN 'Columbus'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '402' THEN 'Dayton'#(lf)#(tab)#(tab)   WHEN ISNULL(Equip.EqNo,'') like 'Hogan%' THEN 'Columbus'#(lf)#(tab)#(tab)   WHEN ISNULL(Equip.EqNo,'') like '%Ideal%' THEN 'Columbus'#(lf)#(tab)#(tab)   WHEN ISNULL(Equip.EqNo,'') like 'Rental%' THEN 'Cincinnati'#(lf)#(tab)#(tab)   WHEN ISNULL(Equip.EqNo,'') like 'R%' THEN 'Cincinnati'#(lf)           ELSE ''#(lf)        END AS branch,#(lf)#(tab)#(tab)   Equip.RegisteredOwner,#(lf)#(tab)#(tab)  VWO.OrderNo, #(lf)#(tab)#(tab)  VWO.OrdPriKey,#(lf)#(tab)#(tab)  ServType.Service,#(lf)#(tab)#(tab)  ServType.ServiceID,#(lf)          VWO.Shipper AS ShipperName,#(lf)          LocServ.PriKey LocServPriKey, #(lf)          LSE.ScheduledStart#(lf)   from MoversSuite2..Equip #(lf)   left join MoversSuite2..LocalServicesEquipment LSE#(lf)      on Equip.EqNo = LSE.EquipmentNumber#(lf)   left join MoversSuite2..EqType #(lf)      on Equip.Type=EqType.TypeNumber#(lf)   Left join MoversSuite2..LocServ#(lf)      on LSE.LocalServicesEquipmentLocServFID = LocServ.PriKey#(lf)   Left join MoversSuite2Supp..vwOrdersDataset VWO#(lf)      on LocServ.OrdPriKey = VWO.OrdPriKey#(lf)   left join MoversSuite2..LocalServicesCrew#(lf)      on LocServ.PriKey = LocalServicesCrew.LocalServicesCrewLocServFID #(lf)      and LeadMan = 1#(lf)   left join MoversSuite2..ServType#(lf)      on LocServ.ServiceID = ServType.ServiceID #(lf) where LSE.ScheduledStart between @StartDt and @EndDt#(lf) and Equip.EqStatus='1'#(lf)  and ServType.Service not in ('Vaulted storage','Intl transload','Training','Non-billable',                                       #(lf)                                'WHSE SIT In', 'WHSE SIT Out')#(lf)#(lf)select * FROM @Interim#(lf)         where ServiceID is not null#(lf) AND ScheduledStart > '2026-06-27'", HierarchicalNavigation=true]),
+				    #"Extracted Date" = Table.TransformColumns(Source,{{"ScheduledStart", DateTime.Date, type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Extracted Date", {"ScheduledStart"}, PlanesDates, {"Date"}, "PlanesDates", JoinKind.LeftOuter),
+				    #"Expanded PlanesDates" = Table.ExpandTableColumn(#"Merged Queries", "PlanesDates", {"PlanesDateID"}, {"PlanesDates.PlanesDateID"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded PlanesDates",{{"PlanesDates.PlanesDateID", "DateID"}, {"Ordprikey", "OrdPriKey"}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Renamed Columns",{{"LocSerPriKey", "LocServPriKey"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns1", "Order_Date_LocServ_Key", each Text.From([DateID]) & " | " & Text.From([OrdPriKey])& " | " & Text.From([LocServPriKey])),
+				    #"Removed Duplicates" = Table.Distinct(#"Added Custom", {"Order_Date_LocServ_Key"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"EquipNo", Text.Trim, type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Trimmed Text", "Order_Date", each Text.From([DateID]) & " | " & Text.From([OrdPriKey])),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "MatchVehDateJob", each [Order_Date_LocServ_Key] & " | " & [EquipNo]),
+				    #"Merged Queries1" = Table.NestedJoin(#"Added Custom2", {"Order_Date"}, Crew, {"Date_Order"}, "Crew", JoinKind.LeftOuter),
+				    #"Expanded Crew" = Table.ExpandTableColumn(#"Merged Queries1", "Crew", {"Crew"}, {"Crew.Crew"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Expanded Crew", each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

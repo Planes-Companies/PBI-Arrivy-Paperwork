@@ -1,0 +1,285 @@
+table BOL
+	lineageTag: 12a4f6ee-d720-4d26-911c-b38d22674248
+
+	column MSSDocumentID
+		dataType: int64
+		formatString: 0
+		lineageTag: a866c841-8d39-456f-8ce7-c093a05093e2
+		summarizeBy: count
+		sourceColumn: MSSDocumentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 56bd2f0c-693b-4487-ae3d-f1f2ba97d796
+		summarizeBy: count
+		sourceColumn: OrderFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UploadDateTime
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0f6e55f6-42c2-4ad7-b0c3-824c74626ada
+		summarizeBy: none
+		sourceColumn: UploadDateTime
+
+		variation Variation
+			isDefault
+			relationship: 4024de5c-6273-451e-9a10-c379d5e796e3
+			defaultHierarchy: LocalDateTable_c472065d-a77a-41d3-8b8b-05e22f14e42a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 22e49d7f-3ffd-4133-a73c-9c2b608a8a08
+		summarizeBy: count
+		sourceColumn: DocumentTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orderno
+		dataType: string
+		lineageTag: b59a9a66-5c0a-446b-8c2c-e2064c433287
+		summarizeBy: none
+		sourceColumn: Orderno
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d6a6810-0d0a-4b15-ac27-245909eabbe6
+		summarizeBy: count
+		sourceColumn: BranchFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: c026f25b-4467-464f-9a6e-c9ffd9217ca1
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Authority
+		dataType: string
+		lineageTag: babb0a6b-45de-4575-a03e-d3fab1b12bc4
+		summarizeBy: none
+		sourceColumn: Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vertical
+		dataType: string
+		lineageTag: 31754bc5-7384-4a23-a66c-fb6e61ac810e
+		summarizeBy: none
+		sourceColumn: Vertical
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveTypeFID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d2eccd5-e182-42f6-84c7-db80d0713454
+		summarizeBy: count
+		sourceColumn: MoveTypeFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveType
+		dataType: string
+		lineageTag: 180d790b-3880-46ac-99a2-a38c00aa3b18
+		summarizeBy: none
+		sourceColumn: MoveType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProfileName
+		dataType: string
+		lineageTag: f6a2740c-63c3-47b2-95a9-0c6cdc5283c5
+		summarizeBy: none
+		sourceColumn: ProfileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SysUserFID
+		dataType: int64
+		formatString: 0
+		lineageTag: c963b1af-e73c-4a57-b2ee-a62913e5e5d4
+		summarizeBy: count
+		sourceColumn: SysUserFID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentDescription
+		dataType: string
+		lineageTag: fd5688f1-3c86-41a9-9102-6134b8cc11ba
+		summarizeBy: none
+		sourceColumn: DocumentDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column NameMatch
+		dataType: string
+		lineageTag: c04921db-79ac-4f4f-accb-897590e6e9f5
+		summarizeBy: none
+		sourceColumn: NameMatch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stitched
+		dataType: string
+		lineageTag: 03feafbf-27a7-4447-a4f8-e431944b56a2
+		summarizeBy: none
+		sourceColumn: Stitched
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocType
+		dataType: string
+		lineageTag: be9c0768-51f7-40ba-ac07-eb42deb0aadb
+		summarizeBy: none
+		sourceColumn: DocType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentName
+		dataType: string
+		lineageTag: ea407302-ee1e-4308-b3ed-7d0f5b776fbd
+		summarizeBy: none
+		sourceColumn: DocumentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Upload_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1ae6bea8-5065-488b-82b9-5921dc0c4c7b
+		summarizeBy: none
+		sourceColumn: Upload_Date
+
+		variation Variation
+			isDefault
+			relationship: 46c7a571-cf9a-4c7f-9fa2-ba0b3355035e
+			defaultHierarchy: LocalDateTable_d47faa43-da7a-41de-95de-889b0122b426.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Upload_Time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: ad52a883-9160-4154-a2ed-a9aee14dae4f
+		summarizeBy: none
+		sourceColumn: Upload_Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Work_Ticket
+		dataType: int64
+		formatString: 0
+		lineageTag: e3197d8d-8b53-4957-9f9d-95e035cda6f2
+		summarizeBy: sum
+		sourceColumn: Work_Ticket
+
+		annotation SummarizationSetBy = Automatic
+
+	column Move_Type
+		dataType: string
+		lineageTag: 9b5f1586-9108-4c20-9792-745a7526312f
+		summarizeBy: none
+		sourceColumn: Move_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderK_WorkT_Dim
+		dataType: string
+		lineageTag: 98ac797b-572c-4edb-825b-a37bb48413df
+		summarizeBy: none
+		sourceColumn: OrderK_WorkT_Dim
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkTicket_ColLength
+		dataType: int64
+		formatString: 0
+		lineageTag: 574de3c3-5f2c-4ced-9135-4f7a1bd8c7b3
+		summarizeBy: sum
+		sourceColumn: WorkTicket_ColLength
+
+		annotation SummarizationSetBy = Automatic
+
+	column LEN_Filter
+		dataType: string
+		lineageTag: 72ac4227-83aa-4a70-9838-fbd3aeadee73
+		summarizeBy: none
+		sourceColumn: LEN_Filter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PlanesDates.PlanesDateID'
+		dataType: int64
+		formatString: 0
+		lineageTag: a5401587-c50e-4e98-9455-a6201d3e5409
+		summarizeBy: none
+		sourceColumn: PlanesDates.PlanesDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merged
+		dataType: string
+		lineageTag: 80927b9f-48c7-4b9e-aa8a-ecf126f910af
+		summarizeBy: none
+		sourceColumn: Merged
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BOL = m
+		mode: import
+		source =
+				let
+				    Source = #"BaseDocs (Do Not Alter)",
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Text Between Delimiters] = "BOL")),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows","OH - CINCINNATI - |BOL| Local Move 1-BELT, GREGORY  Perm Storage Dlvry & Unpack-U164-1945-5-_39 - U164-1945-5 - 8564537087897.pdf","OH - CINCINNATI - |BOL| Local Move 1-BELT, GREGORY  Perm Storage Dlvry & Unpack-_397619_ - U164-1945-5 - 8564537087897.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","_BD  Commercial "," BD  Commercial ",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Replaced Value2", "Text Between Delimiters.1", each Text.BetweenDelimiters([DocumentName], "_", "_"), type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Text Between Delimiters",{{"Text Between Delimiters.1", "Work_Ticket"}}),
+				    #"Sorted Rows" = Table.Sort(#"Renamed Columns",{{"UploadDateTime", Order.Descending}}),
+				    #"Inserted First Characters" = Table.AddColumn(#"Sorted Rows", "First Characters", each Text.Start([MoveType], 4), type text),
+				    #"Trimmed Text2" = Table.TransformColumns(#"Inserted First Characters",{{"First Characters", Text.Trim, type text}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Trimmed Text2", "Local", each if [First Characters] = "N/A" then "Local" else if [First Characters] = "Comm" then "Commercial" else if [First Characters] = "OAg" then "Local" else if [First Characters] = "COD" then "Local" else if [First Characters] = "MIL" then "Military" else if [First Characters] = "Oth" then "Other" else null),
+				    #"Filtered Rows2" = Table.SelectRows(#"Added Conditional Column", each [Local] <> null),
+				    #"Extracted First Characters" = Table.TransformColumns(#"Filtered Rows2", {{"Work_Ticket", each Text.Start(_, 7), type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Extracted First Characters","-","",Replacer.ReplaceText,{"Work_Ticket"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Replaced Value",{{"Work_Ticket", Text.Trim, type text}}),
+				    #"Filtered Rows3" = Table.SelectRows(#"Trimmed Text", each ([Work_Ticket] <> "" and [Work_Ticket] <> "140P" and [Work_Ticket] <> "3  40P" and [Work_Ticket] <> "35P" and [Work_Ticket] <> "397  4" and [Work_Ticket] <> "39736" and [Work_Ticket] <> "39743" and [Work_Ticket] <> "3975" and [Work_Ticket] <> "39787" and [Work_Ticket] <> "40P" and [Work_Ticket] <> "74727 L" and [Work_Ticket] <> "BD  Co" and [Work_Ticket] <> "null")),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows3", "OrderK_WorkT_Dim", each Text.From([OrderFID]) & "|" & Text.From([Work_Ticket])),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"First Characters"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns",{{"Text Between Delimiters", "DocType"}}),
+				    #"Filtered Rows4" = Table.SelectRows(#"Renamed Columns1", each ([Work_Ticket] <> "26  Co" and [Work_Ticket] <> "39  14" and [Work_Ticket] <> "39  U1" and [Work_Ticket] <> "398  4" and [Work_Ticket] <> "39891" and [Work_Ticket] <> "399  1" and [Work_Ticket] <> "399  4" and [Work_Ticket] <> "5184  E")),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Filtered Rows4","  ","",Replacer.ReplaceText,{"Work_Ticket"}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Replaced Value3",{{"Work_Ticket", Text.Trim, type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Trimmed Text1", "Work_Ticket", "Work_Ticket - Copy"),
+				    #"Calculated Text Length" = Table.TransformColumns(#"Duplicated Column",{{"Work_Ticket - Copy", Text.Length, Int64.Type}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Calculated Text Length",{{"Work_Ticket - Copy", "WorkTicket_ColLength"}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns2", "LEN_Filter", each if [WorkTicket_ColLength] < 6 then "No Work Ticket" else if [WorkTicket_ColLength] > 6 then "No Work Ticket" else [Work_Ticket]),
+				    #"Filtered Rows5" = Table.SelectRows(#"Added Conditional Column1", each ([LEN_Filter] <> "No Work Ticket")),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Filtered Rows5",{{"Local", "Move_Type"}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Renamed Columns3", each ([Work_Ticket] <> "PLEASE")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Work_Ticket", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

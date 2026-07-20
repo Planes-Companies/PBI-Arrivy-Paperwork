@@ -1,0 +1,217 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 137,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 371.88751634623111,
+            "y": 0
+          },
+          "nodeIndex": "BaseDocs (Do Not Alter)",
+          "nodeLineageTag": "161aed35-efb4-4c1b-a4b7-9a298a2fa08e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1477.880641770598,
+            "y": 0
+          },
+          "nodeIndex": "BOL",
+          "nodeLineageTag": "12a4f6ee-d720-4d26-911c-b38d22674248",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 711,
+            "y": 236
+          },
+          "nodeIndex": "BranchKey",
+          "nodeLineageTag": "4563ff80-c1d6-4d62-ad35-3546b71a197f",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 375.94430453701807,
+            "y": 318
+          },
+          "nodeIndex": "Dispatch",
+          "nodeLineageTag": "a592b0a2-e89e-4c74-be56-1c260b2a207c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 124.94430453701807,
+            "y": 164
+          },
+          "nodeIndex": "DocTypeKey",
+          "nodeLineageTag": "2a4f23cc-e380-432c-8aaa-12b7446d0f99",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1413,
+            "y": 765.45052948379987
+          },
+          "nodeIndex": "PlanesDates",
+          "nodeLineageTag": "58282c6d-9bcd-447a-8152-c9ee8a25bc46",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 122,
+            "y": 0
+          },
+          "nodeIndex": "ShipmentType_DIM",
+          "nodeLineageTag": "b1c04a6d-43b1-4e28-97e7-815c2f960d7d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 764.018152938286,
+            "y": 689
+          },
+          "nodeIndex": "vwOrdersDataset",
+          "nodeLineageTag": "5ef1be59-986b-4c81-864a-e7ea6afb4d74",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 136.94430453701807,
+            "y": 631
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "71f3804e-8cb7-42e8-be0b-28a265371272",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1107.9443045370181,
+            "y": 0
+          },
+          "nodeIndex": "Query1",
+          "nodeLineageTag": "9df5f6c8-db05-400f-bcdd-97969c90cb6a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 130.94430453701807,
+            "y": 423.7252647419
+          },
+          "nodeIndex": "Query",
+          "nodeLineageTag": "f60b0d89-cf56-42f4-8d1f-a1d39487a8df",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1111.9443045370181,
+            "y": 403.7252647419
+          },
+          "nodeIndex": "PrePost",
+          "nodeLineageTag": "d627fdff-5b38-4378-a31a-6275acf759b5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 377.94430453701807,
+            "y": 628
+          },
+          "nodeIndex": "Append1",
+          "nodeLineageTag": "ef5944b8-f2e3-4193-a71d-a1360e7baec7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1726.9443045370181,
+            "y": 772.36263237095
+          },
+          "nodeIndex": "WorkTicketPivot",
+          "nodeLineageTag": "ccbc867e-3c3e-4141-9d73-0d07b7fc961b",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 1878.9443045370181,
+            "y": 350.7252647419
+          },
+          "nodeIndex": "Crew",
+          "nodeLineageTag": "16566b06-133a-4f78-b96f-0fcf27e18cf4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
