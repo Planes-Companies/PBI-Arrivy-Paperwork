@@ -1,0 +1,277 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "4450386581e8662b2c9e",
+  "position": {
+    "x": 9.8159509202453989,
+    "y": 0,
+    "z": 0,
+    "height": 719.83640081799592,
+    "width": 1270.1840490797547,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "BranchID"
+                }
+              },
+              "queryRef": "WorkTicketPivot.BranchID",
+              "nativeQueryRef": "BranchID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "BranchKey.Base_Branch"
+                }
+              },
+              "queryRef": "WorkTicketPivot.BranchKey.Base_Branch",
+              "nativeQueryRef": "BranchKey.Base_Branch"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "DocumentStatus"
+                }
+              },
+              "queryRef": "WorkTicketPivot.DocumentStatus",
+              "nativeQueryRef": "DocumentStatus"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Hours_BOL_To_Post"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Hours_BOL_To_Post)",
+              "nativeQueryRef": "Sum of Hours_BOL_To_Post"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Hours_PreTrip_To_BOL"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Hours_PreTrip_To_BOL)",
+              "nativeQueryRef": "Sum of Hours_PreTrip_To_BOL"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Missing_BOL"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Missing_BOL)",
+              "nativeQueryRef": "Sum of Missing_BOL"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Hours_PreTrip_To_PostTrip"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Hours_PreTrip_To_PostTrip)",
+              "nativeQueryRef": "Sum of Hours_PreTrip_To_PostTrip"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Missing_PostTrip"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Missing_PostTrip)",
+              "nativeQueryRef": "Sum of Missing_PostTrip"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Missing_PreTrip"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Missing_PreTrip)",
+              "nativeQueryRef": "Sum of Missing_PreTrip"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "Move_Type"
+                }
+              },
+              "queryRef": "WorkTicketPivot.Move_Type",
+              "nativeQueryRef": "Move_Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "MoveType"
+                }
+              },
+              "queryRef": "WorkTicketPivot.MoveType",
+              "nativeQueryRef": "MoveType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "OrderFID"
+                }
+              },
+              "queryRef": "WorkTicketPivot.OrderFID",
+              "nativeQueryRef": "OrderFID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "Vertical"
+                }
+              },
+              "queryRef": "WorkTicketPivot.Vertical",
+              "nativeQueryRef": "Vertical"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Work_Ticket"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Work_Ticket)",
+              "nativeQueryRef": "Sum of Work_Ticket"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "WorkTicketPivot"
+                      }
+                    },
+                    "Property": "Hours_PreTrip_To_BOL"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

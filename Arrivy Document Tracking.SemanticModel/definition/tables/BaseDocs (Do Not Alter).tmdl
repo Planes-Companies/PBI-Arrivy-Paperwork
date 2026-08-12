@@ -211,7 +211,8 @@ table 'BaseDocs (Do Not Alter)'
 				    = 
 				    Text.Upper(Text.Trim([DocumentDescription])) 
 				then 1 else 0),
-				    #"Replaced Value" = Table.ReplaceValue(#"Added Custom","Pre Trip","|Pre Trip|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Added Custom","GWS_","GWS-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Replaced Value6","Pre Trip","|Pre Trip|",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Post Trip","|Post Trip|",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","BOL","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value2",{"DeletedOn", "DocByteSize", "MSSDocumentImageFID"}),

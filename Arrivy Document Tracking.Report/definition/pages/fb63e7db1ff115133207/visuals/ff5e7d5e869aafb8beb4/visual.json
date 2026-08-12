@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "ff5e7d5e869aafb8beb4",
   "position": {
-    "x": 9.8159509202453989,
-    "y": 180.61349693251535,
+    "x": 8.3271375464684017,
+    "y": 142.75092936802974,
     "z": 1000,
-    "height": 141.34969325153375,
-    "width": 407.68916155419225,
+    "height": 205.79925650557621,
+    "width": 408.02973977695171,
     "tabOrder": 1000
   },
   "visual": {
@@ -43,21 +43,6 @@
               },
               "queryRef": "WorkTicketPivot.Vertical",
               "nativeQueryRef": "Vertical",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WorkTicketPivot"
-                    }
-                  },
-                  "Property": "Work_Ticket"
-                }
-              },
-              "queryRef": "WorkTicketPivot.Work_Ticket",
-              "nativeQueryRef": "Work_Ticket",
               "active": true
             }
           ]
@@ -113,6 +98,25 @@
               "queryRef": "_Measures.% Missing BOL",
               "nativeQueryRef": "% Missing BOL",
               "format": "0%;-0%;0%"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Work_Ticket"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Work_Ticket)",
+              "nativeQueryRef": "Count of Work_Ticket"
             }
           ]
         }
@@ -121,16 +125,29 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Measures"
+                    "Entity": "WorkTicketPivot"
                   }
                 },
-                "Property": "Total Work Tickets"
+                "Property": "Move_Type"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
+                  }
+                },
+                "Property": "Vertical"
+              }
+            },
+            "direction": "Ascending"
           }
         ]
       }
@@ -178,13 +195,6 @@
               }
             ],
             "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "WorkTicketPivot.Work_Ticket"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
           }
         ],
         "root": {
@@ -203,28 +213,6 @@
                     {
                       "Literal": {
                         "Value": "'H-'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                }
-              ]
-            },
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'Commercial'"
-                  }
-                }
-              ],
-              "isToggled": true,
-              "children": [
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'C-'"
                       }
                     }
                   ],
@@ -261,8 +249,28 @@
                     }
                   ],
                   "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'L-'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
                 }
               ]
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Commercial'"
+                  }
+                }
+              ],
+              "isToggled": true
             }
           ]
         }
@@ -586,6 +594,72 @@
             }
           ]
         }
+      },
+      {
+        "name": "a13f26410c0e920c3755",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Work Tickets"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "131b97049212034ca6d3",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
+                  }
+                },
+                "Property": "Missing_BOL"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "091e7addad6760b027b4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "% Missing BOL"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4339f147414a0009a7d4",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
+                  }
+                },
+                "Property": "Work_Ticket"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

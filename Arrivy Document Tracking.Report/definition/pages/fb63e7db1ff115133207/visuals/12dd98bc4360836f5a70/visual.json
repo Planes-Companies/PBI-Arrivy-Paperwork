@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "12dd98bc4360836f5a70",
   "position": {
-    "x": 9.8159509202453989,
-    "y": 32.719836400818,
+    "x": 610.26022304832713,
+    "y": 33.308550185873607,
     "z": 2000,
-    "height": 41.226993865030678,
-    "width": 588.30265848670763,
+    "height": 240.29739776951675,
+    "width": 167.73234200743497,
     "tabOrder": 2000
   },
   "visual": {
-    "visualType": "slicer",
+    "visualType": "advancedSlicerVisual",
     "query": {
       "queryState": {
         "Values": {
@@ -28,7 +28,6 @@
               },
               "queryRef": "WorkTicketPivot.BranchKey.Base_Branch",
               "nativeQueryRef": "Base Branch",
-              "active": true,
               "displayName": "Base Branch"
             }
           ]
@@ -36,34 +35,37 @@
       }
     },
     "objects": {
-      "items": [
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "data": [
+        {
+          "properties": {}
+        }
+      ],
+      "selection": [
         {
           "properties": {
-            "padding": {
+            "selectAllCheckboxEnabled": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "true"
                 }
               }
             },
-            "outlineStyle": {
+            "singleSelect": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
+                  "Value": "true"
                 }
               }
             }
           }
         }
       ],
-      "general": [
+      "layout": [
         {
           "properties": {
             "orientation": {
@@ -72,33 +74,119 @@
                   "Value": "1D"
                 }
               }
-            }
-          }
-        }
-      ],
-      "data": [
-        {
-          "properties": {
-            "mode": {
+            },
+            "maxTiles": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic'"
+                  "Value": "6L"
+                }
+              }
+            },
+            "cellPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }
           }
         }
       ],
-      "header": [
+      "overFlow": [
         {
           "properties": {
-            "textSize": {
+            "overFlowDirection": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             }
+          }
+        }
+      ],
+      "value": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.BranchKey.Base_Branch",
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "verticalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'middle'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "series:selectall"
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "paddingSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Narrow'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.BranchKey.Base_Branch",
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "paddingSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Narrow'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "series:selectall"
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "wrapContent": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "series:selectall-interaction:rest"
           }
         }
       ]
@@ -198,6 +286,26 @@
             }
           }
         }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -205,7 +313,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "211282bc67bb21a857a4",
+        "name": "e883b940e1d19c0114ae",
         "field": {
           "Column": {
             "Expression": {

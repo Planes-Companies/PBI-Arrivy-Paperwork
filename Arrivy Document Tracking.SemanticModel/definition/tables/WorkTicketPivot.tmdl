@@ -318,9 +318,12 @@ table WorkTicketPivot
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Base_Date", type date}}),
 				    #"Uppercased Text" = Table.TransformColumns(#"Changed Type1",{{"Vertical", Text.Upper, type text}}),
 				    #"Merged Queries" = Table.NestedJoin(#"Uppercased Text", {"BranchID"}, BranchKey, {"BranchID"}, "BranchKey", JoinKind.LeftOuter),
-				    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries", "BranchKey", {"Base_Branch"}, {"BranchKey.Base_Branch"})
+				    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries", "BranchKey", {"Base_Branch"}, {"BranchKey.Base_Branch"}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Expanded BranchKey", each true),
+				    #"Sorted Rows" = Table.Sort(#"Filtered Rows1",{{"Work_Ticket", Order.Ascending}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Sorted Rows", each true)
 				in
-				    #"Expanded BranchKey"
+				    #"Filtered Rows2"
 
 	annotation PBI_NavigationStepName = Navigation
 

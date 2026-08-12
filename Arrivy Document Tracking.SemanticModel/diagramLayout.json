@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 137,
-        "y": 0
+        "x": 557,
+        "y": 401
       },
       "nodes": [
         {
@@ -58,7 +58,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 15
+          "zIndex": 14
         },
         {
           "location": {
@@ -188,12 +188,12 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 14
+          "zIndex": 15
         },
         {
           "location": {
-            "x": 1878.9443045370181,
-            "y": 350.7252647419
+            "x": 1701.9443045370181,
+            "y": 309.7252647419
           },
           "nodeIndex": "Crew",
           "nodeLineageTag": "16566b06-133a-4f78-b96f-0fcf27e18cf4",

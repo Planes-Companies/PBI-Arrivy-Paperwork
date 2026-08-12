@@ -28,6 +28,20 @@
               },
               "queryRef": "WorkTicketPivot.Orderno",
               "nativeQueryRef": "Orderno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "Work_Ticket"
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Work_Ticket)",
+              "nativeQueryRef": "Work_Ticket"
             }
           ]
         }
@@ -94,6 +108,25 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
                 }
               }
             }
@@ -324,6 +357,34 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "c0a9d2717923d0339320",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Orderno"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d233ad6d69bd48dbcda3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Work_Ticket"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

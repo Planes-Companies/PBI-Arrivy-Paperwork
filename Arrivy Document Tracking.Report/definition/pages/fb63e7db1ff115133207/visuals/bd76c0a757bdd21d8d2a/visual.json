@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "bd76c0a757bdd21d8d2a",
   "position": {
-    "x": 9.8159509202453989,
-    "y": 359.91820040899796,
+    "x": 8.3271375464684017,
+    "y": 388.99628252788108,
     "z": 4000,
-    "height": 314.76482617586913,
-    "width": 407.68916155419225,
+    "height": 275.9851301115242,
+    "width": 590.03717472118967,
     "tabOrder": 4000
   },
   "visual": {
@@ -56,6 +56,20 @@
               },
               "queryRef": "WorkTicketPivot.Orderno",
               "nativeQueryRef": "Orderno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "Crew.Crew"
+                }
+              },
+              "queryRef": "WorkTicketPivot.Crew.Crew",
+              "nativeQueryRef": "Crew.Crew"
             }
           ]
         }
@@ -67,13 +81,13 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "PlanesDates"
+                    "Entity": "WorkTicketPivot"
                   }
                 },
-                "Property": "Date"
+                "Property": "Crew.Crew"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -104,7 +118,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "98.5359439701534D"
+                  "Value": "120.05045051513466D"
                 }
               }
             }
@@ -125,6 +139,20 @@
           },
           "selector": {
             "metadata": "WorkTicketPivot.Orderno"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "253.8178258817632D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.Crew.Crew"
           }
         }
       ],
@@ -398,6 +426,62 @@
             }
           ]
         }
+      },
+      {
+        "name": "3a5b24f9a00489701585",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "PlanesDates"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "39949f7671c0070b9543",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Work_Ticket"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ce70f60092ed9004aa3a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Orderno"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8d5e29c1e8b92b910010",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Crew.Crew"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "96df45fb2cf6e4589814",
   "position": {
-    "x": 430.59304703476482,
-    "y": 77.873210633946826,
+    "x": 610.26022304832713,
+    "y": 286.69144981412643,
     "z": 6000,
-    "height": 300.3680981595092,
-    "width": 167.52556237218815,
+    "height": 234.34944237918216,
+    "width": 167.73234200743497,
     "tabOrder": 6000
   },
   "visual": {
@@ -128,136 +128,43 @@
                 "Where": [
                   {
                     "Condition": {
-                      "And": {
-                        "Left": {
-                          "In": {
-                            "Expressions": [
-                              {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Source": "p"
-                                    }
-                                  },
-                                  "Property": "Year"
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
                                 }
-                              }
-                            ],
-                            "Values": [
-                              [
-                                {
-                                  "Literal": {
-                                    "Value": "2026L"
-                                  }
+                              },
+                              "Property": "Year"
+                            }
+                          },
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
                                 }
-                              ]
-                            ]
-                          }
-                        },
-                        "Right": {
-                          "Not": {
-                            "Expression": {
-                              "In": {
-                                "Expressions": [
-                                  {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Source": "p"
-                                        }
-                                      },
-                                      "Property": "Year"
-                                    }
-                                  },
-                                  {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Source": "p"
-                                        }
-                                      },
-                                      "Property": "Month"
-                                    }
-                                  }
-                                ],
-                                "Values": [
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "2026L"
-                                      }
-                                    },
-                                    {
-                                      "Literal": {
-                                        "Value": "'January'"
-                                      }
-                                    }
-                                  ],
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "2026L"
-                                      }
-                                    },
-                                    {
-                                      "Literal": {
-                                        "Value": "'February'"
-                                      }
-                                    }
-                                  ],
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "2026L"
-                                      }
-                                    },
-                                    {
-                                      "Literal": {
-                                        "Value": "'March'"
-                                      }
-                                    }
-                                  ],
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "2026L"
-                                      }
-                                    },
-                                    {
-                                      "Literal": {
-                                        "Value": "'April'"
-                                      }
-                                    }
-                                  ],
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "2026L"
-                                      }
-                                    },
-                                    {
-                                      "Literal": {
-                                        "Value": "'May'"
-                                      }
-                                    }
-                                  ],
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "2026L"
-                                      }
-                                    },
-                                    {
-                                      "Literal": {
-                                        "Value": "'June'"
-                                      }
-                                    }
-                                  ]
-                                ]
-                              }
+                              },
+                              "Property": "Month"
                             }
                           }
-                        }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "2026L"
+                              }
+                            },
+                            {
+                              "Literal": {
+                                "Value": "'August'"
+                              }
+                            }
+                          ]
+                        ]
                       }
                     },
                     "Annotations": {
@@ -295,123 +202,12 @@
                                     }
                                   }
                                 ]
-                              }
-                            ],
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "2026L"
-                                    }
-                                  }
-                                ]
                               },
                               {
                                 "1": [
                                   {
                                     "Literal": {
-                                      "Value": "'January'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ],
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "2026L"
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "1": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'February'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ],
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "2026L"
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "1": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'March'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ],
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "2026L"
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "1": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'April'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ],
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "2026L"
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "1": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'May'"
-                                    }
-                                  }
-                                ]
-                              }
-                            ],
-                            [
-                              {
-                                "0": [
-                                  {
-                                    "Literal": {
-                                      "Value": "2026L"
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "1": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'June'"
+                                      "Value": "'August'"
                                     }
                                   }
                                 ]
@@ -447,31 +243,8 @@
                         },
                         "valueMap": [
                           {
-                            "0": "2026"
-                          },
-                          {
                             "0": "2026",
-                            "1": "January"
-                          },
-                          {
-                            "0": "2026",
-                            "1": "February"
-                          },
-                          {
-                            "0": "2026",
-                            "1": "March"
-                          },
-                          {
-                            "0": "2026",
-                            "1": "April"
-                          },
-                          {
-                            "0": "2026",
-                            "1": "May"
-                          },
-                          {
-                            "0": "2026",
-                            "1": "June"
+                            "1": "August"
                           }
                         ]
                       }
@@ -517,7 +290,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "765eec1bbc54a0cc3765",
+        "name": "e28208d906e3a074c906",
         "field": {
           "Column": {
             "Expression": {
@@ -531,7 +304,7 @@
         "type": "Advanced"
       },
       {
-        "name": "7eb3bc681ea74b7d3f0b",
+        "name": "9f3f0604a43bb2671a97",
         "field": {
           "Column": {
             "Expression": {

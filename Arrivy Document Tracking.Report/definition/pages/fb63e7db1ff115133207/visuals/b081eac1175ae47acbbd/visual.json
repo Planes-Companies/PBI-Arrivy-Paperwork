@@ -28,6 +28,20 @@
               },
               "queryRef": "WorkTicketPivot.Orderno",
               "nativeQueryRef": "Orderno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "Work_Ticket"
+                }
+              },
+              "queryRef": "Sum(WorkTicketPivot.Work_Ticket)",
+              "nativeQueryRef": "Work_Ticket"
             }
           ]
         }
@@ -303,7 +317,7 @@
         }
       },
       {
-        "name": "e33c160c433e4d81a329",
+        "name": "af88400c1e75cd59c69b",
         "field": {
           "Column": {
             "Expression": {
@@ -315,6 +329,20 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "43dc1944e8ad404370d4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Work_Ticket"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

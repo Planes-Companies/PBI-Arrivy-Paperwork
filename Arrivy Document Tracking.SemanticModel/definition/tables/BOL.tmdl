@@ -275,9 +275,10 @@ table BOL
 				    #"Filtered Rows5" = Table.SelectRows(#"Added Conditional Column1", each ([LEN_Filter] <> "No Work Ticket")),
 				    #"Renamed Columns3" = Table.RenameColumns(#"Filtered Rows5",{{"Local", "Move_Type"}}),
 				    #"Filtered Rows1" = Table.SelectRows(#"Renamed Columns3", each ([Work_Ticket] <> "PLEASE")),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Work_Ticket", Int64.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Work_Ticket", Int64.Type}}),
+				    #"Filtered Rows7" = Table.SelectRows(#"Changed Type", each ([OrderFID] <> 917144))
 				in
-				    #"Changed Type"
+				    #"Filtered Rows7"
 
 	annotation PBI_NavigationStepName = Navigation
 
