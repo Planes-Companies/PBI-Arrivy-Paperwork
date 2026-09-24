@@ -1,0 +1,25 @@
+expression Dispatch =
+		let
+		    Source = Sql.Database("PLNDS01\SQL2k16", "MoversSuite2Supp", [Query="USE [MoversSuite2Supp];#(lf)#(lf)-- Calculate the two Saturdays relative to today#(lf)DECLARE @Today    DATE  = CAST(GETDATE() AS DATE);#(lf)DECLARE @Offset   INT   = DATEPART(WEEKDAY, @Today) % 7;#(lf)SET    @Offset   = CASE WHEN @Offset = 0 THEN 7 ELSE @Offset END;#(lf)DECLARE @EndDt    DATE#(lf)DECLARE @StartDt  DATE#(lf)#(lf) Set @StartDt ='2026-06-28';#(lf) Set @EndDt = @Today;#(lf)#(lf)SET NOCOUNT ON;#(lf)DECLARE @Interim table #(lf)#(tab)(EquipNo varchar(40),#(lf)#(tab)EquipType varchar(100),#(lf)#(tab)EqStatus varchar(100),#(lf)    OrderNo varchar(20),#(lf)#(tab)Ordprikey INT,#(lf)#(tab)ServiceType varchar(200),#(lf)#(tab)ServiceID varchar(100),#(lf)    LocSerPriKey VARCHAR (50), #(lf)#(tab)ServiceDate datetime,#(lf)#(tab)BranchPriKey int,#(lf)#(tab)ServiceBranch varchar(50))#(lf)#(lf)#(tab)insert into @Interim#(lf)          select #(lf)#(tab)#(tab)  Equip.EqNo,#(lf)#(tab)#(tab)  EqType.Type,#(lf)#(tab)#(tab)  Equip.EqStatus,#(lf)#(tab)#(lf)#(tab)#(tab)  VWO.OrderNo, #(lf)#(tab)#(tab)  VWO.OrdPriKey,#(lf)#(tab)#(tab)  ServType.Service,#(lf)#(tab)#(tab)  ServType.ServiceID,#(lf)          LS.PriKey LocServPriKey, #(lf)#(tab)#(tab)  LS.ServiceDate,#(lf)#(tab)#(tab)  LS.BranchPriKey,#(lf)#(tab)#(tab)  BL.Name#(lf)   from MoversSuite2..Equip #(lf)   left join MoversSuite2..LocalServicesEquipment LSE#(lf)      on Equip.EqNo = LSE.EquipmentNumber#(lf)   left join MoversSuite2..EqType #(lf)      on Equip.Type=EqType.TypeNumber#(lf)   Left join MoversSuite2..LocServ LS#(lf)      on LSE.LocalServicesEquipmentLocServFID = LS.PriKey#(lf)#(tab)Left join MoversSuite2..Branch BL#(lf)#(tab)#(tab)on LS.BranchPriKey = BL.BranchPriKey#(lf)   Left join MoversSuite2Supp..vwOrdersDataset VWO#(lf)      on LS.OrdPriKey = VWO.OrdPriKey#(lf)   left join MoversSuite2..LocalServicesCrew#(lf)      on LS.PriKey = LocalServicesCrew.LocalServicesCrewLocServFID #(lf)      and LeadMan = 1#(lf)   left join MoversSuite2..ServType#(lf)      on LS.ServiceID = ServType.ServiceID #(lf) where ServiceDate between @StartDt and @EndDt#(lf)#(lf)  and ServType.Service not in ('Vaulted storage','Intl transload','Training','Non-billable',                                       #(lf)                                'WHSE SIT In', 'WHSE SIT Out')#(lf)#(lf)select * FROM @Interim#(lf)         where ServiceID is not null#(lf) AND ServiceDate > '2026-06-27'", HierarchicalNavigation=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ServiceDate", type date}}),
+		    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"ServiceDate"}, PlanesDates, {"Date"}, "PlanesDates", JoinKind.LeftOuter),
+		    #"Expanded PlanesDates" = Table.ExpandTableColumn(#"Merged Queries", "PlanesDates", {"PlanesDateID", "WEEK_OF"}, {"PlanesDates.PlanesDateID", "PlanesDates.WEEK_OF"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Expanded PlanesDates",{{"PlanesDates.PlanesDateID", "DateID"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Order_Date_LocServ_Key", each Text.From([DateID]) & " | " & Text.From([Ordprikey])& " | " & Text.From([LocSerPriKey])),
+		    #"Removed Duplicates" = Table.Distinct(#"Added Custom", {"Order_Date_LocServ_Key"}),
+		    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"EquipNo", Text.Trim, type text}}),
+		    #"Added Custom1" = Table.AddColumn(#"Trimmed Text", "Date_Order", each Text.From([DateID]) & " | " & Text.From([Ordprikey])),
+		    #"Split Column by Delimiter" = Table.SplitColumn(#"Added Custom1", "ServiceBranch", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"DispatchBranch.1", "DispatchBranch.2"}),
+		    #"Trimmed Text1" = Table.TransformColumns(#"Split Column by Delimiter",{{"DispatchBranch.2", Text.Trim, type text}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Trimmed Text1",{"DispatchBranch.1"}),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns",{{"DispatchBranch.2", "DispatchBranch"}}),
+		    #"Added Custom2" = Table.AddColumn(#"Renamed Columns2", "MatchVehDateJob", each [Order_Date_LocServ_Key] & " | " & [EquipNo]),
+		    #"Filtered Rows" = Table.SelectRows(#"Added Custom2", each true)
+		in
+		    #"Filtered Rows"
+	lineageTag: af07fa01-568a-4f06-aec7-318ba6f4fb8f
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

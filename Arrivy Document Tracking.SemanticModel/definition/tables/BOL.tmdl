@@ -50,15 +50,6 @@ table BOL
 
 		annotation SummarizationSetBy = Automatic
 
-	column BranchFID
-		dataType: int64
-		formatString: 0
-		lineageTag: 3d6a6810-0d0a-4b15-ac27-245909eabbe6
-		summarizeBy: count
-		sourceColumn: BranchFID
-
-		annotation SummarizationSetBy = Automatic
-
 	column BranchID
 		dataType: string
 		lineageTag: c026f25b-4467-464f-9a6e-c9ffd9217ca1
@@ -92,11 +83,11 @@ table BOL
 
 		annotation SummarizationSetBy = Automatic
 
-	column MoveType
+	column MoveType_Short
 		dataType: string
 		lineageTag: 180d790b-3880-46ac-99a2-a38c00aa3b18
 		summarizeBy: none
-		sourceColumn: MoveType
+		sourceColumn: MoveType_Short
 
 		annotation SummarizationSetBy = Automatic
 
@@ -133,14 +124,6 @@ table BOL
 
 		annotation SummarizationSetBy = Automatic
 
-	column Stitched
-		dataType: string
-		lineageTag: 03feafbf-27a7-4447-a4f8-e431944b56a2
-		summarizeBy: none
-		sourceColumn: Stitched
-
-		annotation SummarizationSetBy = Automatic
-
 	column DocType
 		dataType: string
 		lineageTag: be9c0768-51f7-40ba-ac07-eb42deb0aadb
@@ -156,33 +139,6 @@ table BOL
 		sourceColumn: DocumentName
 
 		annotation SummarizationSetBy = Automatic
-
-	column Upload_Date
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 1ae6bea8-5065-488b-82b9-5921dc0c4c7b
-		summarizeBy: none
-		sourceColumn: Upload_Date
-
-		variation Variation
-			isDefault
-			relationship: 46c7a571-cf9a-4c7f-9fa2-ba0b3355035e
-			defaultHierarchy: LocalDateTable_d47faa43-da7a-41de-95de-889b0122b426.'Date Hierarchy'
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column Upload_Time
-		dataType: dateTime
-		formatString: Long Time
-		lineageTag: ad52a883-9160-4154-a2ed-a9aee14dae4f
-		summarizeBy: none
-		sourceColumn: Upload_Time
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Time
 
 	column Work_Ticket
 		dataType: int64
@@ -209,23 +165,6 @@ table BOL
 
 		annotation SummarizationSetBy = Automatic
 
-	column WorkTicket_ColLength
-		dataType: int64
-		formatString: 0
-		lineageTag: 574de3c3-5f2c-4ced-9135-4f7a1bd8c7b3
-		summarizeBy: sum
-		sourceColumn: WorkTicket_ColLength
-
-		annotation SummarizationSetBy = Automatic
-
-	column LEN_Filter
-		dataType: string
-		lineageTag: 72ac4227-83aa-4a70-9838-fbd3aeadee73
-		summarizeBy: none
-		sourceColumn: LEN_Filter
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'PlanesDates.PlanesDateID'
 		dataType: int64
 		formatString: 0
@@ -235,29 +174,64 @@ table BOL
 
 		annotation SummarizationSetBy = Automatic
 
-	column Merged
+	column Date_Order
 		dataType: string
-		lineageTag: 80927b9f-48c7-4b9e-aa8a-ecf126f910af
+		lineageTag: 7dbdec14-b5d3-4f08-a782-3d421dc584f6
 		summarizeBy: none
-		sourceColumn: Merged
+		sourceColumn: Date_Order
 
 		annotation SummarizationSetBy = Automatic
+
+	column BranchPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d2d2c611-82a5-4ef1-be14-7bbca9ec6daf
+		summarizeBy: count
+		sourceColumn: BranchPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FINAL_BRANCH
+		dataType: string
+		lineageTag: caa50011-6b0c-49de-ac07-425973b44ea4
+		summarizeBy: none
+		sourceColumn: FINAL_BRANCH
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3cd6f56a-252e-470b-8566-4ae7288b56d2
+		summarizeBy: none
+		sourceColumn: ServiceDate
+
+		variation Variation
+			isDefault
+			relationship: 1e1cac0b-94cb-4ce7-bf3e-2df59ff0b951
+			defaultHierarchy: LocalDateTable_314ae656-5dcd-4568-966a-67697d26f241.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	partition BOL = m
 		mode: import
 		source =
 				let
 				    Source = #"BaseDocs (Do Not Alter)",
-				    #"Filtered Rows" = Table.SelectRows(Source, each ([Text Between Delimiters] = "BOL")),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Text Between Delimiters] = "BOL") and ([SysUserFID] = 3)),
 				    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows","OH - CINCINNATI - |BOL| Local Move 1-BELT, GREGORY  Perm Storage Dlvry & Unpack-U164-1945-5-_39 - U164-1945-5 - 8564537087897.pdf","OH - CINCINNATI - |BOL| Local Move 1-BELT, GREGORY  Perm Storage Dlvry & Unpack-_397619_ - U164-1945-5 - 8564537087897.pdf",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","_BD  Commercial "," BD  Commercial ",Replacer.ReplaceText,{"DocumentName"}),
-				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Replaced Value2", "Text Between Delimiters.1", each Text.BetweenDelimiters([DocumentName], "_", "_"), type text),
-				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Text Between Delimiters",{{"Text Between Delimiters.1", "Work_Ticket"}}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value2","_399422","_399422_",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Replaced Value4", "Text Between Delimiters.1", each Text.BetweenDelimiters([DocumentName], "_", "_", {0, RelativePosition.FromEnd}, {0, RelativePosition.FromEnd}), type text),
+				    #"Filtered Rows6" = Table.SelectRows(#"Inserted Text Between Delimiters", each ([Text Between Delimiters.1] <> "" and [Text Between Delimiters.1] <> "null")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows6",{{"Text Between Delimiters.1", "Work_Ticket"}}),
 				    #"Sorted Rows" = Table.Sort(#"Renamed Columns",{{"UploadDateTime", Order.Descending}}),
 				    #"Inserted First Characters" = Table.AddColumn(#"Sorted Rows", "First Characters", each Text.Start([MoveType], 4), type text),
 				    #"Trimmed Text2" = Table.TransformColumns(#"Inserted First Characters",{{"First Characters", Text.Trim, type text}}),
 				    #"Added Conditional Column" = Table.AddColumn(#"Trimmed Text2", "Local", each if [First Characters] = "N/A" then "Local" else if [First Characters] = "Comm" then "Commercial" else if [First Characters] = "OAg" then "Local" else if [First Characters] = "COD" then "Local" else if [First Characters] = "MIL" then "Military" else if [First Characters] = "Oth" then "Other" else null),
-				    #"Filtered Rows2" = Table.SelectRows(#"Added Conditional Column", each [Local] <> null),
+				    #"Filtered Rows2" = Table.SelectRows(#"Added Conditional Column", each ([Local] = "Commercial" or [Local] = "Local")),
 				    #"Extracted First Characters" = Table.TransformColumns(#"Filtered Rows2", {{"Work_Ticket", each Text.Start(_, 7), type text}}),
 				    #"Replaced Value" = Table.ReplaceValue(#"Extracted First Characters","-","",Replacer.ReplaceText,{"Work_Ticket"}),
 				    #"Trimmed Text" = Table.TransformColumns(#"Replaced Value",{{"Work_Ticket", Text.Trim, type text}}),
@@ -270,15 +244,30 @@ table BOL
 				    #"Trimmed Text1" = Table.TransformColumns(#"Replaced Value3",{{"Work_Ticket", Text.Trim, type text}}),
 				    #"Duplicated Column" = Table.DuplicateColumn(#"Trimmed Text1", "Work_Ticket", "Work_Ticket - Copy"),
 				    #"Calculated Text Length" = Table.TransformColumns(#"Duplicated Column",{{"Work_Ticket - Copy", Text.Length, Int64.Type}}),
-				    #"Renamed Columns2" = Table.RenameColumns(#"Calculated Text Length",{{"Work_Ticket - Copy", "WorkTicket_ColLength"}}),
+				    #"Filtered Rows7" = Table.SelectRows(#"Calculated Text Length", each ([#"Work_Ticket - Copy"] = 6 or [#"Work_Ticket - Copy"] = 7)),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Filtered Rows7",{{"Work_Ticket - Copy", "WorkTicket_ColLength"}}),
 				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns2", "LEN_Filter", each if [WorkTicket_ColLength] < 6 then "No Work Ticket" else if [WorkTicket_ColLength] > 6 then "No Work Ticket" else [Work_Ticket]),
 				    #"Filtered Rows5" = Table.SelectRows(#"Added Conditional Column1", each ([LEN_Filter] <> "No Work Ticket")),
 				    #"Renamed Columns3" = Table.RenameColumns(#"Filtered Rows5",{{"Local", "Move_Type"}}),
 				    #"Filtered Rows1" = Table.SelectRows(#"Renamed Columns3", each ([Work_Ticket] <> "PLEASE")),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Work_Ticket", Int64.Type}}),
-				    #"Filtered Rows7" = Table.SelectRows(#"Changed Type", each ([OrderFID] <> 917144))
+				    #"Merged Queries1" = Table.NestedJoin(#"Changed Type", {"Work_Ticket"}, LocServ, {"WkTicketNo"}, "LocServ", JoinKind.LeftOuter),
+				    #"Expanded LocServ" = Table.ExpandTableColumn(#"Merged Queries1", "LocServ", {"ServiceDate", "BranchPriKey"}, {"ServiceDate", "BranchPriKey"}),
+				    #"Renamed Columns6" = Table.RenameColumns(#"Expanded LocServ",{{"MoveType", "MoveType_Short"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns6",{"MSSDocumentID", "OrderFID", "DocumentName", "UploadDateTime", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "Orderno", "BranchPriKey", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "MoveType_Short", "ProfileName", "Stitched", "DocType", "Upload_Date", "Upload_Time", "PlanesDates.PlanesDateID", "Date_Order", "DispatchBranch", "Work_Ticket", "Move_Type", "OrderK_WorkT_Dim", "WorkTicket_ColLength", "LEN_Filter", "ServiceDate"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Reordered Columns", {"BranchPriKey"}, BranchKey, {"BranchPriKey (Dispatch Branch)"}, "BranchKey", JoinKind.LeftOuter),
+				    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries", "BranchKey", {"Base_Branch"}, {"Base_Branch"}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Expanded BranchKey",{"MSSDocumentID", "OrderFID", "DocumentName", "UploadDateTime", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "Orderno", "BranchPriKey", "Base_Branch", "DispatchBranch", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "MoveType_Short", "ProfileName", "NameMatch", "Stitched", "DocType", "Upload_Date", "Upload_Time", "PlanesDates.PlanesDateID", "Date_Order", "Work_Ticket", "Move_Type", "OrderK_WorkT_Dim", "WorkTicket_ColLength", "LEN_Filter", "ServiceDate"}),
+				    #"Added Custom1" = Table.AddColumn(#"Reordered Columns1", "FINAL_BRANCH", each [Base_Branch] ?? [DispatchBranch]),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Added Custom1",{"WorkTicket_ColLength", "LEN_Filter", "Base_Branch", "DispatchBranch", "BranchFID", "Stitched"}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Removed Columns1",{"MSSDocumentID", "OrderFID", "Orderno", "DocumentName", "UploadDateTime", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchPriKey", "BranchID", "Authority", "Vertical", "MoveTypeFID", "MoveType_Short", "ProfileName", "NameMatch", "DocType", "Upload_Date", "Upload_Time", "PlanesDates.PlanesDateID", "Date_Order", "Work_Ticket", "Move_Type", "OrderK_WorkT_Dim", "ServiceDate", "FINAL_BRANCH"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns2",{"Upload_Date", "Upload_Time"}),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Removed Columns2", "ServiceDate_F", each if [ServiceDate] = null then [UploadDateTime] else [ServiceDate]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column2",{{"ServiceDate_F", type date}}),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Changed Type1",{"ServiceDate"}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Removed Columns3",{{"ServiceDate_F", "ServiceDate"}})
 				in
-				    #"Filtered Rows7"
+				    #"Renamed Columns4"
 
 	annotation PBI_NavigationStepName = Navigation
 

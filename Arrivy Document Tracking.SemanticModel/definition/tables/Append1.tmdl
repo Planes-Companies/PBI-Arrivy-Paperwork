@@ -75,15 +75,6 @@ table Append1
 
 		annotation SummarizationSetBy = Automatic
 
-	column BranchFID
-		dataType: int64
-		formatString: 0
-		lineageTag: ff3664e7-4d1f-48b0-932d-b15f6a740910
-		summarizeBy: count
-		sourceColumn: BranchFID
-
-		annotation SummarizationSetBy = Automatic
-
 	column BranchID
 		dataType: string
 		lineageTag: 8dedb5e7-5a78-40c4-a440-03e452852c78
@@ -117,35 +108,11 @@ table Append1
 
 		annotation SummarizationSetBy = Automatic
 
-	column MoveType
-		dataType: string
-		lineageTag: b4a2e88f-46c1-451b-a97f-9ce0ea2a7572
-		summarizeBy: none
-		sourceColumn: MoveType
-
-		annotation SummarizationSetBy = Automatic
-
 	column ProfileName
 		dataType: string
 		lineageTag: 713a0ae0-fb15-4b28-9624-8c5981824708
 		summarizeBy: none
 		sourceColumn: ProfileName
-
-		annotation SummarizationSetBy = Automatic
-
-	column NameMatch
-		dataType: string
-		lineageTag: 321f0741-9fcd-445d-bd9c-fac0e83713f8
-		summarizeBy: none
-		sourceColumn: NameMatch
-
-		annotation SummarizationSetBy = Automatic
-
-	column Stitched
-		dataType: string
-		lineageTag: 27b23a7f-2112-490c-b76c-064a741d4dd6
-		summarizeBy: none
-		sourceColumn: Stitched
 
 		annotation SummarizationSetBy = Automatic
 
@@ -159,33 +126,6 @@ table Append1
 		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
-
-	column Upload_Date
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: cc69bfc9-c2b5-4314-874d-ae4f18df7aaa
-		summarizeBy: none
-		sourceColumn: Upload_Date
-
-		variation Variation
-			isDefault
-			relationship: d1046bca-681e-40e1-bb1d-090bcff142f8
-			defaultHierarchy: LocalDateTable_65204473-988c-4fe3-9821-a273a8feeb6c.'Date Hierarchy'
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column Upload_Time
-		dataType: dateTime
-		formatString: Short Time
-		lineageTag: 6a4dceea-99a6-4095-93fe-682067a2239a
-		summarizeBy: none
-		sourceColumn: Upload_Time
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Time
 
 	column Work_Ticket
 		dataType: int64
@@ -260,24 +200,6 @@ table Append1
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column WorkTicket_ColLength
-		dataType: int64
-		formatString: 0
-		lineageTag: b2ab1d73-3c1c-412a-9b99-2b364a75afe2
-		summarizeBy: sum
-		sourceColumn: WorkTicket_ColLength
-
-		annotation SummarizationSetBy = Automatic
-
-	column LEN_Filter
-		dataType: int64
-		formatString: 0
-		lineageTag: 70f8e2ab-9b1b-47ee-bd86-9f4fed18249c
-		summarizeBy: sum
-		sourceColumn: LEN_Filter
-
-		annotation SummarizationSetBy = Automatic
-
 	column Move_Type
 		dataType: string
 		lineageTag: c0f01529-5bad-4585-b3ad-46172b98f7d1
@@ -295,19 +217,52 @@ table Append1
 
 		annotation SummarizationSetBy = Automatic
 
-	column Merged
+	column ServiceDate
 		dataType: string
-		lineageTag: 6c9e5298-d0e0-4cb9-80ae-6814751ca8a8
+		lineageTag: 91f3e668-ed53-451e-89cf-0b59ad46152c
 		summarizeBy: none
-		sourceColumn: Merged
+		sourceColumn: ServiceDate
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Crew.Crew'
+	column MoveType_Short
 		dataType: string
-		lineageTag: 96de6009-45ef-4eea-b277-e3fe910e30ad
+		lineageTag: 8a560072-bec7-4443-a0cf-d77ad65991f8
 		summarizeBy: none
-		sourceColumn: Crew.Crew
+		sourceColumn: MoveType_Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DIM Date_Order'
+		dataType: string
+		lineageTag: 8d48639e-a774-42b2-bb13-7d811c9cf462
+		summarizeBy: none
+		sourceColumn: DIM Date_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b10fd48-0821-4df1-b645-d18e97812c81
+		summarizeBy: count
+		sourceColumn: BranchPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column NameMatch
+		dataType: string
+		lineageTag: 95c29925-7419-4efc-a2f6-8d29af71b266
+		summarizeBy: none
+		sourceColumn: NameMatch
+
+		annotation SummarizationSetBy = Automatic
+
+	column FINAL_BRANCH
+		dataType: string
+		lineageTag: 309f20cf-abaa-4ca6-a38f-afc255bb4a24
+		summarizeBy: none
+		sourceColumn: FINAL_BRANCH
 
 		annotation SummarizationSetBy = Automatic
 
@@ -317,7 +272,8 @@ table Append1
 				let
 				    Source = Table.Combine({BOL, PrePost}),
 				    #"Replaced Value" = Table.ReplaceValue(Source,"525-35 - |Post Trip| 2-AWSCrane Solution- NR, 394555, 394563  Commercial Move-35P-3917-6-_400 - 35P-3917-6 - 24776106135010.pdf","525-35 - |Post Trip| 2-AWSCrane Solution- NR, 394555, 394563  Commercial Move-35P-3917-6-_400179_ - 35P-3917-6 - 24776106135010.pdf",Replacer.ReplaceText,{"DocumentName"}),
-				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","544-35 - |Post Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-_400 - 35P-3923-6 - 14150669713716.pdf","544-35 - |Post Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-_400190_ - 35P-3923-6 - 14150669713716.pdf",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Replaced Value", each ([Move_Type] <> "Military")),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Filtered Rows","544-35 - |Post Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-_400 - 35P-3923-6 - 14150669713716.pdf","544-35 - |Post Trip| 1-AWSCrane Solution- NR, 394561, 394562  Commercial Move-35P-3923-6-_400190_ - 35P-3923-6 - 14150669713716.pdf",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","Commercial |BOL| 1-McCollister'sLanguageCart, RFR 000046  Commercial Install-40P-3374-6_398913 - 40P-3374-6 - 10007651995114.pdf","Commercial |BOL| 1-McCollister'sLanguageCart, RFR 000046  Commercial Install-40P-3374-6_398913_ - 40P-3374-6 - 10007651995114.pdf",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Added Custom" = Table.AddColumn(#"Replaced Value2", "DocuSort", each if [DocType] = "Pre Trip" then 1
 				  else if [DocType] = "BOL" then 2
@@ -325,10 +281,9 @@ table Append1
 				  else 0),
 				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "DupCheck", each Text.From([OrderFID]) & "|" & Text.From([Work_Ticket]) & "|" & Text.From([DocuSort])),
 				    #"Removed Duplicates" = Table.Distinct(#"Added Custom1", {"DupCheck"}),
-				    #"Sorted Rows" = Table.Sort(#"Removed Duplicates",{{"OrderFID", Order.Ascending}}),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Sorted Rows",{{"LEN_Filter", Int64.Type}})
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"Date_Order", "DIM Date_Order"}})
 				in
-				    #"Changed Type"
+				    #"Renamed Columns"
 
 	annotation PBI_NavigationStepName = Navigation
 

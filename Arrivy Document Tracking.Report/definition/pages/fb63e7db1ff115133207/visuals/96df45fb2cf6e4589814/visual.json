@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "96df45fb2cf6e4589814",
   "position": {
-    "x": 610.26022304832713,
-    "y": 286.69144981412643,
+    "x": 610.55214723926383,
+    "y": 391.98364008179959,
     "z": 6000,
-    "height": 234.34944237918216,
-    "width": 167.73234200743497,
+    "height": 138.73210633946832,
+    "width": 167.52556237218815,
     "tabOrder": 6000
   },
   "visual": {
@@ -139,16 +139,6 @@
                               },
                               "Property": "Year"
                             }
-                          },
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "p"
-                                }
-                              },
-                              "Property": "Month"
-                            }
                           }
                         ],
                         "Values": [
@@ -156,11 +146,6 @@
                             {
                               "Literal": {
                                 "Value": "2026L"
-                              }
-                            },
-                            {
-                              "Literal": {
-                                "Value": "'August'"
                               }
                             }
                           ]
@@ -179,16 +164,6 @@
                               },
                               "Property": "Year"
                             }
-                          },
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "PlanesDates"
-                                }
-                              },
-                              "Property": "Month"
-                            }
                           }
                         ],
                         "decomposedIdentities": {
@@ -199,15 +174,6 @@
                                   {
                                     "Literal": {
                                       "Value": "2026L"
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                "1": [
-                                  {
-                                    "Literal": {
-                                      "Value": "'August'"
                                     }
                                   }
                                 ]
@@ -226,31 +192,38 @@
                                   "Property": "Year"
                                 }
                               }
-                            },
-                            {
-                              "value": {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "PlanesDates"
-                                    }
-                                  },
-                                  "Property": "Month"
-                                }
-                              }
                             }
                           ]
                         },
                         "valueMap": [
                           {
-                            "0": "2026",
-                            "1": "August"
+                            "0": "2026"
                           }
                         ]
                       }
                     }
                   }
                 ]
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "padding": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
               }
             }
           }

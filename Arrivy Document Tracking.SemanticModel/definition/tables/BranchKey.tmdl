@@ -34,12 +34,23 @@ table BranchKey
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'BranchPriKey (Dispatch Branch)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 796f3c02-a804-4a97-8dc6-1d67d88b52bd
+		summarizeBy: sum
+		sourceColumn: BranchPriKey (Dispatch Branch)
+
+		annotation SummarizationSetBy = Automatic
+
 	partition BranchKey = m
 		mode: import
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("jVTbjpswEP0VlOdFAmwT8liRZkECEomqq2a1D96UNlYdHBFWVf6+vgzLzUn6BJg5PjNnZs7r6wIF3uJpEW/zOFFPcTpVzYFR7rhOfGQH+luoY3h7e5IAogCbzVcN2O/3zvNL6chvN07SSSxeEXmyy80fH+HQ2XFaVxdXRjk5vf7i4m/VTBlWikHe2jG4z1y8y5ReRPPnzOmhckrB64uNMFTQnfmBsAd0N4vBkU4w2cWFxqWFDE3E5cxayll7VeGsPrC6pi3TCII1Q55m8jEkyJkE0MYCwSGByyeQQdycR/elNCA/krCylZVf3XsgHOnkNvn2u3wGeBV0ZDJwrPcYiMKuqYWRXjVUgSwcXtcdHWrpzEfLhOqODY1QN27FbNzuFIY8JWFcfANY3VJWV81DET3TrHib6fkLyef8CT7WQ6Z9ev+4AJsHbNmMrYubQPDSDJ4mQmTQ41sALURiAHKJlkviJFXD2fF6B4UIgT5l0+XbZrPggIDW2UzrG/cTDSlBrwgHMHX3UtI7rubhM6Ub22rJMIRy1j8m5ay/qJM1vbaiBoH1Eplz7AW9whA0jkYqOsnBQRzsEbXYvb5Hxjk7iPZYTYBagMQYiAT6hPwPDGEYa13ISGpbekQ3vzTFSJn9XmZbOPJhHuH2wTxai/egI72q9o7MRCae8WtIDEWdzK4Mcof7MqTTdr1Li7XCDP0trX8yWtOz4EyNzehT1xWB62iTG7bfXDYDEN3WEqgijHrdHnER35QGWGl4XWkydGQFMygOwPH6NO163sgaYdjDdOZ5DxXywffSme89gpqUkxj8XE0/5e0xpk1lMfa3fw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [BranchKey = _t, BranchID = _t, BranchName = _t, Base_Branch = _t]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"BranchKey", Int64.Type}, {"BranchID", type text}, {"BranchName", type text}, {"Base_Branch", type text}}),
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("hZVvb9owEIe/StTXjUQSm4SXW1ibaECRmFq1VTW5NBvWTFyFsIlvP/vuyD+H9hVJ4Mnv/PjOPD9ffa1Eud19L05X13Sdz5vLldgX9kYcip/4pPlqXUkLvVw/X0WTiXmcrn6kC/upy1rIsqgOnu+lWh33r8cDPG8uWUIcJ27lcLLcyrIUtbTfdG/YFNmAMuePQ3YuTrUuzdPmgsXEUF7u5OXlmxSleNdK2gIHt2yGfAiZd8s0A36/L6qtFMrWu5Nb8Vvbx81VGBHFiVo41KidgNKic9rK4S7aCdAsgfcOqIq/hRLl25DjDDMZZZLVDupaNTaQofXlTp0fWw1D5LnNvLn5Blafnp6824eNZ+79NMt7QhkFck7AYgjcLfoqI2q06TnClki/thaHGiJqriklgIZuwvzLY1dBRI2V0PtBQff3+WruLjyiDZ5NsJrzwv1bpV+NuAdd/XlXYlt4G63Kg+MhIg8zTnzj4QI/1BLiMtnkXABoGYGPtdT2Ba6pkNErqIbW1HgNA3Ehbkx5VAr5LKWd8b2sEKrepaIqxrYoDjA4pNpb5ePBozsQzugltvoM/ZpXBJyb9ErJ3QlnWim51fWu6JYeY+kMxjNDt4aN4x47OtkxxUYQu6R994xEWPYnwchCK6+xZDOu3tqMc3G4cARxYjgwoKqHXD5HEIwxDNYY8Q44uryQIEjDDWeTsKXcIwRPSAbjs75Z3t1DZ80axtTkLcXpl9L/isqpkVowgbxsDV1sV2ll6sO7rIWS9clpIMJg+tbYHkHXyif/BURD6BL3IYjYlHjfyO+X3B5fuFoOU2dQsBqYs6ZBteqjnX/MkFiMRblBlJxN+Uap32Xb/z7cSs4wNV8MemApjSRROZoCPGR4gInkyZyk50TjpVft0BOK4jCnG+y9IDHJm9oM58m/3HtTAjmAaClhIYEXuw/HksNYbkhQwoIWc9svJgSSaIUJi1rk41Yw0/zyHw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [BranchKey = _t, BranchID = _t, BranchName = _t, Base_Branch = _t, Column1 = _t]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Renamed Columns" = Table.RenameColumns(#"Promoted Headers",{{"BranchPriKey", "BranchPriKey (Dispatch Branch)"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"BranchKey", Int64.Type}, {"BranchID", type text}, {"BranchName", type text}, {"Base_Branch", type text}, {"BranchPriKey (Dispatch Branch)", Int64.Type}}),
 				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"BranchName", Order.Ascending}})
 				in
 				    #"Sorted Rows"

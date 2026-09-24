@@ -27,23 +27,26 @@
                 }
               },
               "queryRef": "_Measures.Total Work Tickets",
-              "nativeQueryRef": "Work Tickets",
-              "displayName": "Work Tickets"
+              "nativeQueryRef": "Total Work Tickets"
             },
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Missing Post Trip"
                     }
                   },
-                  "Property": "Missing Post Trip Count"
+                  "Function": 0
                 }
               },
-              "queryRef": "_Measures.Missing Post Trip Count",
-              "nativeQueryRef": "Missing Post Trip",
-              "displayName": "Missing Post Trip"
+              "queryRef": "Sum(WorkTicketPivot.Missing Post Trip)",
+              "nativeQueryRef": "Sum of Missing Post Trip"
             },
             {
               "field": {
@@ -57,8 +60,7 @@
                 }
               },
               "queryRef": "_Measures.% Missing Post Trip",
-              "nativeQueryRef": "% w/out Post Trip",
-              "displayName": "% w/out Post Trip",
+              "nativeQueryRef": "% Missing Post Trip",
               "format": "0%;-0%;0%"
             }
           ]
@@ -114,13 +116,6 @@
                   "Value": "1D"
                 }
               }
-            },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
             }
           },
           "selector": {
@@ -135,6 +130,36 @@
               "expr": {
                 "Literal": {
                   "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "paddingIndividual": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bottomMargin": {
+              "expr": {
+                "Literal": {
+                  "Value": "8L"
+                }
+              }
+            },
+            "topMargin": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
                 }
               }
             }
@@ -184,164 +209,51 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c3171271d91ed9df6b37",
+        "name": "68cbaa33a379181112b5",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "WorkTicketPivot"
+                "Entity": "_Measures"
               }
             },
-            "Property": "Vertical"
+            "Property": "Total Work Tickets"
           }
         },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "w",
-              "Entity": "WorkTicketPivot",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "w"
-                              }
-                            },
-                            "Property": "Vertical"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'HD-'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'HC-'"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "type": "Advanced"
       },
       {
-        "name": "061304f70c7158bf2213",
+        "name": "252a0bfbfae9782e397a",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "WorkTicketPivot"
+                "Entity": "_Measures"
               }
             },
-            "Property": "Move_Type"
+            "Property": "% Missing Post Trip"
           }
         },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "w",
-              "Entity": "WorkTicketPivot",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "w"
-                              }
-                            },
-                            "Property": "Move_Type"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'International'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'Military'"
-                            }
-                          }
-                        ]
-                      ]
-                    }
+        "type": "Advanced"
+      },
+      {
+        "name": "d43115e58e4c32248adc",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
                   }
-                }
+                },
+                "Property": "Missing Post Trip"
               }
-            }
-          ]
+            },
+            "Function": 0
+          }
         },
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "type": "Advanced"
       }
     ]
   }

@@ -29,9 +29,10 @@ table Query
 		annotation SummarizationSetBy = Automatic
 
 	column WorkTicketNumber
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: e1ff2dc9-4770-491c-ba9d-2bd28028642d
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: WorkTicketNumber
 
 		annotation SummarizationSetBy = Automatic
@@ -44,14 +45,65 @@ table Query
 
 		annotation SummarizationSetBy = Automatic
 
+	column ServiceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2cba97bd-25e5-4cc6-b9eb-7f95f09dadb1
+		summarizeBy: none
+		sourceColumn: ServiceDate
+
+		variation Variation
+			isDefault
+			relationship: c7a4009b-9490-4cc2-98b0-ca7a9d77295e
+			defaultHierarchy: LocalDateTable_3f0620ba-4303-4cf3-832f-bf45d81ad7f3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BranchPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b18712a-2438-46a8-86d8-dc036ebc2b05
+		summarizeBy: count
+		sourceColumn: BranchPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceBranch
+		dataType: string
+		lineageTag: f3e00f28-5260-4228-a635-6b4f1435c580
+		summarizeBy: none
+		sourceColumn: ServiceBranch
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: df65bfff-5b50-415e-aeaf-f47955f5e780
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column crew
+		dataType: string
+		lineageTag: c453b482-532b-411b-a826-349dc477d679
+		summarizeBy: none
+		sourceColumn: crew
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Query = m
 		mode: import
 		source =
 				let
-				  Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2", [Query = "#(lf)SELECT [WorkTicketID]#(lf)      ,[OrdersPriKey]#(lf)      ,[LocServPriKey]#(lf)      ,[WorkTicketNumber]#(lf)  FROM [MoversSuite2].[dbo].[WorkTickets]#(lf)  WHERE OrdersPriKey > 910000", HierarchicalNavigation = true]),
-				    #"Added Custom" = Table.AddColumn(Source, "Ord_WorkTicket", each Text.From([OrdersPriKey]) & "|" & Text.From([WorkTicketNumber]))
+				  Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2", [Query="SELECT [WorkTicketID]#(lf)      ,[OrdersPriKey], [OrderNo]#(lf)#(tab)  ,vls.ServiceDate#(lf), vls.crew#(lf)      ,wt.[LocServPriKey]#(lf)      ,[WorkTicketNumber]#(lf)      ,ls.BranchPriKey#(lf)#(tab)  ,BL.Name#(lf)  FROM [MoversSuite2].[dbo].[WorkTickets] wt#(lf)  JOIN MoversSuite2Supp..vwLocalServices vls#(lf)  ON wt.LocServPriKey = vls.LocServPriKey#(lf)  #(lf)  Left join MoversSuite2..LocServ LS#(lf)#(tab)#(tab)on vls.LocServPriKey = LS.PriKey#(lf)#(lf)#(tab)Left join MoversSuite2..Branch BL#(lf)#(tab)#(tab)on LS.BranchPriKey = BL.BranchPriKey#(lf)#(lf)  WHERE OrdersPriKey > 910000", HierarchicalNavigation=true]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"Name", "ServiceBranch"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Ord_WorkTicket", each Text.From([OrdersPriKey]) & "|" & Text.From([WorkTicketNumber])),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"ServiceDate", type date}, {"WorkTicketNumber", Int64.Type}})
 				in
-				    #"Added Custom"
+				    #"Changed Type"
 
 	annotation PBI_NavigationStepName = Navigation
 

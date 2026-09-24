@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["vwOrdersDataset","Dispatch","BaseDocs (Do Not Alter)","PlanesDates","ShipmentType_DIM","DocTypeKey","BOL","BranchKey","_Measures","Query1","Query","PrePost","Append1","WorkTicketPivot","Crew"]
+annotation PBI_QueryOrder = ["vwOrdersDataset","Dispatch","BaseDocs (Do Not Alter)","PlanesDates","ShipmentType_DIM","DocTypeKey","BOL","BranchKey","_Measures","Query","PrePost","Append1","WorkTicketPivot","Crew","Dispatch (2)","LocServ"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -18,8 +18,6 @@ ref table vwOrdersDataset
 ref table LocalDateTable_3e8ece5f-e06f-449d-a75b-5a7d1f51d58e
 ref table LocalDateTable_f759420a-a875-4a82-8253-5e9b07830652
 ref table LocalDateTable_3cac850b-4758-4974-bde2-a3f8e1fa1e98
-ref table Dispatch
-ref table LocalDateTable_32a4acac-5034-495b-bdec-1af2510374de
 ref table 'BaseDocs (Do Not Alter)'
 ref table LocalDateTable_dcee54f0-cff0-4e08-b757-e6bd9e8da5cf
 ref table PlanesDates
@@ -30,23 +28,27 @@ ref table LocalDateTable_c472065d-a77a-41d3-8b8b-05e22f14e42a
 ref table BranchKey
 ref table _Measures
 ref table LocalDateTable_f020a985-4f69-4373-8845-d04121772d67
-ref table Query1
-ref table LocalDateTable_1e2b87e7-179e-40e6-82b1-86d9e8990b65
 ref table Query
 ref table LocalDateTable_d8b7e0e8-b9a7-4c59-902e-e3a9d3226be3
-ref table LocalDateTable_d47faa43-da7a-41de-95de-889b0122b426
 ref table PrePost
 ref table LocalDateTable_3ecceb0a-de21-49eb-b582-dca983a9448d
-ref table LocalDateTable_3eaa8330-a0db-4bf0-83ee-75e6dba18a0e
 ref table Append1
 ref table LocalDateTable_5c17356a-b0ef-48a0-9e61-6122596358bd
-ref table LocalDateTable_65204473-988c-4fe3-9821-a273a8feeb6c
 ref table WorkTicketPivot
 ref table LocalDateTable_dc4ffbc4-4ec4-4060-bb74-5c9e9b24e068
 ref table LocalDateTable_548551fc-269c-4564-a076-091657e2bd18
 ref table Crew
 ref table LocalDateTable_5c775b58-2f0f-42f6-be4b-e319b586e092
 ref table LocalDateTable_d78775ea-8491-4c8d-8084-10a66197db6b
+ref table 'Dispatch (2)'
+ref table LocalDateTable_913a31fe-5bac-4665-9d62-3bd94ca84761
+ref table LocalDateTable_7cd4f76c-b2dd-4592-b506-0d240781d955
+ref table LocalDateTable_3f0620ba-4303-4cf3-832f-bf45d81ad7f3
+ref table LocServ
+ref table LocalDateTable_d162fe80-05e7-4934-934c-3d4abeab3e55
+ref table LocalDateTable_b9c97f13-0ac2-4132-ade5-f78451384562
+ref table LocalDateTable_bee59003-d7fa-4180-a31b-0a4c4b09bf2d
+ref table LocalDateTable_314ae656-5dcd-4568-966a-67697d26f241
 
 ref cultureInfo en-US
 

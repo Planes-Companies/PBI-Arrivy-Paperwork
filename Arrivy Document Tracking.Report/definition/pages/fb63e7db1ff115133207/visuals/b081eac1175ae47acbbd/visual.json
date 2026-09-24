@@ -59,10 +59,33 @@
                 "Property": "Orderno"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.89591078066914D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.Orderno"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
     },
     "visualContainerObjects": {
       "stylePreset": [
@@ -109,60 +132,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "ce6fcacbbdf7cc040702",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "WorkTicketPivot"
-              }
-            },
-            "Property": "Missing_PreTrip"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "w",
-              "Entity": "WorkTicketPivot",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "w"
-                          }
-                        },
-                        "Property": "Missing_PreTrip"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "1L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      },
       {
         "name": "3de9ec9517e6ae30102e",
         "field": {
@@ -343,6 +312,60 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "d336b1500e89a056b021",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Missing Pre Trip"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "WorkTicketPivot",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "w"
+                          }
+                        },
+                        "Property": "Missing Pre Trip"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "1L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ]
   }

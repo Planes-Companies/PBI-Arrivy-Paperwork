@@ -1,0 +1,210 @@
+table 'Dispatch (2)'
+	lineageTag: 7de8fa8c-55d3-48ca-9425-b37b2c38a69e
+
+	column EquipNo
+		dataType: string
+		lineageTag: 27dc2b08-46a8-49db-86dc-fb7a757c7ebd
+		summarizeBy: none
+		sourceColumn: EquipNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipType
+		dataType: string
+		lineageTag: afa8621f-bc33-4f0c-8554-76a7fb0270a3
+		summarizeBy: none
+		sourceColumn: EquipType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EqStatus
+		dataType: string
+		lineageTag: 1379a5dc-2514-4de1-84a2-4e8c055bd9a1
+		summarizeBy: none
+		sourceColumn: EqStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 94745c33-8f52-4963-9b1d-52d15bbbf6d3
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Owner
+		dataType: string
+		lineageTag: 83a7388a-473e-4938-aecb-c905c3a10e00
+		summarizeBy: none
+		sourceColumn: Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNo
+		dataType: string
+		lineageTag: 4064acf7-77bb-4fcf-b193-22cc7b423a5d
+		summarizeBy: none
+		sourceColumn: OrderNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b71f98b7-805c-4147-b055-949214c9c918
+		summarizeBy: count
+		sourceColumn: OrdPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceType
+		dataType: string
+		lineageTag: 8f5bc11c-9b64-4369-af2c-53c6b4dd76c3
+		summarizeBy: none
+		sourceColumn: ServiceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceID
+		dataType: string
+		lineageTag: c77ad5e9-b59b-4ba0-8c06-1e912b8c89f2
+		summarizeBy: none
+		sourceColumn: ServiceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipperName
+		dataType: string
+		lineageTag: 98d03e8d-7471-419b-b2e6-33e6ed0afda7
+		summarizeBy: none
+		sourceColumn: ShipperName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocServPriKey
+		dataType: string
+		lineageTag: e394d4b2-51c9-4747-b925-986f9619188e
+		summarizeBy: none
+		sourceColumn: LocServPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScheduledStart
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7e2e2abf-f962-4f14-901a-789848f73385
+		summarizeBy: none
+		sourceColumn: ScheduledStart
+
+		variation Variation
+			isDefault
+			relationship: 7aa8af79-5e15-4cfb-a9e2-90ce65b693c5
+			defaultHierarchy: LocalDateTable_913a31fe-5bac-4665-9d62-3bd94ca84761.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ServiceDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7870d38-773c-4fe8-8507-0304c2f72662
+		summarizeBy: none
+		sourceColumn: ServiceDate
+
+		variation Variation
+			isDefault
+			relationship: fe1ff493-ab59-4b95-9c7e-2ec889d88e2f
+			defaultHierarchy: LocalDateTable_7cd4f76c-b2dd-4592-b506-0d240781d955.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateID
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c0ef9a-b24f-45a5-821e-d093a3603d75
+		summarizeBy: count
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date_LocServ_Key
+		dataType: string
+		lineageTag: 9bd85f30-1399-4728-8063-f314bde40877
+		summarizeBy: none
+		sourceColumn: Order_Date_LocServ_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date
+		dataType: string
+		lineageTag: b3de2071-a787-4373-90ad-96bae8dbb067
+		summarizeBy: none
+		sourceColumn: Order_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column MatchVehDateJob
+		dataType: string
+		lineageTag: 486ade7a-dd6b-486d-aeb8-7e5d2fbe13ef
+		summarizeBy: none
+		sourceColumn: MatchVehDateJob
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Crew.Crew'
+		dataType: string
+		lineageTag: b230ed08-a58c-4b9b-91b9-321b000df791
+		summarizeBy: none
+		sourceColumn: Crew.Crew
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b3714e1e-4110-4c5e-a57d-c11fa812b651
+		summarizeBy: count
+		sourceColumn: BranchPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceBranch
+		dataType: string
+		lineageTag: 07cbaa26-026f-4f63-9102-06d82caf7a44
+		summarizeBy: none
+		sourceColumn: ServiceBranch
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dispatch (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("PLNDS01\SQL2k16", "MoversSuite2Supp", [Query="USE [MoversSuite2Supp];#(lf)#(lf)-- Calculate the two Saturdays relative to today#(lf)DECLARE @Today    DATE  = CAST(GETDATE() AS DATE);#(lf)DECLARE @Offset   INT   = DATEPART(WEEKDAY, @Today) % 7;#(lf)SET    @Offset   = CASE WHEN @Offset = 0 THEN 7 ELSE @Offset END;#(lf)DECLARE @EndDt    DATE#(lf)DECLARE @StartDt  DATE#(lf)#(lf) Set @StartDt ='2026-06-28';#(lf) Set @EndDt = @Today;#(lf)#(lf)SET NOCOUNT ON;#(lf)DECLARE @Interim table #(lf)#(tab)(EquipNo varchar(40),#(lf)#(tab)EquipType varchar(100),#(lf)#(tab)EqStatus varchar(100),#(lf)#(tab)Branch varchar(100),#(lf)#(tab)Owner varchar(100),#(lf)    OrderNo varchar(20),#(lf)#(tab)Ordprikey INT,#(lf)#(tab)ServiceType varchar(200),#(lf)#(tab)ServiceID varchar(100),#(lf)#(tab)ShipperName varchar(100), #(lf)    LocSerPriKey VARCHAR (50), #(lf)#(tab)ScheduledStart datetime,#(lf)#(tab)ServiceDate datetime,#(lf)#(tab)BranchPriKey int,#(lf)#(tab)ServiceBranch varchar(50))#(lf)#(lf)#(tab)insert into @Interim#(lf)          select #(lf)#(tab)#(tab)  Equip.EqNo,#(lf)#(tab)#(tab)  EqType.Type,#(lf)#(tab)#(tab)  Equip.EqStatus,#(lf)#(tab)#(tab) CASE#(lf)           WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo)) = '1840' THEN 'Cincinnati'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo)) = '40' THEN 'Cincinnati'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '140' THEN 'Indianapolis'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))='1843' THEN 'Indianapolis'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '340' THEN 'Chicago'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '35' THEN 'Columbus'#(lf)#(tab)#(tab)   WHEN SUBSTRING(Equip.EqNo, CHARINDEX('-', Equip.EqNo) + LEN('-'), LEN(Equip.EqNo))= '402' THEN 'Dayton'#(lf)#(tab)#(tab)   WHEN ISNULL(Equip.EqNo,'') like 'Hogan%' THEN 'Cincinnati'#(lf)#(tab)#(tab)   WHEN ISNULL(Equip.EqNo,'') like '%Ideal%' THEN 'Columbus'#(lf)#(tab)#(tab)   --WHEN ISNULL(Equip.EqNo,'') like 'Rental%' THEN 'Cincinnati'#(lf)#(tab)#(tab)   --WHEN ISNULL(Equip.EqNo,'') like 'R%' THEN 'Cincinnati'#(lf)           ELSE ''#(lf)        END AS branch,#(lf)#(tab)#(tab)   Equip.RegisteredOwner,#(lf)#(tab)#(tab)  VWO.OrderNo, #(lf)#(tab)#(tab)  VWO.OrdPriKey,#(lf)#(tab)#(tab)  ServType.Service,#(lf)#(tab)#(tab)  ServType.ServiceID,#(lf)          VWO.Shipper AS ShipperName,#(lf)          LS.PriKey LocServPriKey, #(lf)          LSE.ScheduledStart,#(lf)#(tab)#(tab)  LS.ServiceDate,#(lf)#(tab)#(tab)  LS.BranchPriKey,#(lf)#(tab)#(tab)  BL.Name#(lf)   from MoversSuite2..Equip #(lf)   left join MoversSuite2..LocalServicesEquipment LSE#(lf)      on Equip.EqNo = LSE.EquipmentNumber#(lf)   left join MoversSuite2..EqType #(lf)      on Equip.Type=EqType.TypeNumber#(lf)   Left join MoversSuite2..LocServ LS#(lf)      on LSE.LocalServicesEquipmentLocServFID = LS.PriKey#(lf)#(tab)Left join MoversSuite2..Branch BL#(lf)#(tab)#(tab)on LS.BranchPriKey = BL.BranchPriKey#(lf)   Left join MoversSuite2Supp..vwOrdersDataset VWO#(lf)      on LS.OrdPriKey = VWO.OrdPriKey#(lf)   left join MoversSuite2..LocalServicesCrew#(lf)      on LS.PriKey = LocalServicesCrew.LocalServicesCrewLocServFID #(lf)      and LeadMan = 1#(lf)   left join MoversSuite2..ServType#(lf)      on LS.ServiceID = ServType.ServiceID #(lf) where LSE.ScheduledStart between @StartDt and @EndDt#(lf) and Equip.EqStatus='1'#(lf)  and ServType.Service not in ('Vaulted storage','Intl transload','Training','Non-billable',                                       #(lf)                                'WHSE SIT In', 'WHSE SIT Out')#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='889-402'#(lf)#(lf)Update @Interim#(lf)Set Branch='Columbus'#(lf)Where EquipNo='805-402'#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='Hogan 252111'#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='Hogan 252172'#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='Hogan242130'#(lf)#(lf)Update @Interim#(lf)Set EquipNo='Hogan 242130'#(lf)Where EquipNo='Hogan242130'#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='826-140'#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='897-40'#(lf)#(lf)Update @Interim#(lf)Set Branch='Cincinnati'#(lf)Where EquipNo='Hogan 256097'#(lf)#(lf)#(lf)select * FROM @Interim#(lf)         where ServiceID is not null#(lf) AND ScheduledStart > '2026-06-27'", HierarchicalNavigation=true]),
+				    #"Extracted Date" = Table.TransformColumns(Source,{{"ScheduledStart", DateTime.Date, type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Extracted Date", {"ScheduledStart"}, PlanesDates, {"Date"}, "PlanesDates", JoinKind.LeftOuter),
+				    #"Expanded PlanesDates" = Table.ExpandTableColumn(#"Merged Queries", "PlanesDates", {"PlanesDateID"}, {"PlanesDates.PlanesDateID"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded PlanesDates",{{"PlanesDates.PlanesDateID", "DateID"}, {"Ordprikey", "OrdPriKey"}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Renamed Columns",{{"LocSerPriKey", "LocServPriKey"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns1", "Order_Date_LocServ_Key", each Text.From([DateID]) & " | " & Text.From([OrdPriKey])& " | " & Text.From([LocServPriKey])),
+				    #"Removed Duplicates" = Table.Distinct(#"Added Custom", {"Order_Date_LocServ_Key"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"EquipNo", Text.Trim, type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Trimmed Text", "Order_Date", each Text.From([DateID]) & " | " & Text.From([OrdPriKey])),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "MatchVehDateJob", each [Order_Date_LocServ_Key] & " | " & [EquipNo]),
+				    #"Merged Queries1" = Table.NestedJoin(#"Added Custom2", {"Order_Date"}, Crew, {"Date_Order"}, "Crew", JoinKind.LeftOuter),
+				    #"Expanded Crew" = Table.ExpandTableColumn(#"Merged Queries1", "Crew", {"Crew"}, {"Crew.Crew"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Expanded Crew", each true),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Filtered Rows", "ServiceBranch", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"ServiceBranch.1", "ServiceBranch.2"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"ServiceBranch.1", type text}, {"ServiceBranch.2", type text}}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Changed Type",{{"ServiceBranch.2", Text.Trim, type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Trimmed Text1",{"ServiceBranch.1"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns",{{"ServiceBranch.2", "ServiceBranch"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

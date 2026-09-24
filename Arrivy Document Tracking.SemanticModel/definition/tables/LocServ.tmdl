@@ -1,0 +1,61 @@
+table LocServ
+	lineageTag: c3a98ce4-2716-4d46-89ba-3b030c1932fd
+
+	column PriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b6458f2-00b4-47e2-9b42-594188d960b9
+		summarizeBy: count
+		sourceColumn: PriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a1d143d-7850-4eb4-9321-6e807fe846e9
+		summarizeBy: none
+		sourceColumn: OrdPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e9a8999a-39fb-4ef4-a302-fa5f085783f0
+		summarizeBy: none
+		sourceColumn: ServiceDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column WkTicketNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 40c28512-8204-4d69-8e4a-a23dbb33cf73
+		summarizeBy: none
+		sourceColumn: WkTicketNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d4dd5a45-6cfd-4255-bafa-d91b3eaa8a3b
+		summarizeBy: count
+		sourceColumn: BranchPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LocServ = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("PLNDS01\sql2k16", "MoversSuite2", [Query="DECLARE @Today datetime = DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0);#(lf)SELECT [PriKey]#(lf)      ,[OrdPriKey]#(lf)      ,[ServiceDate]#(lf)      ,[WkTicketNo]#(lf),[BranchPriKey]#(lf)  FROM [MoversSuite2].[dbo].[LocServ]#(lf)  WHERE ServiceDate > '01-01-2026'#(lf)  AND ServiceDate < @Today#(lf)  AND WkTicketNo IS NOT Null#(lf)  ORDER BY ServiceDate DESC", HierarchicalNavigation=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"WkTicketNo", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

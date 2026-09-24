@@ -1,0 +1,175 @@
+let
+    Source = Append1,
+
+    #"Removed Columns" =
+        Table.RemoveColumns(Source,{"MSSDocumentID", "DocumentName", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchFID", "Authority", "MoveTypeFID", "ProfileName", "PlanesDates.PlanesDateID", "OrderK_WorkT_Dim", "DocuSort", "DupCheck", "Upload_Date", "Upload_Time"}),
+
+    #"Pivoted Column" =
+        Table.Pivot(
+            #"Removed Columns",
+            List.Distinct(#"Removed Columns"[DocType]),
+            "DocType",
+            "UploadDateTime",
+            List.Min
+        ),
+
+    #"Added Hours_PreTrip_To_BOL" =
+        Table.AddColumn(
+            #"Pivoted Column",
+            "Hours_PreTrip_To_BOL",
+            each
+                if [Pre Trip] = null or [BOL] = null
+                then null
+                else Duration.TotalHours([BOL] - [Pre Trip]),
+            type number
+        ),
+    #"Added Hours_PreTrip_To_PostTrip" =
+        Table.AddColumn(
+            #"Added Hours_PreTrip_To_BOL",
+            "Hours_PreTrip_To_PostTrip",
+            each
+                if [Pre Trip] = null or [Post Trip] = null
+                then null
+                else Duration.TotalHours([Post Trip] - [Pre Trip]),
+            type number
+        ),
+
+    #"Added Hours_BOL_To_Post" =
+        Table.AddColumn(
+            #"Added Hours_PreTrip_To_PostTrip",
+            "Hours_BOL_To_Post",
+            each
+                if [BOL] = null or [Post Trip] = null
+                then null
+                else Duration.TotalHours([Post Trip] - [BOL]),
+            type number
+        ),
+
+    #"Added Missing_BOL" =
+        Table.AddColumn(
+            #"Added Hours_BOL_To_Post",
+            "Missing_BOL",
+            each if [BOL] = null then 1 else 0,
+            Int64.Type
+        ),
+
+    #"Added Missing_PreTrip" =
+        Table.AddColumn(
+            #"Added Missing_BOL",
+            "Missing_PreTrip",
+            each if [Pre Trip] = null then 1 else 0,
+            Int64.Type
+        ),
+
+    #"Added Missing_PostTrip" =
+        Table.AddColumn(
+            #"Added Missing_PreTrip",
+            "Missing_PostTrip",
+            each if [Post Trip] = null then 1 else 0,
+            Int64.Type
+        ),
+
+    #"Added DocumentStatus" =
+        Table.AddColumn(
+    #"Added Missing_PostTrip",
+    "DocumentStatus",
+    each
+        if [Pre Trip] = null and [BOL] = null and [Post Trip] = null then
+            "Missing All Documents"
+
+        else if [Pre Trip] = null and [BOL] = null then
+            "Missing Pre Trip & BOL"
+
+        else if [Pre Trip] = null and [Post Trip] = null then
+            "Missing Pre Trip & Post Trip"
+
+        else if [BOL] = null and [Post Trip] = null then
+            "Missing BOL & Post Trip"
+
+        else if [Pre Trip] = null then
+            "Missing Pre Trip"
+
+        else if [BOL] = null then
+            "Missing BOL"
+
+        else if [Post Trip] = null then
+            "Missing Post Trip"
+
+        else
+            "Complete",
+    type text
+),
+    #"Filtered Rows" = Table.SelectRows(#"Added DocumentStatus", each ([Work_Ticket] <> "PLEASE")),
+    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"Work_Ticket", Int64.Type}}),
+    #"Added Custom" = Table.AddColumn(#"Changed Type", "Base_Date", each List.Min(List.RemoveNulls({[BOL], [Pre Trip], [Post Trip]}))),
+    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Base_Date", type date}}),
+    #"Uppercased Text" = Table.TransformColumns(#"Changed Type1",{{"Vertical", Text.Upper, type text}}),
+    #"Merged Queries" = Table.NestedJoin(#"Uppercased Text", {"BranchID"}, BranchKey, {"BranchID"}, "BranchKey", JoinKind.LeftOuter),
+    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries", "BranchKey", {"Base_Branch"}, {"BranchKey.Base_Branch"}),
+    #"Filtered Rows1" = Table.SelectRows(#"Expanded BranchKey", each true),
+    
+    let
+    Source = #"Filtered Rows1",
+
+    // Returns the first non-null value in a grouped column.
+    FirstNonNull = (values as list) as any =>
+        let
+            NonNullValues = List.RemoveNulls(values)
+        in
+            if List.IsEmpty(NonNullValues)
+            then null
+            else List.First(NonNullValues),
+
+    // Returns the latest non-null date-time in a grouped column.
+    LatestDateTime = (values as list) as nullable datetime =>
+        let
+            NonNullValues = List.RemoveNulls(values)
+        in
+            if List.IsEmpty(NonNullValues)
+            then null
+            else List.Max(NonNullValues),
+
+    #"Grouped by Work Ticket" =
+        Table.Group(
+            Source,
+            {"Work_Ticket"},
+            {
+                {"OrderFID", each FirstNonNull([OrderFID]), type nullable number},
+                {"Orderno", each FirstNonNull([Orderno]), type nullable text},
+                {"ServiceDate", each FirstNonNull([ServiceDate]), type nullable date},
+                {"ServiceBranch", each FirstNonNull([ServiceBranch]), type nullable text},
+                {"DispatchBranch", each FirstNonNull([DispatchBranch]), type nullable text},
+                {"Move_Type", each FirstNonNull([Move_Type]), type nullable text},
+                {"MoveType_Short", each FirstNonNull([MoveType_Short]), type nullable text},
+                {"BranchID", each FirstNonNull([BranchID]), type nullable text},
+                {"Vertical", each FirstNonNull([Vertical]), type nullable text},
+                {"Date_Order", each FirstNonNull([Date_Order]), type nullable text},
+
+                {"Post Trip", each LatestDateTime([Post Trip]), type nullable datetime},
+                {"Pre Trip", each LatestDateTime([Pre Trip]), type nullable datetime},
+                {"BOL", each LatestDateTime([BOL]), type nullable datetime}
+            }
+        ),
+
+    #"Reordered Columns" =
+        Table.ReorderColumns(
+            #"Grouped by Work Ticket",
+            {
+                "OrderFID",
+                "Orderno",
+                "ServiceDate",
+                "ServiceBranch",
+                "DispatchBranch",
+                "Work_Ticket",
+                "Move_Type",
+                "MoveType_Short",
+                "BranchID",
+                "Vertical",
+                "Date_Order",
+                "Post Trip",
+                "Pre Trip",
+                "BOL"
+            }
+        )
+in
+    #"Reordered Columns"

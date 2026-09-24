@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "72e1c6ccee7291fa105c",
   "position": {
-    "x": 9.5167286245353164,
-    "y": 673.30855018587363,
+    "x": 9.8159509202453989,
+    "y": 673.37423312883436,
     "z": 3000,
-    "height": 46.394052044609666,
-    "width": 448.47583643122681,
+    "height": 46.462167689161554,
+    "width": 442.37218813905929,
     "tabOrder": 3000
   },
   "visual": {
@@ -19,17 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "^ Verticals not measured because BOL not required:  Home Delivery (HD), HealthCare (HC).  ",
-                    "textStyle": {
-                      "fontSize": "8pt"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "Move Types ignored because Paperwork not in Arrivy: International, Military.",
+                    "value": "^ Verticals not measured because BOL not required:  Home Delivery (HD), HealthCare (HC). Move Types ignored because Paperwork not in Arrivy: International, Military.",
                     "textStyle": {
                       "fontSize": "8pt"
                     }

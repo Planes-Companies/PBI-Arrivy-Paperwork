@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "dfc0f6479040913d7d1f",
   "position": {
-    "x": 9.5167286245353164,
-    "y": 360.4460966542751,
+    "x": 9.5412844036697244,
+    "y": 363.30275229357795,
     "z": 16000,
-    "height": 28.550185873605951,
-    "width": 193.90334572490707,
+    "height": 28.623853211009173,
+    "width": 193.76146788990826,
     "tabOrder": 16000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Missing BOL",
+                    "value": "Submitted BOL",
                     "textStyle": {
                       "fontWeight": "bold",
                       "color": "#ffffff"

@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 557,
-        "y": 401
+        "x": 0,
+        "y": 0
       },
       "nodes": [
         {
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 711,
-            "y": 236
+            "x": 1012,
+            "y": 191
           },
           "nodeIndex": "BranchKey",
           "nodeLineageTag": "4563ff80-c1d6-4d62-ad35-3546b71a197f",
@@ -46,19 +46,6 @@
             "width": 234
           },
           "zIndex": 6
-        },
-        {
-          "location": {
-            "x": 375.94430453701807,
-            "y": 318
-          },
-          "nodeIndex": "Dispatch",
-          "nodeLineageTag": "a592b0a2-e89e-4c74-be56-1c260b2a207c",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 14
         },
         {
           "location": {
@@ -75,8 +62,8 @@
         },
         {
           "location": {
-            "x": 1413,
-            "y": 765.45052948379987
+            "x": 1751,
+            "y": 712.45052948379987
           },
           "nodeIndex": "PlanesDates",
           "nodeLineageTag": "58282c6d-9bcd-447a-8152-c9ee8a25bc46",
@@ -127,19 +114,6 @@
         },
         {
           "location": {
-            "x": 1107.9443045370181,
-            "y": 0
-          },
-          "nodeIndex": "Query1",
-          "nodeLineageTag": "9df5f6c8-db05-400f-bcdd-97969c90cb6a",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 1
-        },
-        {
-          "location": {
             "x": 130.94430453701807,
             "y": 423.7252647419
           },
@@ -149,7 +123,7 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 15
         },
         {
           "location": {
@@ -179,8 +153,8 @@
         },
         {
           "location": {
-            "x": 1726.9443045370181,
-            "y": 772.36263237095
+            "x": 1162.9443045370181,
+            "y": 795.36263237095
           },
           "nodeIndex": "WorkTicketPivot",
           "nodeLineageTag": "ccbc867e-3c3e-4141-9d73-0d07b7fc961b",
@@ -188,12 +162,12 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 15
+          "zIndex": 14
         },
         {
           "location": {
-            "x": 1701.9443045370181,
-            "y": 309.7252647419
+            "x": 1685.9443045370181,
+            "y": 317.7252647419
           },
           "nodeIndex": "Crew",
           "nodeLineageTag": "16566b06-133a-4f78-b96f-0fcf27e18cf4",
@@ -202,6 +176,32 @@
             "width": 234
           },
           "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 618.94430453701807,
+            "y": 264.7252647419
+          },
+          "nodeIndex": "Dispatch (2)",
+          "nodeLineageTag": "7de8fa8c-55d3-48ca-9425-b37b2c38a69e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1775.9443045370181,
+            "y": 0
+          },
+          "nodeIndex": "LocServ",
+          "nodeLineageTag": "c3a98ce4-2716-4d46-89ba-3b030c1932fd",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
         }
       ],
       "name": "All tables",

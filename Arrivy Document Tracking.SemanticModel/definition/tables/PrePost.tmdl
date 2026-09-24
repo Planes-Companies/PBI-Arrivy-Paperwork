@@ -75,15 +75,6 @@ table PrePost
 
 		annotation SummarizationSetBy = Automatic
 
-	column BranchFID
-		dataType: int64
-		formatString: 0
-		lineageTag: 2d2011ad-a3a3-4c17-8b5e-f93a0c5f1f4b
-		summarizeBy: count
-		sourceColumn: BranchFID
-
-		annotation SummarizationSetBy = Automatic
-
 	column BranchID
 		dataType: string
 		lineageTag: b77db0ca-2619-440d-9924-3c39a62485a2
@@ -117,11 +108,11 @@ table PrePost
 
 		annotation SummarizationSetBy = Automatic
 
-	column MoveType
+	column MoveType_Short
 		dataType: string
 		lineageTag: 68ece5c9-b749-4981-8f28-f69128ed27da
 		summarizeBy: none
-		sourceColumn: MoveType
+		sourceColumn: MoveType_Short
 
 		annotation SummarizationSetBy = Automatic
 
@@ -141,14 +132,6 @@ table PrePost
 
 		annotation SummarizationSetBy = Automatic
 
-	column Stitched
-		dataType: string
-		lineageTag: 1d28f76d-aa0f-4880-ade6-4be7d764c614
-		summarizeBy: none
-		sourceColumn: Stitched
-
-		annotation SummarizationSetBy = Automatic
-
 	column DocType
 		dataType: string
 		lineageTag: 275af266-68df-4a3b-8e43-9a5d54fb4261
@@ -156,33 +139,6 @@ table PrePost
 		sourceColumn: DocType
 
 		annotation SummarizationSetBy = Automatic
-
-	column Upload_Date
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 8d33e6f2-0a4a-4423-91b9-2acfe73ce3fe
-		summarizeBy: none
-		sourceColumn: Upload_Date
-
-		variation Variation
-			isDefault
-			relationship: 176b5cbd-7766-4647-80c9-c63d75acf957
-			defaultHierarchy: LocalDateTable_3eaa8330-a0db-4bf0-83ee-75e6dba18a0e.'Date Hierarchy'
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	column Upload_Time
-		dataType: dateTime
-		formatString: Long Time
-		lineageTag: 005915e9-6754-48cd-bc0c-1bd5e1fe46a1
-		summarizeBy: none
-		sourceColumn: Upload_Time
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Time
 
 	column Work_Ticket
 		dataType: int64
@@ -198,24 +154,6 @@ table PrePost
 		lineageTag: 0d20d064-b5c6-42d8-a355-d4b51febaf8c
 		summarizeBy: none
 		sourceColumn: OrderK_WorkT_Dim
-
-		annotation SummarizationSetBy = Automatic
-
-	column WorkTicket_ColLength
-		dataType: int64
-		formatString: 0
-		lineageTag: e89f5914-89f5-4734-b836-7fbb993b94f9
-		summarizeBy: sum
-		sourceColumn: WorkTicket_ColLength
-
-		annotation SummarizationSetBy = Automatic
-
-	column LEN_Filter
-		dataType: int64
-		formatString: 0
-		lineageTag: 9f4e6ee1-c83b-433d-90cf-1281718e8c89
-		summarizeBy: sum
-		sourceColumn: LEN_Filter
 
 		annotation SummarizationSetBy = Automatic
 
@@ -236,19 +174,42 @@ table PrePost
 
 		annotation SummarizationSetBy = Automatic
 
-	column Merged
+	column Date_Order
 		dataType: string
-		lineageTag: 104119a8-bf8f-4fc9-b5e3-3d13f470a866
+		lineageTag: 9a2cd378-50aa-48c2-8a57-b79dfab2f7df
 		summarizeBy: none
-		sourceColumn: Merged
+		sourceColumn: Date_Order
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Crew.Crew'
-		dataType: string
-		lineageTag: 37506802-3d2c-4b12-8b3f-6ca92b66ad2c
+	column ServiceDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 075b186f-be9e-4e41-b893-f2d3f583cb8e
 		summarizeBy: none
-		sourceColumn: Crew.Crew
+		sourceColumn: ServiceDate
+
+		variation Variation
+			isDefault
+			relationship: 22153206-eccb-43f7-a365-cb2d8c498acd
+			defaultHierarchy: LocalDateTable_d162fe80-05e7-4934-934c-3d4abeab3e55.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchPriKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b13c057-3005-4c82-95f2-708d3ad653dc
+		summarizeBy: count
+		sourceColumn: BranchPriKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FINAL_BRANCH
+		dataType: string
+		lineageTag: 821d81be-9aeb-41ef-aa04-931c2be9bf16
+		summarizeBy: none
+		sourceColumn: FINAL_BRANCH
 
 		annotation SummarizationSetBy = Automatic
 
@@ -322,9 +283,25 @@ table PrePost
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns4",{{"Work_Ticket", Int64.Type}}),
 				    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"OrderK_WorkT_Dim"}, Crew, {"Order_WT"}, "Crew", JoinKind.LeftOuter),
 				    #"Expanded Crew" = Table.ExpandTableColumn(#"Merged Queries", "Crew", {"Crew"}, {"Crew.Crew"}),
-				    #"Replaced Value41" = Table.ReplaceValue(#"Expanded Crew","(NTN)","(NTN)-",Replacer.ReplaceText,{"DocumentDescription"})
+				    #"Replaced Value41" = Table.ReplaceValue(#"Expanded Crew","(NTN)","(NTN)-",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Filtered Rows5" = Table.SelectRows(#"Replaced Value41", each true),
+				    #"Merged Queries1" = Table.NestedJoin(#"Filtered Rows5", {"Work_Ticket"}, Query, {"WorkTicketNumber"}, "Query", JoinKind.LeftOuter),
+				    #"Expanded Query" = Table.ExpandTableColumn(#"Merged Queries1", "Query", {"ServiceBranch"}, {"Query.ServiceBranch"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded Query", {"Work_Ticket"}, LocServ, {"WkTicketNo"}, "LocServ", JoinKind.LeftOuter),
+				    #"Expanded LocServ" = Table.ExpandTableColumn(#"Merged Queries2", "LocServ", {"ServiceDate", "BranchPriKey"}, {"ServiceDate", "BranchPriKey"}),
+				    #"Renamed Columns7" = Table.RenameColumns(#"Expanded LocServ",{{"ServiceDate", "Query.ServiceDate"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns7",{"MSSDocumentID", "OrderFID", "Orderno", "DocumentName", "UploadDateTime", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "MoveType", "ProfileName", "NameMatch", "Stitched", "DocType", "Upload_Date", "Upload_Time", "PlanesDates.PlanesDateID", "Date_Order", "Work_Ticket", "OrderK_WorkT_Dim", "WorkTicket_ColLength", "LEN_Filter", "Move_Type", "Crew.Crew", "Query.ServiceDate", "Query.ServiceBranch"}),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Reordered Columns",{{"Query.ServiceBranch", "ServiceBranch"}, {"Query.ServiceDate", "ServiceDate"}, {"Crew.Crew", "Crew"}}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Renamed Columns5",{"MSSDocumentID", "OrderFID", "Orderno", "ServiceDate", "ServiceBranch", "DocType", "Work_Ticket", "Upload_Date", "Upload_Time", "UploadDateTime", "Crew", "Move_Type", "MoveType", "DocumentName", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "ProfileName", "NameMatch", "Stitched", "PlanesDates.PlanesDateID", "Date_Order", "OrderK_WorkT_Dim", "WorkTicket_ColLength", "LEN_Filter"}),
+				    #"Renamed Columns6" = Table.RenameColumns(#"Reordered Columns1",{{"MoveType", "MoveType_Short"}}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Renamed Columns6",{"MSSDocumentID", "OrderFID", "Orderno", "ServiceDate", "ServiceBranch", "DocType", "Work_Ticket", "Upload_Date", "Upload_Time", "UploadDateTime", "Crew", "Move_Type", "MoveType_Short", "DocumentName", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchPriKey", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "DispatchBranch", "ProfileName", "NameMatch", "Stitched", "PlanesDates.PlanesDateID", "Date_Order", "OrderK_WorkT_Dim", "WorkTicket_ColLength", "LEN_Filter"}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Reordered Columns2", {"BranchPriKey"}, BranchKey, {"BranchPriKey (Dispatch Branch)"}, "BranchKey", JoinKind.LeftOuter),
+				    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries3", "BranchKey", {"Base_Branch"}, {"Base_Branch"}),
+				    #"Reordered Columns3" = Table.ReorderColumns(#"Expanded BranchKey",{"MSSDocumentID", "OrderFID", "Orderno", "ServiceDate", "ServiceBranch", "DocType", "Work_Ticket", "Upload_Date", "Upload_Time", "UploadDateTime", "Crew", "Move_Type", "MoveType_Short", "DocumentName", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "BranchPriKey", "Base_Branch", "DispatchBranch", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "ProfileName", "NameMatch", "Stitched", "PlanesDates.PlanesDateID", "Date_Order", "OrderK_WorkT_Dim", "WorkTicket_ColLength", "LEN_Filter"}),
+				    #"Added Custom2" = Table.AddColumn(#"Reordered Columns3", "FINAL_BRANCH", each [Base_Branch] ?? [DispatchBranch]),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Added Custom2",{"WorkTicket_ColLength", "LEN_Filter", "Base_Branch", "DispatchBranch", "BranchFID", "Stitched", "Crew", "ServiceBranch", "Upload_Date", "Upload_Time"})
 				in
-				    #"Replaced Value41"
+				    #"Removed Columns1"
 
 	annotation PBI_NavigationStepName = Navigation
 

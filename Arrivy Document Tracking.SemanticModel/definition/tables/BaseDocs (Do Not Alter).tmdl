@@ -149,14 +149,6 @@ table 'BaseDocs (Do Not Alter)'
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Text Between Delimiters'
-		dataType: string
-		lineageTag: de4722ae-b021-4557-a0c6-2a2f6ab2c860
-		summarizeBy: none
-		sourceColumn: Text Between Delimiters
-
-		annotation SummarizationSetBy = Automatic
-
 	column Upload_Date
 		dataType: dateTime
 		formatString: Long Date
@@ -193,11 +185,27 @@ table 'BaseDocs (Do Not Alter)'
 
 		annotation SummarizationSetBy = Automatic
 
-	column Merged
+	column Date_Order
 		dataType: string
-		lineageTag: 29712c31-8481-4f28-a803-b071c9088c55
+		lineageTag: aeed54fd-dad4-4f3e-866d-a6c4d958099b
 		summarizeBy: none
-		sourceColumn: Merged
+		sourceColumn: Date_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Text Between Delimiters'
+		dataType: string
+		lineageTag: b184742f-bd94-47b0-94f3-6ab1cfd1bf03
+		summarizeBy: none
+		sourceColumn: Text Between Delimiters
+
+		annotation SummarizationSetBy = Automatic
+
+	column DispatchBranch
+		dataType: string
+		lineageTag: f93e06df-c83c-42c7-8d57-38740cff3bfb
+		summarizeBy: none
+		sourceColumn: DispatchBranch
 
 		annotation SummarizationSetBy = Automatic
 
@@ -212,30 +220,78 @@ table 'BaseDocs (Do Not Alter)'
 				    Text.Upper(Text.Trim([DocumentDescription])) 
 				then 1 else 0),
 				    #"Replaced Value6" = Table.ReplaceValue(#"Added Custom","GWS_","GWS-",Replacer.ReplaceText,{"DocumentName"}),
-				    #"Replaced Value" = Table.ReplaceValue(#"Replaced Value6","Pre Trip","|Pre Trip|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value36" = Table.ReplaceValue(#"Replaced Value6","Frieght","Freight",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value37" = Table.ReplaceValue(#"Replaced Value36","freight","frieght",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Replaced Value37","Pre Trip","|Pre Trip|",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Post Trip","|Post Trip|",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","BOL","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
-				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value2",{"DeletedOn", "DocByteSize", "MSSDocumentImageFID"}),
+				    #"Replaced Value23" = Table.ReplaceValue(#"Replaced Value2","Bill of Lading","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value22" = Table.ReplaceValue(#"Replaced Value23","bill of lading","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value22","-GBL-","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10"," GBL"," |GBL| ",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value21" = Table.ReplaceValue(#"Replaced Value11","GBL","|BOL|",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value21","Rated BOL","| BOL |",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value8",{"DeletedOn", "DocByteSize", "MSSDocumentImageFID"}),
 				    #"Added Conditional Column" = Table.AddColumn(#"Removed Columns", "Stitched", each if Text.Contains([DocumentDescription], "Stitched") then "STITCHED" else "Null"),
 				    #"Filtered Rows" = Table.SelectRows(#"Added Conditional Column", each ([Stitched] = "Null")),
 				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Filtered Rows", "Text Between Delimiters", each Text.BetweenDelimiters([DocumentName], "|", "|"), type text),
-				    #"Filtered Rows1" = Table.SelectRows(#"Inserted Text Between Delimiters", each ([Text Between Delimiters] <> "")),
-				    #"Replaced Value3" = Table.ReplaceValue(#"Filtered Rows1","--","_-",Replacer.ReplaceText,{"DocumentName"}),
-				    #"Duplicated Column" = Table.DuplicateColumn(#"Replaced Value3", "UploadDateTime", "UploadDateTime - Copy"),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Inserted Text Between Delimiters","Bill of Lading^","| BOL |",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value7","Freight BOL Signed For p/u","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value26" = Table.ReplaceValue(#"Replaced Value9","Bill of Lading","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Replaced Value26","Freight IN BOL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value13" = Table.ReplaceValue(#"Replaced Value12","GBL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Replaced Value13","BL","|BOL|",Replacer.ReplaceValue,{"DocumentDescription"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14","BOL","|BOL|",Replacer.ReplaceValue,{"DocumentDescription"}),
+				    #"Replaced Value16" = Table.ReplaceValue(#"Replaced Value15","Rated Local BOL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value16","--","_-",Replacer.ReplaceText,{"DocumentName"}),
+				    #"Replaced Value28" = Table.ReplaceValue(#"Replaced Value3","BOL-UVL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value20" = Table.ReplaceValue(#"Replaced Value28","Freight OUT BOL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value27" = Table.ReplaceValue(#"Replaced Value20","gbl","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value30" = Table.ReplaceValue(#"Replaced Value27","Carrier BOL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value31" = Table.ReplaceValue(#"Replaced Value30","Auto BOL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value42" = Table.ReplaceValue(#"Replaced Value31","FINAL BL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value39" = Table.ReplaceValue(#"Replaced Value42","Freight BOL Signed For O/F p/u","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value18" = Table.ReplaceValue(#"Replaced Value39","Govt BOL ","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value17" = Table.ReplaceValue(#"Replaced Value18","Freight Haulers BOL For p/u","| BOL |",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value32" = Table.ReplaceValue(#"Replaced Value17","BOL LAX TO ATL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value33" = Table.ReplaceValue(#"Replaced Value32","FReight BOL Signed For p/u","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value40" = Table.ReplaceValue(#"Replaced Value33","BOL UVL Repull ","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value41" = Table.ReplaceValue(#"Replaced Value40","Carrier pickup BOL","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value38" = Table.ReplaceValue(#"Replaced Value41","Freight BOL For p/u Of Container","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value34" = Table.ReplaceValue(#"Replaced Value38","Freight BO Signed For p/u","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value35" = Table.ReplaceValue(#"Replaced Value34","Freight BOLs Signed For p/u","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value29" = Table.ReplaceValue(#"Replaced Value35","BOL - INBOUND","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value43" = Table.ReplaceValue(#"Replaced Value29","BOL signed into SIT @ u35","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value25" = Table.ReplaceValue(#"Replaced Value43","BOL Out","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value24" = Table.ReplaceValue(#"Replaced Value25","bol","|BOL|",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Replaced Value24", "FINAL_DOCTYPE", each if [Text Between Delimiters] = "" then [DocumentDescription] else [Text Between Delimiters]),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Added Conditional Column2", "FINAL_DOCTYPE", Splitter.SplitTextByEachDelimiter({"|"}, QuoteStyle.Csv, true), {"FINAL_DOCTYPE.1", "FINAL_DOCTYPE.2"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Split Column by Delimiter",{"FINAL_DOCTYPE.2"}),
+				    #"Replaced Value19" = Table.ReplaceValue(#"Removed Columns2","|","",Replacer.ReplaceText,{"FINAL_DOCTYPE.1"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Replaced Value19",{{"FINAL_DOCTYPE.1", Text.Trim, type text}}),
+				    #"Filtered Rows3" = Table.SelectRows(#"Trimmed Text", each ([FINAL_DOCTYPE.1] = "BOL" or [FINAL_DOCTYPE.1] = "Post Trip" or [FINAL_DOCTYPE.1] = "Pre Trip")),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Filtered Rows3", "UploadDateTime", "UploadDateTime - Copy"),
 				    #"Inserted Date" = Table.AddColumn(#"Duplicated Column", "Date", each DateTime.Date([#"UploadDateTime - Copy"]), type date),
 				    #"Inserted Time" = Table.AddColumn(#"Inserted Date", "Time", each DateTime.Time([#"UploadDateTime - Copy"]), type time),
 				    #"Removed Columns1" = Table.RemoveColumns(#"Inserted Time",{"UploadDateTime - Copy"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"Date", "Upload_Date"}, {"Time", "Upload_Time"}}),
 				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"MSSDocumentID", "OrderFID", "DocumentName", "UploadDateTime", "SysUserFID", "DocumentTypeFID", "DocumentDescription", "Orderno", "BranchFID", "BranchID", "Authority", "Vertical", "MoveTypeFID", "MoveType", "ProfileName", "NameMatch", "Stitched", "Text Between Delimiters", "Upload_Date", "Upload_Time"}),
-				    #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"UploadDateTime", Order.Descending}}),
-				    #"Replaced Value4" = Table.ReplaceValue(#"Sorted Rows","822-35 - Pre Trip 1-FUJI | Express Delivery-_null_- - U594-14668","822-35 - Pre Trip 1-FUJI | Express Delivery-_401151_- U594-14668",Replacer.ReplaceText,{"DocumentDescription"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Reordered Columns","822-35 - Pre Trip 1-FUJI | Express Delivery-_null_- - U594-14668","822-35 - Pre Trip 1-FUJI | Express Delivery-_401151_- U594-14668",Replacer.ReplaceText,{"DocumentDescription"}),
 				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","822-35 - |Pre Trip| 1-FUJI  Express Delivery-_null_- - U594-14668-6- - -C - 3644808164833.pdf","822-35 - |Pre Trip| 1-FUJI  Express Delivery-_401151_- - U594-14668-6- - -C - 3644808164833.pdf",Replacer.ReplaceText,{"DocumentName"}),
 				    #"Filtered Rows2" = Table.SelectRows(#"Replaced Value5", each ([Authority] <> "Van Line")),
 				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows2", {"Upload_Date"}, PlanesDates, {"Date"}, "PlanesDates", JoinKind.LeftOuter),
 				    #"Expanded PlanesDates" = Table.ExpandTableColumn(#"Merged Queries", "PlanesDates", {"PlanesDateID"}, {"PlanesDates.PlanesDateID"}),
-				    #"Inserted Merged Column" = Table.AddColumn(#"Expanded PlanesDates", "Merged", each Text.Combine({Text.From([PlanesDates.PlanesDateID], "en-US"), "|", Text.From([OrderFID], "en-US")}), type text)
+				    #"Inserted Merged Column" = Table.AddColumn(#"Expanded PlanesDates", "Date_Order", each Text.Combine({Text.From([PlanesDates.PlanesDateID], "en-US"), " | ", Text.From([OrderFID], "en-US")}), type text),
+				    #"Merged Queries1" = Table.NestedJoin(#"Inserted Merged Column", {"Date_Order"}, Dispatch, {"Date_Order"}, "Dispatch", JoinKind.LeftOuter),
+				    #"Expanded Dispatch" = Table.ExpandTableColumn(#"Merged Queries1", "Dispatch", {"DispatchBranch"}, {"DispatchBranch"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded Dispatch", {"BranchFID"}, BranchKey, {"BranchPriKey (Dispatch Branch)"}, "BranchKey", JoinKind.LeftOuter),
+				    #"Expanded BranchKey" = Table.ExpandTableColumn(#"Merged Queries2", "BranchKey", {"Base_Branch"}, {"BranchKey.Base_Branch"}),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Expanded BranchKey",{"DispatchBranch", "Text Between Delimiters"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns3",{{"BranchKey.Base_Branch", "DispatchBranch"}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Renamed Columns2",{{"FINAL_DOCTYPE.1", "Text Between Delimiters"}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Renamed Columns1",{{"Vertical", Text.Upper, type text}})
 				in
-				    #"Inserted Merged Column"
+				    #"Uppercased Text"
 				```
 
 	annotation PBI_NavigationStepName = Navigation

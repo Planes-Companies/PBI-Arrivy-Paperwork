@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "bd76c0a757bdd21d8d2a",
   "position": {
-    "x": 8.3271375464684017,
-    "y": 388.99628252788108,
+    "x": 9.5412844036697244,
+    "y": 391.92660550458714,
     "z": 4000,
-    "height": 275.9851301115242,
-    "width": 590.03717472118967,
+    "height": 277.43119266055044,
+    "width": 590.09174311926608,
     "tabOrder": 4000
   },
   "visual": {
@@ -20,14 +20,29 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "PlanesDates"
+                      "Entity": "WorkTicketPivot"
                     }
                   },
-                  "Property": "Date"
+                  "Property": "ServiceDate"
                 }
               },
-              "queryRef": "PlanesDates.Date",
-              "nativeQueryRef": "Date"
+              "queryRef": "WorkTicketPivot.ServiceDate",
+              "nativeQueryRef": "Service Date",
+              "displayName": "Service Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WorkTicketPivot"
+                    }
+                  },
+                  "Property": "BOL"
+                }
+              },
+              "queryRef": "WorkTicketPivot.BOL",
+              "nativeQueryRef": "BOL"
             },
             {
               "field": {
@@ -55,21 +70,28 @@
                 }
               },
               "queryRef": "WorkTicketPivot.Orderno",
-              "nativeQueryRef": "Orderno"
+              "nativeQueryRef": "Order #",
+              "displayName": "Order #"
             },
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "WorkTicketPivot"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Days To BOL"
                     }
                   },
-                  "Property": "Crew.Crew"
+                  "Function": 0
                 }
               },
-              "queryRef": "WorkTicketPivot.Crew.Crew",
-              "nativeQueryRef": "Crew.Crew"
+              "queryRef": "Sum(WorkTicketPivot.Days To BOL)",
+              "nativeQueryRef": "Days To BOL",
+              "displayName": "Days To BOL"
             }
           ]
         }
@@ -78,13 +100,18 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "WorkTicketPivot"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "WorkTicketPivot"
+                      }
+                    },
+                    "Property": "Days To BOL"
                   }
                 },
-                "Property": "Crew.Crew"
+                "Function": 0
               }
             },
             "direction": "Descending"
@@ -96,64 +123,6 @@
       "columnHeaders": [
         {
           "properties": {}
-        }
-      ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "93.55618861506476D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "PlanesDates.Date"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "120.05045051513466D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Sum(WorkTicketPivot.Work_Ticket)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "105.23517277863529D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "WorkTicketPivot.Orderno"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "253.8178258817632D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "WorkTicketPivot.Crew.Crew"
-          }
         }
       ],
       "columnFormatting": [
@@ -172,17 +141,304 @@
                   "Value": "true"
                 }
               }
-            },
+            }
+          },
+          "selector": {
+            "metadata": "Sum(WorkTicketPivot.Days To BOL)"
+          }
+        },
+        {
+          "properties": {
             "styleTotal": {
               "expr": {
                 "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Sum(WorkTicketPivot.Work_Ticket)"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.16882434445887D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.Orderno"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.52048289511254D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(WorkTicketPivot.Work_Ticket)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "158.00917397643553D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.BOL"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.41284547511533D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "WorkTicketPivot.ServiceDate"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'After'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 1,
+                                "Left": {
+                                  "Aggregation": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Entity": "WorkTicketPivot"
+                                          }
+                                        },
+                                        "Property": "Days To BOL"
+                                      }
+                                    },
+                                    "Function": 0
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "7D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Aggregation": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Entity": "WorkTicketPivot"
+                                          }
+                                        },
+                                        "Property": "Days To BOL"
+                                      }
+                                    },
+                                    "Function": 0
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "100D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Aggregation": {
+                                "Expression": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "WorkTicketPivot"
+                                      }
+                                    },
+                                    "Property": "Days To BOL"
+                                  }
+                                },
+                                "Function": 0
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SignMedium'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Aggregation": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Entity": "WorkTicketPivot"
+                                          }
+                                        },
+                                        "Property": "Days To BOL"
+                                      }
+                                    },
+                                    "Function": 0
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "3D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Aggregation": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Entity": "WorkTicketPivot"
+                                          }
+                                        },
+                                        "Property": "Days To BOL"
+                                      }
+                                    },
+                                    "Function": 0
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "8D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SignLow'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sum(WorkTicketPivot.Days To BOL)"
           }
         }
       ]
@@ -207,66 +463,25 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "0be28764ee79114cdd28",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "WorkTicketPivot"
-              }
-            },
-            "Property": "Missing_BOL"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "w",
-              "Entity": "WorkTicketPivot",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "w"
-                          }
-                        },
-                        "Property": "Missing_BOL"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "1L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      },
       {
         "name": "a6d6406526ea0b6ead19",
         "field": {
@@ -428,21 +643,7 @@
         }
       },
       {
-        "name": "3a5b24f9a00489701585",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "PlanesDates"
-              }
-            },
-            "Property": "Date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "39949f7671c0070b9543",
+        "name": "589087c98e12efce5f63",
         "field": {
           "Column": {
             "Expression": {
@@ -456,7 +657,7 @@
         "type": "Advanced"
       },
       {
-        "name": "ce70f60092ed9004aa3a",
+        "name": "237e78134582f65612b0",
         "field": {
           "Column": {
             "Expression": {
@@ -470,7 +671,7 @@
         "type": "Categorical"
       },
       {
-        "name": "8d5e29c1e8b92b910010",
+        "name": "0c3a9dd0f7156ab3eed0",
         "field": {
           "Column": {
             "Expression": {
@@ -478,10 +679,123 @@
                 "Entity": "WorkTicketPivot"
               }
             },
-            "Property": "Crew.Crew"
+            "Property": "ServiceDate"
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "562f4b792f83da57e1b8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "BOL"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d05d37b4f893a2682c03",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
+                  }
+                },
+                "Property": "Days To BOL"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f4b0c68dbec222733ae2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "WorkTicketPivot"
+              }
+            },
+            "Property": "Days To BOL"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "w",
+              "Entity": "WorkTicketPivot",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "w"
+                              }
+                            },
+                            "Property": "Days To BOL"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "-1L"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   }

@@ -17,33 +17,41 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Work_Ticket"
                     }
                   },
-                  "Property": "Total Work Tickets"
+                  "Function": 5
                 }
               },
-              "queryRef": "_Measures.Total Work Tickets",
-              "nativeQueryRef": "Work Tickets",
-              "displayName": "Work Tickets"
+              "queryRef": "CountNonNull(WorkTicketPivot.Work_Ticket)",
+              "nativeQueryRef": "Count of Work_Ticket"
             },
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "WorkTicketPivot"
+                        }
+                      },
+                      "Property": "Missing Pre Trip"
                     }
                   },
-                  "Property": "Missing Pre Trip Count"
+                  "Function": 0
                 }
               },
-              "queryRef": "_Measures.Missing Pre Trip Count",
-              "nativeQueryRef": "Missing Pre Trip",
-              "displayName": "Missing Pre Trip"
+              "queryRef": "Sum(WorkTicketPivot.Missing Pre Trip)",
+              "nativeQueryRef": "Sum of Missing Pre Trip"
             },
             {
               "field": {
@@ -57,8 +65,7 @@
                 }
               },
               "queryRef": "_Measures.% Missing Pre Trip",
-              "nativeQueryRef": "% w/out Pre Trip",
-              "displayName": "% w/out Pre Trip",
+              "nativeQueryRef": "% Missing Pre Trip",
               "format": "0%;-0%;0%"
             }
           ]
@@ -68,13 +75,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "_Measures"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "WorkTicketPivot"
+                      }
+                    },
+                    "Property": "Work_Ticket"
                   }
                 },
-                "Property": "Total Work Tickets"
+                "Function": 5
               }
             },
             "direction": "Descending"
@@ -104,27 +116,6 @@
           },
           "selector": {
             "id": "default"
-          }
-        },
-        {
-          "properties": {
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Total Work Tickets"
           }
         }
       ],
@@ -323,6 +314,58 @@
             }
           ]
         }
+      },
+      {
+        "name": "82f061346590d821da21",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
+                  }
+                },
+                "Property": "Missing Pre Trip"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "955bab453c2614c4a1c0",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WorkTicketPivot"
+                  }
+                },
+                "Property": "Work_Ticket"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "08800712963b5a0de350",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "% Missing Pre Trip"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

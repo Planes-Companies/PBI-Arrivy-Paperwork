@@ -5,18 +5,16 @@ table _Measures
 		formatString: 0
 		lineageTag: 2ab67d98-370c-4040-829b-1336f0f57efc
 
-	measure 'Total Work Tickets' = ```
+	measure 'Total Work Tickets' =
 			
-			COUNT(WorkTicketPivot[Work_Ticket])
-			
-			```
+			DISTINCTCOUNT(WorkTicketPivot[Work_Ticket])
 		formatString: 0
 		lineageTag: d8f5792b-32c5-4c56-800e-1301265b4d77
 
 	measure 'Complete Work Tickets' = ```
 			
 			CALCULATE(
-			    COUNTROWS(WorkTicketPivot),
+			    DISTINCTCOUNT(WorkTicketPivot[Work_Ticket]),
 			    WorkTicketPivot[DocumentStatus] = "Complete"
 			)
 			
@@ -24,17 +22,9 @@ table _Measures
 		formatString: 0
 		lineageTag: 1f1181de-8c25-4cc0-808c-cf27ae915a3a
 
-	measure 'Missing BOL Count' = ```
-			
-			SUM(WorkTicketPivot[Missing_BOL])
-			
-			```
-		formatString: 0
-		lineageTag: 4c95fcc0-4503-4432-a3ba-ce383c76bc27
-
 	measure 'Missing Pre Trip Count' = ```
 			
-			SUM(WorkTicketPivot[Missing_PreTrip])
+			SUM(WorkTicketPivot[Missing Pre Trip])
 			
 			```
 		formatString: 0
@@ -42,27 +32,11 @@ table _Measures
 
 	measure 'Missing Post Trip Count' = ```
 			
-			SUM(WorkTicketPivot[Missing_PostTrip])
+			SUM(WorkTicketPivot[Missing Post Trip])
 			
 			```
 		formatString: 0
 		lineageTag: 959f50d3-3ec8-41b2-8bb6-79e32b6951e7
-
-	measure 'Within 24 Hours' = ```
-			
-			COUNTROWS(
-			    FILTER(
-			        WorkTicketPivot,
-			        NOT ISBLANK(WorkTicketPivot[BOL])
-			            && NOT ISBLANK(WorkTicketPivot[Pre Trip])
-			            && WorkTicketPivot[Hours_PreTrip_To_BOL] <= 24
-			    )
-			)
-			
-			
-			```
-		formatString: 0
-		lineageTag: 4dd02c29-41cc-48f8-9937-a458e48f2f5b
 
 	measure 'Tickets With BOL' = ```
 			
@@ -77,33 +51,10 @@ table _Measures
 		formatString: 0
 		lineageTag: 3d47ba47-c878-456b-a654-746693d14849
 
-	measure PreTrip_BOL_Status = ```
-			
-			VAR PreTripTime =
-			    CALCULATE (
-			        MIN ( Append1[UploadDateTime] ),
-			        Append1[DocType] = "Pre Trip"
-			    )
-			VAR BOLTime =
-			    CALCULATE (
-			        MIN ( Append1[UploadDateTime] ),
-			        Append1[DocType] = "BOL"
-			    )
-			RETURN
-			    SWITCH(
-			        TRUE(),
-			        ISBLANK(PreTripTime), "Missing Pre Trip",
-			        ISBLANK(BOLTime), "Missing BOL",
-			        "Complete"
-			    )
-			
-			```
-		lineageTag: 6601d6f4-ac89-4f24-b155-2528d37f6204
-
 	measure '% Missing BOL' =
 			
 			DIVIDE(
-			    SUM('WorkTicketPivot'[Missing_BOL]),
+			    SUM('WorkTicketPivot'[Missing BOL]),
 			    [Total Work Tickets]
 			)
 		lineageTag: af522643-a795-4155-a3cf-0874c6c83449
@@ -113,7 +64,7 @@ table _Measures
 	measure '% Missing Pre Trip' =
 			
 			DIVIDE(
-			    SUM('WorkTicketPivot'[Missing_PreTrip]),
+			    SUM('WorkTicketPivot'[Missing Pre Trip]),
 			    [Total Work Tickets]
 			)
 		lineageTag: 4084b5a6-d614-4157-a72f-19cd2fed91d2
@@ -123,10 +74,45 @@ table _Measures
 	measure '% Missing Post Trip' =
 			
 			DIVIDE(
-			    SUM('WorkTicketPivot'[Missing_PostTrip]),
+			    SUM('WorkTicketPivot'[Missing Post Trip]),
 			    [Total Work Tickets]
 			)
 		lineageTag: 5ab99485-c2ab-4dd6-b142-aa248af09f23
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Complete' =
+			
+			DIVIDE(
+			    ([Complete Work Tickets]),
+			    [Total Work Tickets]
+			)
+		lineageTag: 0f573b94-09f0-49be-86b7-863a3d478e97
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Blank Tickets' =
+			
+			COUNTROWS(
+			FILTER(
+			WorkTicketPivot,
+			ISBLANK(WorkTicketPivot[Work_Ticket])
+			)
+			)
+		formatString: 0
+		lineageTag: ae00f045-dbba-475a-a78e-b478dacec175
+
+	measure 'Missing BOL' = SUM(WorkTicketPivot[Missing BOL])
+		formatString: 0
+		lineageTag: cf39b994-34fd-438c-a767-fd3362702bfc
+
+	measure 'Avg Days to BOL' =
+			
+			DIVIDE(
+			    SUM('WorkTicketPivot'[Days to BOL]),
+			    [Total Work Tickets]
+			)
+		lineageTag: da49cfb2-a263-474a-b164-5e9509459b61
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -148,4 +134,6 @@ table _Measures
 				    #"Changed Type"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 
